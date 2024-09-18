@@ -1,18 +1,17 @@
-// import { UserLayout } from '@/layouts';
-import UserLayout from '@/layouts/UserLayout.vue';
+import { UserLayout } from '@/layouts';
 import { HomeView, LoginView, SignupView, StartView } from '@/views';
 
-// const metaData = (
-//   needLogin = true,
-//   sidebarVisible = true,
-//   headerVisible = true,
-// ) => {
-//   return {
-//     needLogin,
-//     sidebarVisible,
-//     headerVisible,
-//   }
-// };
+const metaData = (
+  needLogin = true,
+  sidebarVisible = true,
+  headerVisible = true,
+) => {
+  return {
+    needLogin,
+    sidebarVisible,
+    headerVisible,
+  }
+};
 
 const userRoutes = [
   {
@@ -23,25 +22,25 @@ const userRoutes = [
         path: '',
         name: 'start',
         component: StartView,
-        meta: {  },
+        meta: { ...metaData(false, false, false) },
       },
-      // {
-      //   path: 'login',
-      //   name: 'login',
-      //   component: LoginView,
-      //   meta: { ...metaData(false, false, true) },
-      // },
-      // {
-      //   path: 'signup',
-      //   name: 'signup',
-      //   component: SignupView,
-      //   meta: { ...metaData(false, false, true) },
-      // },
+      {
+        path: 'login',
+        name: 'login',
+        component: LoginView,
+        meta: { ...metaData(false, false, true) },
+      },
+      {
+        path: 'signup',
+        name: 'signup',
+        component: SignupView,
+        meta: { ...metaData(false, false, true) },
+      },
       {
         path: 'home',
         name: 'home',
         component: HomeView,
-        meta: {  },
+        meta: { ...metaData() },
       },
     ],
   },
