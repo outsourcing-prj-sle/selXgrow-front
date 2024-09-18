@@ -17,42 +17,26 @@
         </div>
         <!-- 목록 -->
         <div class="flex flex-col">
-          <div
-            class="flex flex-1 mr-2 pl-8 py-6 text-2xl font-bold text-gray-600 rounded-e-2xl"
-            :class="{
-              'text-white bg-gray-600': isDiary,
-            }"
+          <SidebarItems
+            :isSelected="isDiary"
+            :text="'SEL Diary'"
             @click="goDiary"
-          >
-            SEL Diary
-          </div>
-          <div 
-            class="flex flex-1 mr-2 pl-8 py-6 text-2xl font-bold text-gray-600 rounded-e-2xl" 
-            :class="{
-              'text-white bg-gray-600': isAdventyres,
-            }"
+          />
+          <SidebarItems
+            :isSelected="isAdventyres"
+            :text="'SEL Adventyres'"
             @click="goAdventures"
-          >
-            SEL Adventyres
-          </div>
-          <div 
-            class="flex flex-1 mr-2 pl-8 py-6 text-2xl font-bold text-gray-600 rounded-e-2xl" 
-            :class="{
-              'text-white bg-gray-600': isCheckIn,
-            }"
+          />
+          <SidebarItems
+            :isSelected="isCheckIn"
+            :text="'SEL Check-in'"
             @click="goCheckIn"
-          >
-            SEL Check-in
-          </div>
-          <div 
-            class="flex flex-1 mr-2 pl-8 py-6 text-2xl font-bold text-gray-600 rounded-e-2xl" 
-            :class="{
-              'text-white bg-gray-600': isLessonPlan,
-            }"
+          />
+          <SidebarItems
+            :isSelected="isLessonPlan"
+            :text="'SEL Lesson Plan'"
             @click="goLessonPlan"
-          >
-            SEL Lesson Plan
-          </div>
+          />
         </div>
       </div>
       <div class="flex flex-col pb-6">
@@ -89,6 +73,7 @@
   import { useUserStore } from '@/store/userStore.js';
   import { useI18n } from 'vue-i18n';
   import SidebarDropdown from '@/components/SidebarDropdown';
+  import SidebarItems from '@/components/SidebarItems';
 
   const route = useRoute();
   const router = useRouter();
