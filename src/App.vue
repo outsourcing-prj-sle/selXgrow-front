@@ -1,13 +1,24 @@
 <template>
+  <AppLoading />
   <router-view />
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
+import { onMounted } from 'vue';
+import AppLoading from '@/components/AppLoading';
 
-const route = useRoute()
-const router = useRouter()
+onMounted(() => {
+  console.log('app mounted')
+});
 </script>
 
-<style scoped>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  height: 100vh;
+}
 </style>

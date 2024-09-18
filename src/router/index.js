@@ -1,20 +1,16 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import { UserLayout } from '@/layouts'
-import { HomeView } from '@/views'
+import { createRouter, createWebHistory } from "vue-router";
+import userRoutes from './userRoutes';
 
-export default createRouter({
-    history: createWebHashHistory(import.meta.env.BASE_URL),
-    routes: [
-        {
-            path: '/',
-            component: UserLayout,
-            children: [
-                {
-                    path: '',
-                    name: 'home',
-                    component: HomeView
-                }
-            ],
-        },
-    ],
-})
+const routes = [...userRoutes];
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+});
+
+router.beforeEach((to, from, next) => {
+    console.log('Navigating to:', to.path);
+    next();
+});
+
+export default router;
