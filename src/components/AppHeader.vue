@@ -1,9 +1,31 @@
 <template>
   <div class="flex flex-col bg-white">
     <header
-      class="flex gap-5 justify-between py-1.5 pr-9 pl-20 w-full border border-solid border-neutral-200 max-md:flex-wrap max-md:px-5 max-md:max-w-full items-center"
+      class="flex justify-between w-full pt-16 px-8"
       v-if="showHeader"
     >
+      <div class="font-bold text-3xl text-black">
+        01.Mindset Survey
+      </div>
+      <div class="flex">
+        <div class="text-base font-bold text-blue-300 mr-4 content-end">
+          09.20.2024 ~ 09.28.2024
+        </div>
+        <div class="cursor-pointer" @click="goMyInfo">
+          <img
+            class="shrink-0 max-w-full aspect-[1] w-10 mr-2"
+            src="@/assets/img/header_my_info.png"
+            alt="my_info"
+          />
+        </div>
+        <div class="cursor-pointer" @click="logout">
+          <img
+            class="shrink-0 max-w-full aspect-[1] w-10 mr-2"
+            src="@/assets/img/header_logout.png"
+            alt="logout"
+          />
+        </div>
+      </div>
     </header>
   </div>
 </template>
@@ -19,44 +41,17 @@
   const { locale } = useI18n();
 
   const showHeader = computed(() => route.meta.headerVisible);
-  const isMyInfoPage = computed(() => route.meta.isMyInfoPage);
-  const isMySELView = computed(() => route.meta.isMySELView);
 
   const userStore = useUserStore();
   const userId = computed(() => userStore.token);
   const loginType = computed(() => userStore.type);
 
-  const goMain = () => {
-    router.push({ name: 'home' });
-  };
-
   const logout = () => {
-    userStore.logout();
-    router.push({ name: 'start' });
+    alert('로그아웃')
   };
 
-  const checkId = () => {
-    console.log(userId.value);
-  };
-
-  const goMyInfoBtn = () => {
-    if (userId.value) {
-      router.push({ name: 'userInfo' });
-    } else {
-      router.push({ name: 'login' });
-    }
-  };
-
-  const goStudentSEL = () => {
-    router.push({ name: 'mySEL' });
-  };
-
-  const waitAlert = () => {
-    alert('아직 준비중 입니다.');
-  };
-
-  const changeLanguage = (lang) => {
-    locale.value = lang;
+  const goMyInfo = () => {
+    alert('내정보')
   };
 </script>
 

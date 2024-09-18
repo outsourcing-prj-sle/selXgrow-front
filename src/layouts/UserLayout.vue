@@ -1,8 +1,8 @@
 <template>
     <div class="w-full h-full p-10">
-        <div class="flex w-full h-full rounded-2xl border-4 border-gray-400">
+        <div class="flex w-full h-full rounded-[40px] border-4 border-gray-400 overflow-hidden">
             <AppSidebar />
-            <div>
+            <div class="w-full">
                 <AppHeader />
                 <router-view />
             </div>

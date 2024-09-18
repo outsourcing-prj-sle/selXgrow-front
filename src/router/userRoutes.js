@@ -40,7 +40,7 @@ const userRoutes = [
         path: 'home',
         name: 'home',
         component: HomeView,
-        meta: { ...metaData() },
+        meta: { ...metaData(), isCheckIn: true },
       },
     ],
   },
