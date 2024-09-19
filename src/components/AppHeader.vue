@@ -1,28 +1,28 @@
 <template>
-  <div class="flex flex-col bg-white">
+  <div class="flex flex-col">
     <header
-      class="flex justify-between w-full pt-16 px-8"
+      class="flex justify-between w-full pt-8 pb-4 border-b-[#555195] border-b-2 border-opacity-20 relative"
       v-if="showHeader"
     >
       <div class="font-bold text-3xl text-black">
         {{ title }}
       </div>
-      <div class="flex">
-        <div class="text-base font-bold text-blue-300 mr-4 content-end">
-          09.20.2024 ~ 09.28.2024
-          <!-- {{ date }} -->
+      <div class="flex gap-4 justify-center items-center">
+        <div class="text-base font-semibold bg-[#ededf5] rounded-full px-8 py-1.5">
+          <p>09.20.2024 ~ 09.28.2024</p>
+          <!-- date -->
         </div>
         <div class="cursor-pointer" @click="goMyInfo">
           <img
-            class="shrink-0 max-w-full aspect-[1] w-10 mr-2"
-            src="@/assets/img/header_my_info.png"
+            class="shrink-0 max-w-full aspect-[1] w-10"
+            src="@/assets/img/header_my_info.svg"
             alt="my_info"
           />
         </div>
         <div class="cursor-pointer" @click="logout">
           <img
-            class="shrink-0 max-w-full aspect-[1] w-10 mr-2"
-            src="@/assets/img/header_logout.png"
+            class="shrink-0 max-w-full aspect-[1] w-10"
+            src="@/assets/img/header_logout.svg"
             alt="logout"
           />
         </div>
@@ -60,5 +60,13 @@
 </script>
 
 <style>
-/* Footer 스타일 */
+header::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 8px;
+  background-color: #555195;
+  bottom: -2px;
+  left: 0;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <div class="w-full h-full p-10">
-        <div class="flex w-full h-full rounded-[40px] border-4 border-gray-400 overflow-hidden">
+    <div class="w-full h-full bg-[url('@/assets/img/bg.svg')] bg-no-repeat bg-cover">
+        <div class="flex w-full h-full overflow-hidden">
             <AppSidebar />
-            <div class="w-full">
+            <div class="w-full mt-24 px-12 flex flex-col gap-4">
                 <AppHeader />
                 <router-view />
             </div>

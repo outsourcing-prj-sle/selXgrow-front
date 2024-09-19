@@ -1,12 +1,14 @@
 <template>
   <div
-    class="flex flex-1 mr-2 pl-8 py-6 text-2xl font-bold text-gray-600 rounded-e-2xl"
+    class="flex flex-col text-left px-8 py-4 relative"
     :class="{
-      'text-white bg-gray-600': isSelected,
+      'bg-[#0c0a35] active': isSelected,
     }"
     @click="$emit('click')"
   >
-    {{ text }}
+    <p class="text-white text-opacity-50">
+      <slot>{{ text }}</slot>
+    </p>
   </div>
 </template>
 
@@ -26,4 +28,15 @@ const props = defineProps({
 </script>
 
 <style scoped>
+.active::after {
+  content: '>';
+  position: absolute;
+  color: #d3f571;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.active>p {
+  color: #d3f571;
+}
 </style>

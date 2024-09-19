@@ -1,5 +1,5 @@
 import { UserLayout } from '@/layouts';
-import { HomeView, LoginView, SignupView, StartView, AdventuresView } from '@/views';
+import { HomeView, LoginView, SignupView, StartView, DiaryView, AdventuresView } from '@/views';
 
 const metaData = (
   needLogin = true,
@@ -40,7 +40,13 @@ const userRoutes = [
         path: 'home',
         name: 'home',
         component: HomeView,
-        meta: { ...metaData(), isCheckIn: true },
+        meta: { ...metaData(), isCheckIn: true, headerTitle: 'SEL Check-in' },
+      },
+      {
+        path: 'diary',
+        name: 'diary',
+        component: DiaryView,
+        meta: { ...metaData(), isDiary: true, headerTitle: 'SEL Diary - Step 1' },
       },
       {
         path: 'adventures',

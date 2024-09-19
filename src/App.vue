@@ -13,12 +13,17 @@ onMounted(() => {
 </script>
 
 <style>
+@font-face {
+  font-family: 'pretendard';
+  src: url('@/assets/font/PretendardVariable.ttf');
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'pretendard';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #555195;
   height: 100vh;
   overflow: auto;
 }
