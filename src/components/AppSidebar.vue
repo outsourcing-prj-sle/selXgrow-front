@@ -41,59 +41,59 @@
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
-  import { useUserStore } from '@/store/userStore.js';
-  import { useI18n } from 'vue-i18n';
-  import SidebarItems from '@/components/SidebarItems';
+import { computed, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useUserStore } from '@/store/userStore.js';
+import { useI18n } from 'vue-i18n';
+import SidebarItems from '@/components/SidebarItems';
 
-  const route = useRoute();
-  const router = useRouter();
-  const { locale } = useI18n();
+const route = useRoute();
+const router = useRouter();
+const { locale } = useI18n();
 
-  const showSidebar = computed(() => route.meta.sidebarVisible);
-  const isDiary = computed(() => route.meta.isDiary);
-  const isAdventyres = computed(() => route.meta.isAdventyres);
-  const isCheckIn = computed(() => route.meta.isCheckIn);
-  const isLessonPlan = computed(() => route.meta.isLessonPlan);
+const showSidebar = computed(() => route.meta.sidebarVisible);
+const isDiary = computed(() => route.meta.isDiary);
+const isAdventyres = computed(() => route.meta.isAdventyres);
+const isCheckIn = computed(() => route.meta.isCheckIn);
+const isLessonPlan = computed(() => route.meta.isLessonPlan);
 
-  const userStore = useUserStore();
-  const userId = computed(() => userStore.token);
+const userStore = useUserStore();
+const userId = computed(() => userStore.token);
 
-  const termOptions = ref([]);
-  const termStartText = ref('Terms and conditions');
+const termOptions = ref([]);
+const termStartText = ref('Terms and conditions');
 
-  const goMain = () => {
-    // router.push({ name: 'home' });
-  };
+const goMain = () => {
+  // router.push({ name: 'home' });
+};
 
-  const goDiary = () => {
-    if (isDiary.value) return;
-    router.push({ name: 'home' });
-  };
+const goDiary = () => {
+  if (isDiary.value) return;
+  router.push({ name: 'diary1' });
+};
 
-  const goAdventures = () => {
-    if (isAdventyres.value) return;
-    router.push({ name: 'adventures' });
-  };
+const goAdventures = () => {
+  if (isAdventyres.value) return;
+  router.push({ name: 'adventures' });
+};
 
-  const goCheckIn = () => {
-    if (isCheckIn.value) return;
-    router.push({ name: 'check-in' });
-  };
+const goCheckIn = () => {
+  if (isCheckIn.value) return;
+  router.push({ name: 'check-in' });
+};
 
-  const goLessonPlan = () => {
-    if (isLessonPlan.value) return;
-    router.push({ name: 'lesson-plan' });
-  };
+const goLessonPlan = () => {
+  if (isLessonPlan.value) return;
+  router.push({ name: 'lesson-plan' });
+};
 
-  const waitAlert = () => {
-    alert('아직 준비중 입니다.');
-  };
+const waitAlert = () => {
+  alert('아직 준비중 입니다.');
+};
 </script>
 
 <style>
-  p {
-    word-break: break-all;
-  }
+p {
+  word-break: break-all;
+}
 </style>
