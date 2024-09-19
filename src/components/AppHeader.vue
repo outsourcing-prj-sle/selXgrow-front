@@ -4,12 +4,13 @@
       class="flex justify-between w-full pt-8 pb-4 border-b-[#555195] border-b-2 border-opacity-20 relative"
       v-if="showHeader"
     >
-      <div class="font-bold text-2xl">
-        {{ headerTitle }}
+      <div class="font-bold text-3xl text-black">
+        {{ title }}
       </div>
       <div class="flex gap-4 justify-center items-center">
         <div class="text-base font-semibold bg-[#ededf5] rounded-full px-8 py-1.5">
           <p>09.20.2024 ~ 09.28.2024</p>
+          <!-- date -->
         </div>
         <div class="cursor-pointer" @click="goMyInfo">
           <img
@@ -41,11 +42,13 @@
   const { locale } = useI18n();
 
   const showHeader = computed(() => route.meta.headerVisible);
-  const headerTitle = computed(() => route.meta.headerTitle);
 
   const userStore = useUserStore();
   const userId = computed(() => userStore.token);
   const loginType = computed(() => userStore.type);
+  // todo :: route.meta.title || { stateStore.title } || 'Title'
+  const title = computed(() => route.meta.headerTitle || 'Title');
+  // todo :: const date = computed(() => route.meta.needDate && { stateStore.title });
 
   const logout = () => {
     alert('로그아웃')
