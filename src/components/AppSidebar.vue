@@ -1,66 +1,39 @@
 <template>
-  <div class="flex h-full">
+  <div class="flex h-full max-w-[20%]">
     <div
-      class="flex flex-col h-full bg-gray-100 justify-between"
+      class="flex flex-col h-full w-full"
       v-if="showSidebar"
     >
-      <div class="flex flex-col">
-        <!-- 로고 -->
-        <div class="p-2 mb-40">
-          <div class="cursor-pointer rounded-ss-[40px] overflow-hidden bg-white" @click="goMain">
-            <img
-              class="shrink-0 max-w-full aspect-[3.45] w-80"
-              src="@/assets/img/logo_sidebar.png"
-              alt="logo_sidebar"
-            />
-          </div>
-        </div>
-        <!-- 목록 -->
-        <div class="flex flex-col">
-          <SidebarItems
-            :isSelected="isDiary"
-            :text="'SEL Diary'"
-            @click="goDiary"
-          />
-          <SidebarItems
-            :isSelected="isAdventyres"
-            :text="'SEL Adventyres'"
-            @click="goAdventures"
-          />
-          <SidebarItems
-            :isSelected="isCheckIn"
-            :text="'SEL Check-in'"
-            @click="goCheckIn"
-          />
-          <SidebarItems
-            :isSelected="isLessonPlan"
-            :text="'SEL Lesson Plan'"
-            @click="goLessonPlan"
-          />
-        </div>
+      <!-- 로고 -->
+      <div class="cursor-pointer h-24 flex justify-center items-center my-4 mx-4" @click="goMain">
+        <img
+          class="w-full"
+          src="@/assets/img/header_logo.png"
+          alt="logo_sidebar"
+        />
       </div>
-      <div class="flex flex-col pb-6">
-        <!-- 드롭다운 -->
-        <div class="p-2 w-full mb-3">
-          <SidebarDropdown
-            class="w-full"
-            :objectOptions="termOptions"
-            :startText="termStartText"
-            :openMax="true"
-            :openWay="'left'"
-            @update:selectedOption="handleSelection1"
-          />
+      <!-- 목록 -->
+      <div class="flex flex-col justify-between bg-[#19146a] pt-20 pb-16 h-full mb-8 rounded-r-[40px]">
+        <div class="flex flex-col">
+          <SidebarItems :isSelected="isCheckIn" @click="goCheckIn">
+            SEL<br>Check-in
+          </SidebarItems>
+          <SidebarItems :isSelected="isDiary" @click="goDiary">
+            SEL<br>Diary
+          </SidebarItems>
+          <SidebarItems :isSelected="isAdventyres" @click="goAdventures">
+            SEL<br>Adventures
+          </SidebarItems>
+          <SidebarItems :isSelected="isLessonPlan" @click="goLessonPlan">
+            SEL<br>Lesson Plan
+          </SidebarItems>
         </div>
         <!-- 푸터 -->
-        <div class="pl-8 text-gray-400 text-[16px] text-left">
-          <img
-            class="shrink-0 max-w-full aspect-[2.45] w-40 mb-2"
-            src="@/assets/img/logo_sidebar_growX.png"
-            alt="logo_sidebar_growX"
-          />
-          <p>1600 Holloway Avenue,</p>
-          <p>San Franciso, CA 94132</p>
-          <p>TEL +1 000-000-0000</p>
+        <div class="text-white text-opacity-50 text-[16px] px-8 text-left">
+          <p>ⓒ 2024</p>
+          <p>Grow X Education.</p>
+          <p>All right reserved.</p>
+          <p>growxeducation@gmail.com</p>
         </div>
       </div>
     </div>
@@ -72,7 +45,6 @@
   import { useRoute, useRouter } from 'vue-router';
   import { useUserStore } from '@/store/userStore.js';
   import { useI18n } from 'vue-i18n';
-  import SidebarDropdown from '@/components/SidebarDropdown';
   import SidebarItems from '@/components/SidebarItems';
 
   const route = useRoute();
@@ -121,5 +93,7 @@
 </script>
 
 <style>
-/* Footer 스타일 */
+  p {
+    word-break: break-all;
+  }
 </style>
