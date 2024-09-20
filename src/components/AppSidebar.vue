@@ -13,7 +13,7 @@
         />
       </div>
       <!-- 목록 -->
-      <div class="flex flex-col justify-between bg-[#19146a] pt-20 pb-16 h-full mb-8 rounded-r-[40px]">
+      <div class="flex flex-col justify-between bg-[#19146a] pt-20 pb-16 h-full rounded-r-[40px]">
         <div class="flex flex-col">
           <SidebarItems :isSelected="isCheckIn" @click="goCheckIn">
             SEL<br>Check-in

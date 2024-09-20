@@ -1,28 +1,30 @@
 <template>
     <div>
-        <picture className="bg-[#f3f5f7] rounded-full flex items-center justify-center">
+        <picture className="bg-[#f3f5f7] rounded-full flex items-center justify-center w-24 aspect-square">
             <img
-            :className="`${isLowNumber && 'p-4'}`"
+            :className="`${isLowNumber && 'p-4'} w-full aspect-square`"
             :src="require(`@/assets/img/${selectedMood.icon}.svg`)"
             alt="mood icon"
             />
         </picture>
-        <p v-if="showText && !isLowNumber">Extremely</p>
-        <p v-if="showText && isLowNumber">A Litter</p>
+        <p :style="textColor && `color: ${textColor}`" v-if="!!textContent">{{ textContent }}</p>
     </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { MOODS } from '@/utils/constant';
+import { computed } from 'vue';
 
 const props = defineProps({
     name: {
         type: String,
         required: true
     },
-    showText: {
-        type: Boolean,
-        default: false
+    textContent: {
+        type: String,
+    },
+    textColor: {
+        type: Text,
     },
     isLowNumber: {
         type: Boolean,
@@ -30,66 +32,8 @@ const props = defineProps({
     },
 })
 
-const moods = [
-    { 
-        name: 'Sad', 
-        icon: 'diary1-sad-icon', 
-        color: '#007CD6' 
-    },
-    {
-        name: 'Angry',
-        icon: 'diary1-angry-icon',
-        color: '#B81521',
-    },
-    {
-        name: 'Excited',
-        icon: 'diary1-excited-icon',
-        color: '#F96D30',
-    },
-    {
-        name: 'Content',
-        icon: 'diary1-content-icon',
-        color: '#D9B341',
-    },
-    {
-        name: 'Thankful',
-        icon: 'diary1-thankful-icon',
-        color: '#BFBB30',
-    },
-    {
-        name: 'Proud',
-        icon: 'diary1-proud-icon',
-        color: '#A0BF00',
-    },
-    {
-        name: 'Happy',
-        icon: 'diary1-happy-icon',
-        color: '#CFAE08',
-    },
-    {
-        name: 'Confused',
-        icon: 'diary1-confused-icon',
-        color: '#0F9B35',
-    },
-    {
-        name: 'Bored',
-        icon: 'diary1-bored-icon',
-        color: '#812088',
-    },
-    {
-        name: 'Embarrassed',
-        icon: 'diary1-embarrassed-icon',
-        color: '#F1649B',
-    },
-    {
-        name: 'Worried',
-        icon: 'diary1-worried-icon',
-        color: '#57B109',
-    },
-];
-
 const selectedMood = computed(() => {
-    return moods.find((m) => m.name === props.name)
+    return MOODS[props.name]
 });
 </script>
 

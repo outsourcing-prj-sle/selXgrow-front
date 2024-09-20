@@ -1,9 +1,9 @@
 <template>
-    <div className="flex flex-col justify-between h-full mb-8">
+    <div className="flex flex-col justify-between h-full">
         <div>
             <div className="flex items-start">
                 <RobotItem />
-                <p className="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left">
+                <p className="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full">
                     Next, use the slider to show the 
                     <span className="underline underline-offset-2">intensity</span>
                     of your emotion, or 
@@ -20,7 +20,7 @@
                     <p className="text-white opacity-50">{{ feelDescription }}</p>
                 </div>
                 <div className="flex justify-between items-center w-full px-16 gap-8">
-                    <MoodItem name="Sad" showText="true" isLowNumber="true" />
+                    <MoodItem name="Sad" :textContent="`${MOODS_LEVEL[0]}`" isLowNumber="true" />
                     <div className="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex w-full justify-between items-center px-2 py-1">
                         <button 
                             v-for="i in [1, 2, 3, 4, 5]" 
@@ -32,7 +32,7 @@
                         {{ i }}
                         </button>
                     </div>
-                    <MoodItem name="Sad" showText="true" />
+                    <MoodItem name="Sad" :textContent="`${MOODS_LEVEL[4]}`" />
                 </div>
             </div>
         </div>
@@ -50,6 +50,7 @@ import router from '@/router';
 import ButtonItems from '@/components/ButtonItems.vue';
 import MoodItem from '@/components/MoodItem.vue';
 import RobotItem from '@/components/RobotItem.vue';
+import { MOODS_LEVEL } from '@/utils/constant';
 
 const props = defineProps({
     selectedFeel: {
@@ -62,7 +63,7 @@ const props = defineProps({
 const feelScore = ref(1);
 
 const feelDescription = computed(() => {
-    return ['A Little', 'Pretty', 'Quite', 'Very', 'Extremely'][feelScore.value - 1]
+    return MOODS_LEVEL[feelScore.value - 1]
 });
 
 const clickFeelScoreHandler = (number) => {

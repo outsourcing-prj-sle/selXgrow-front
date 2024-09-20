@@ -27,4 +27,17 @@ onMounted(() => {
   height: 100vh;
   overflow: auto;
 }
+
+::-webkit-scrollbar {
+    width: 10px;  
+}
+
+::-webkit-scrollbar-thumb {
+    background: #C4C2BD;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
 </style>
