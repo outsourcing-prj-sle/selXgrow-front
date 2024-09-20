@@ -3,7 +3,7 @@
         <picture className="bg-[#f3f5f7] rounded-full flex items-center justify-center">
             <img
             :className="`${isLowNumber && 'p-4'}`"
-            :src="require(`@/assets/img/${selectedMood.icon}.png`)"
+            :src="require(`@/assets/img/${selectedMood.icon}.svg`)"
             alt="mood icon"
             />
         </picture>
