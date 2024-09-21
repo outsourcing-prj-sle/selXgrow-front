@@ -51,7 +51,7 @@
       </div>
     </div>
     <div
-      className="absolute bottom-0 h-[50px] w-full flex justify-between items-center"
+      className="absolute bottom-0 h-[70px] w-full flex justify-between items-center"
     >
       <ButtonItems name="prev" @click="() => router.push({ name: 'diary1' })" />
       <ButtonItems name="next" @click="() => router.push({ name: 'diary3' })" />
