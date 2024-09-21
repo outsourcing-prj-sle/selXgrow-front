@@ -1,12 +1,14 @@
 <template>
-  <div
-    class="w-full h-full bg-[url('@/assets/img/bg.svg')] bg-no-repeat bg-cover"
-  >
-    <div class="flex w-full h-[calc(100%-32px)] overflow-hidden">
+  <div class="w-screen h-screen bg-[url('@/assets/img/bg.svg')] bg-no-repeat bg-cover">
+    <div class="flex w-screen h-[95vh] overflow-hidden">
       <AppSidebar />
-      <div class="w-full mt-12 px-12 flex flex-col gap-4">
-        <AppHeader />
-        <router-view />
+      <div class="flex-1 mt-12 px-12 flex flex-col overflow-hidden">
+        <div class="flex">
+          <AppHeader />
+        </div>
+        <div class="flex flex-col flex-1">
+          <router-view />
+        </div>
       </div>
     </div>
   </div>

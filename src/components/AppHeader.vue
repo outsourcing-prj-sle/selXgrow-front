@@ -1,34 +1,32 @@
 <template>
-  <div class="flex flex-col">
-    <header
-      class="flex justify-between w-full pt-8 pb-2 border-b-[#555195] border-b-2 border-opacity-20 relative"
-      v-if="showHeader"
-    >
-      <div class="font-extrabold text-2xl flex items-start gap-2">
-        <span className="text-sm">▶</span> {{ title }}
+  <header
+    class="flex justify-between w-full pt-8 pb-2 mb-4 border-b-[#555195] border-b-2 border-opacity-20 relative"
+    v-if="showHeader"
+  >
+    <div class="font-extrabold text-2xl flex items-start gap-2">
+      <span className="text-sm">▶</span> {{ title }}
+    </div>
+    <div class="flex gap-4 justify-center items-center">
+      <div class="text-sm font-semibold bg-[#ededf5] rounded-full px-8 py-1.5">
+        <p>09.20.2024 ~ 09.28.2024</p>
+        <!-- date -->
       </div>
-      <div class="flex gap-4 justify-center items-center">
-        <div class="text-sm font-semibold bg-[#ededf5] rounded-full px-8 py-1.5">
-          <p>09.20.2024 ~ 09.28.2024</p>
-          <!-- date -->
-        </div>
-        <div class="cursor-pointer" @click="goMyInfo">
-          <img
-            class="shrink-0 max-w-full aspect-[1] w-8"
-            src="@/assets/img/header_my_info.svg"
-            alt="my_info"
-          />
-        </div>
-        <div class="cursor-pointer" @click="logout">
-          <img
-            class="shrink-0 max-w-full aspect-[1] w-8"
-            src="@/assets/img/header_logout.svg"
-            alt="logout"
-          />
-        </div>
+      <div class="cursor-pointer" @click="goMyInfo">
+        <img
+          class="shrink-0 max-w-full aspect-[1] w-8"
+          src="@/assets/img/header_my_info.svg"
+          alt="my_info"
+        />
       </div>
-    </header>
-  </div>
+      <div class="cursor-pointer" @click="logout">
+        <img
+          class="shrink-0 max-w-full aspect-[1] w-8"
+          src="@/assets/img/header_logout.svg"
+          alt="logout"
+        />
+      </div>
+    </div>
+  </header>
 </template>
 
 <script setup>

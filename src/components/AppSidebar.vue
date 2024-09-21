@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full max-w-[15%]">
+  <div class="flex h-full w-44">
     <div
       class="flex flex-col h-full w-full"
       v-if="showSidebar"

@@ -29,15 +29,17 @@ onMounted(() => {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;  
+    width: 20px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #C4C2BD;
     border-radius: 10px;
+    border: 6px solid white;
 }
 
-::-webkit-scrollbar-track {
-    background: white;
+::-webkit-scrollbar-button {
+  border-radius: 100%;
+  height: 5px;
 }
 </style>

@@ -1,13 +1,18 @@
 <template>
     <div>
-        <picture className="bg-[#f3f5f7] rounded-full flex items-center justify-center w-24 aspect-square">
+        <picture :className="`bg-[#f3f5f7] rounded-full flex items-center justify-center w-${size} aspect-square`">
             <img
-            :className="`${isLowNumber && 'p-4'} w-full aspect-square`"
+            :className="`${isLowNumber && 'p-3.5'} w-full aspect-square`"
             :src="require(`@/assets/img/${selectedMood.icon}.svg`)"
             alt="mood icon"
             />
         </picture>
-        <p :style="textColor && `color: ${textColor}`" v-if="!!textContent">{{ textContent }}</p>
+        <p 
+            :class="`font-bold p-2.5 text-[${fontSize}px]`"
+            :style="textColor && `color: ${textColor}`" v-if="!!textContent"
+        >
+            {{ textContent }}
+        </p>
     </div>
 </template>
 
@@ -30,6 +35,14 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    size: {
+        type: Number,
+        default: 24,
+    },
+    fontSize: {
+        type:Number,
+        default: 16,
+    }
 })
 
 const selectedMood = computed(() => {
@@ -38,9 +51,4 @@ const selectedMood = computed(() => {
 </script>
 
 <style scoped>
-    p {
-        font-weight: bold;
-        padding: 10px 0;
-        font-size: 18px;
-    }
 </style>
