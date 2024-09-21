@@ -27,30 +27,20 @@
             v-for="(mood, index) in moods"
             :key="index"
             :style="getPosition(index)"
-            class="absolute w-[100px] h-[100px] flex flex-col justify-center items-center rounded-full cursor-pointer"
+            class="absolute flex flex-col justify-center items-center rounded-full cursor-pointer"
             @click="setMood(index)"
           >
             <!-- Replace with actual image/icon -->
-            <div
-              class="bg-blue-100 rounded-full flex items-center justify-center"
-            >
+            <div class="rounded-full flex items-center justify-center">
               <img
-                :src="require(`@/assets/img/${mood.icon}.svg`)"
-                :class="`${selectedMood === index ? 'w-[100px]' : 'w-[74px]'}`"
+                :src="
+                  require(
+                    `@/assets/img/${selectedMood === index ? mood.big_icon : mood.icon}.svg`
+                  )
+                "
                 alt="mood icon"
               />
             </div>
-            <p
-              :style="{
-                ...getTextPosition(index),
-                color: selectedMood === index ? `white` : mood.color,
-                backgroundColor:
-                  selectedMood === index ? mood.color : `transparent`,
-              }"
-              :class="`text-center text-sm mt-1 ${selectedMood === index && `px-4 py-0.5 rounded-full`}`"
-            >
-              {{ mood.name }}
-            </p>
           </div>
         </div>
       </div>
@@ -75,57 +65,68 @@ const selectedMood = ref(null);
 const moods = ref([
   {
     name: 'Sad',
-    icon: 'diary1-sad-icon',
+    icon: 'diary1-sad-small',
+    big_icon: 'diary1-sad-big',
     color: '#007CD6',
   },
   {
     name: 'Angry',
-    icon: 'diary1-angry-icon',
+    icon: 'diary1-angry-small',
+    big_icon: 'diary1-angry-big',
     color: '#B81521',
   },
   {
     name: 'Excited',
-    icon: 'diary1-excited-icon',
+    icon: 'diary1-excited-small',
+    big_icon: 'diary1-excited-big',
     color: '#F96D30',
   },
   {
     name: 'Content',
-    icon: 'diary1-content-icon',
+    icon: 'diary1-content-small',
+    big_icon: 'diary1-content-big',
     color: '#D9B341',
   },
   {
     name: 'Thankful',
-    icon: 'diary1-thankful-icon',
+    icon: 'diary1-thankful-small',
+    big_icon: 'diary1-thankful-big',
     color: '#BFBB30',
   },
   {
     name: 'Proud',
-    icon: 'diary1-proud-icon',
+    icon: 'diary1-proud-small',
+    big_icon: 'diary1-proud-big',
     color: '#A0BF00',
   },
   {
     name: 'Happy',
-    icon: 'diary1-happy-icon',
+    icon: 'diary1-happy-small',
+    big_icon: 'diary1-happy-big',
     color: '#CFAE08',
   },
   {
     name: 'Confused',
-    icon: 'diary1-confused-icon',
+    icon: 'diary1-confused-small',
+    big_icon: 'diary1-confused-big',
     color: '#0F9B35',
   },
   {
     name: 'Bored',
-    icon: 'diary1-bored-icon',
+    icon: 'diary1-bored-small',
+    big_icon: 'diary1-bored-big',
     color: '#812088',
   },
   {
     name: 'Embarrassed',
-    icon: 'diary1-embarrassed-icon',
+    icon: 'diary1-embarrassed-small',
+    big_icon: 'diary1-embarrassed-big',
     color: '#F1649B',
   },
   {
     name: 'Worried',
-    icon: 'diary1-worried-icon',
+    icon: 'diary1-worried-small',
+    big_icon: 'diary1-worried-big',
     color: '#57B109',
   },
 ]);
@@ -136,23 +137,9 @@ const getPosition = (index) => {
   const baseRadius = 150;
   const radius = selectedMood.value === index ? baseRadius + 30 : baseRadius;
   const x = radius * Math.cos(angle);
-  const y = radius * Math.sin(angle) + 12;
+  const y = radius * Math.sin(angle);
   return {
     transform: `translate(${x}px, ${y}px)`,
-  };
-};
-
-const getTextPosition = (index) => {
-  const total = moods.value.length;
-  const angle = (index / total) * (2 * Math.PI) - (140 * Math.PI) / 180;
-  const baseOffset = 70;
-  const offset = selectedMood.value === index ? baseOffset + 20 : baseOffset;
-
-  const xOffset = offset * Math.cos(angle) - 3;
-  const yOffset = offset * Math.sin(angle) - 48;
-
-  return {
-    transform: `translate(${xOffset}px, ${yOffset}px)`,
   };
 };
 
