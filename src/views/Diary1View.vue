@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex flex-col h-full relative">
     <div class="flex flex-col flex-1">
       <div className="flex items-start">
         <RobotItem />
@@ -55,12 +55,20 @@
         </div>
       </div>
     </div>
+
+    <div
+      className="absolute bottom-0 h-[50px] w-full flex justify-end items-center"
+    >
+      <ButtonItems name="next" @click="() => router.push({ name: 'diary2' })" />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
+import router from '@/router';
 import RobotItem from '@/components/RobotItem.vue';
+import ButtonItems from '@/components/ButtonItems.vue';
 
 const selectedMood = ref(null);
 

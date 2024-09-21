@@ -1,16 +1,26 @@
 import { UserLayout } from '@/layouts';
-import { HomeView, LoginView, SignupView, StartView, Diary1View, AdventuresView, Diary2View, DiaryHistoryView } from '@/views';
+import {
+  HomeView,
+  LoginView,
+  SignupView,
+  StartView,
+  Diary1View,
+  AdventuresView,
+  Diary2View,
+  Diary3View,
+  DiaryHistoryView,
+} from '@/views';
 
 const metaData = (
   needLogin = true,
   sidebarVisible = true,
-  headerVisible = true,
+  headerVisible = true
 ) => {
   return {
     needLogin,
     sidebarVisible,
     headerVisible,
-  }
+  };
 };
 
 const userRoutes = [
@@ -46,13 +56,31 @@ const userRoutes = [
         path: 'diary/1',
         name: 'diary1',
         component: Diary1View,
-        meta: { ...metaData(), isDiary: true, headerTitle: 'SEL Diary - Step 1' },
+        meta: {
+          ...metaData(),
+          isDiary: true,
+          headerTitle: 'SEL Diary - Step 1',
+        },
       },
       {
         path: 'diary/2',
         name: 'diary2',
         component: Diary2View,
-        meta: { ...metaData(), isDiary: true, headerTitle: 'SEL Diary - Step 2' },
+        meta: {
+          ...metaData(),
+          isDiary: true,
+          headerTitle: 'SEL Diary - Step 2',
+        },
+      },
+      {
+        path: 'diary/3',
+        name: 'diary3',
+        component: Diary3View,
+        meta: {
+          ...metaData(),
+          isDiary: true,
+          headerTitle: 'SEL Diary - Step 3',
+        },
       },
       {
         path: 'diary/history',
@@ -64,7 +92,11 @@ const userRoutes = [
         path: 'adventures',
         name: 'adventures',
         component: AdventuresView,
-        meta: { ...metaData(), isAdventyres: true, headerTitle: 'SEL Adventures' },
+        meta: {
+          ...metaData(),
+          isAdventyres: true,
+          headerTitle: 'SEL Adventures',
+        },
       },
     ],
   },
