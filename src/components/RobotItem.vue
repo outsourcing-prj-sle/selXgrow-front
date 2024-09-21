@@ -1,6 +1,6 @@
 <template>
     <picture className="flex justify-center items-center h-36 w-36">
-        <img :src="require(`@/assets/img/robot_${imageName}.svg`)" :class="`${computedRotateVal}`" />
+        <img :src="require(`@/assets/img/robot_${imageName}.svg`)" :class="computedRotateVal" />
     </picture>
 </template>
 

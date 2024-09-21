@@ -13,7 +13,7 @@
           you are feeling that way
         </p>
       </div>
-      <div className="flex flex-col px-36 justify-center items-center">
+      <div className="flex flex-col px-24 justify-center items-center">
         <p
           className="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
@@ -27,19 +27,19 @@
           <p className="text-white text-4xl">{{ feelScore }}</p>
           <p className="text-white opacity-50">{{ feelDescription }}</p>
         </div>
-        <div className="flex justify-between items-center w-full px-16 gap-8">
+        <div className="flex justify-between items-center w-full px-8 gap-8">
           <MoodItem
             name="Sad"
             :textContent="`${MOODS_LEVEL[0]}`"
             isLowNumber="true"
           />
           <div
-            className="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex w-full justify-between items-center px-2 py-1"
+            className="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex w-full justify-between items-center px-2"
           >
             <button
               v-for="i in [1, 2, 3, 4, 5]"
               :key="i"
-              className="font-bold aspect-square px-2 rounded-full"
+              className="font-bold aspect-square px-2 rounded-full text-xs"
               type="button"
               @click="clickFeelScoreHandler(i)"
             >
