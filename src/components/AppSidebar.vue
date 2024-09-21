@@ -1,19 +1,19 @@
 <template>
-  <div class="flex h-full max-w-[20%]">
+  <div class="flex h-full max-w-[15%]">
     <div
       class="flex flex-col h-full w-full"
       v-if="showSidebar"
     >
       <!-- 로고 -->
-      <div class="cursor-pointer h-24 flex justify-center items-center my-4 mx-4" @click="goMain">
+      <div class="cursor-pointer flex justify-center items-center mt-8 mb-2 mx-4" @click="goMain">
         <img
           class="w-full"
-          src="@/assets/img/header_logo.png"
+          src="@/assets/img/header_logo.svg"
           alt="logo_sidebar"
         />
       </div>
       <!-- 목록 -->
-      <div class="flex flex-col justify-between bg-[#19146a] pt-20 pb-16 h-full rounded-r-[40px]">
+      <div class="flex flex-col justify-between bg-[#19146a] py-14 pb-12 h-full rounded-r-[40px]">
         <div class="flex flex-col">
           <SidebarItems :isSelected="isCheckIn" @click="goCheckIn">
             SEL<br>Check-in
@@ -29,7 +29,7 @@
           </SidebarItems>
         </div>
         <!-- 푸터 -->
-        <div class="text-white text-opacity-50 text-[16px] px-8 text-left">
+        <div class="text-white text-opacity-50 text-xs px-8 text-left">
           <p>ⓒ 2024</p>
           <p>Grow X Education.</p>
           <p>All right reserved.</p>
