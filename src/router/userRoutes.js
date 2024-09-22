@@ -10,6 +10,7 @@ import {
   Diary3View,
   DiaryHistoryView,
   AdventuresDetailView,
+  LessonPlanView,
 } from '@/views';
 
 const metaData = (
@@ -107,6 +108,16 @@ const userRoutes = [
           ...metaData(),
           isAdventyres: true,
           headerTitle: 'SEL Adventures',
+        },
+      },
+      {
+        path: 'lesson-plan',
+        name: 'lesson-plan',
+        component: LessonPlanView,
+        meta: {
+          ...metaData(),
+          isLessonPlan: true,
+          headerTitle: 'Sharing SEL lesson plans',
         },
       },
     ],

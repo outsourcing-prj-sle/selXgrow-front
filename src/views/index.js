@@ -8,3 +8,4 @@ export { default as Diary3View } from './Diary3View.vue';
 export { default as DiaryHistoryView } from './DiaryHistoryView.vue';
 export { default as AdventuresView } from './AdventuresView.vue';
 export { default as AdventuresDetailView } from './AdventuresDetailView.vue';
+export { default as LessonPlanView } from './LessonPlanView.vue';
