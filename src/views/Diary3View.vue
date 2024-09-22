@@ -149,7 +149,8 @@ const selectOption = (item) => {
 };
 
 const openDiarySavePopup = () => {
-  popupStore.openSaveDiaryPopup();
+  // popupStore.openSaveDiaryPopup();
+  popupStore.openCommonPopup();
 };
 </script>
 

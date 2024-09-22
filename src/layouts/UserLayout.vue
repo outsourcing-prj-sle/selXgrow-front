@@ -6,6 +6,7 @@
       <AppSidebar />
       <div class="flex-1 mt-12 px-12 flex flex-col overflow-hidden relative">
         <PopupSaveDiary v-if="isOpenedSaveDiaryPopup" />
+        <CommonPopup v-if="isOpenedCommonPopup" />
         <div class="flex">
           <AppHeader />
         </div>
@@ -22,6 +23,7 @@ import { onMounted, computed } from 'vue';
 import AppHeader from '@/components/AppHeader.vue';
 import AppSidebar from '@/components/AppSidebar.vue';
 import PopupSaveDiary from '@/components/PopupSaveDiary.vue';
+import CommonPopup from '@/components/CommonPopup.vue';
 
 import { usePopupStore } from '@/store/popupStore.js';
 const popupStore = usePopupStore();
@@ -35,6 +37,10 @@ onMounted(() => {
 
 const isOpenedSaveDiaryPopup = computed(() => {
   return popupStore.isOpenedSaveDiaryPopup;
+});
+
+const isOpenedCommonPopup = computed(() => {
+  return popupStore.isOpenedCommonPopup;
 });
 </script>
 
