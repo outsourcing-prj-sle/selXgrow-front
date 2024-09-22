@@ -4,7 +4,7 @@
   >
     <div class="flex w-screen h-[95vh] overflow-hidden">
       <AppSidebar />
-      <div class="flex-1 mt-12 px-12 flex flex-col overflow-hidden">
+      <div class="flex-1 mt-12 px-12 flex flex-col overflow-hidden relative">
         <PopupSaveDiary v-if="isOpenedSaveDiaryPopup" />
         <div class="flex">
           <AppHeader />
