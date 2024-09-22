@@ -9,6 +9,7 @@ import {
   Diary2View,
   Diary3View,
   DiaryHistoryView,
+  AdventuresDetailView,
 } from '@/views';
 
 const metaData = (
@@ -92,6 +93,16 @@ const userRoutes = [
         path: 'adventures',
         name: 'adventures',
         component: AdventuresView,
+        meta: {
+          ...metaData(),
+          isAdventyres: true,
+          headerTitle: 'SEL Adventures',
+        },
+      },
+      {
+        path: 'adventures/:id',
+        name: 'AdventuresDetailView',
+        component: AdventuresDetailView,
         meta: {
           ...metaData(),
           isAdventyres: true,
