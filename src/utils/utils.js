@@ -1,3 +1,11 @@
+const waitSec = (sec) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, sec * 1000);
+  });
+};
+
 const _mixDate = (startDate, endDate) => {
   const start = new Date(
     `${startDate.substring(0, 4)}-${startDate.substring(4, 6)}-${startDate.substring(6, 8)}`
@@ -32,4 +40,4 @@ const _leftDate = (e) => {
   return differenceInDays;
 };
 
-export { _mixDate, _leftDate };
+export { waitSec, _mixDate, _leftDate };
