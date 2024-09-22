@@ -18,8 +18,7 @@
           className="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           How
-          <span className="text-[#80beeb]">{{ props.selectedFeel }}</span> do
-          you feel?
+          <span className="text-[#80beeb]">{{ mood }}</span> do you feel?
         </p>
         <div
           className="flex flex-col w-28 aspect-square bg-[#19146a] rounded-2xl justify-center mt-12 -mb-6"
@@ -68,14 +67,20 @@ import MoodItem from '@/components/MoodItem.vue';
 import RobotItem from '@/components/RobotItem.vue';
 import { MOODS_LEVEL } from '@/utils/constant';
 
+import { useDiaryStore } from '@/store/diaryStore.js';
+const diaryStore = useDiaryStore();
+
 const props = defineProps({
   selectedFeel: {
     type: String,
     required: true,
-    default: 'sad',
+    default: '',
   },
 });
 
+const mood = computed(() => {
+  return props.selectedFeel || diaryStore.mood || 'sad';
+});
 const feelScore = ref(1);
 
 const feelDescription = computed(() => {
@@ -84,6 +89,8 @@ const feelDescription = computed(() => {
 
 const clickFeelScoreHandler = (number) => {
   feelScore.value = number;
+  diaryStore.setLevel(number);
+  diaryStore.setLevelName(MOODS_LEVEL[number - 1]);
 };
 </script>
 

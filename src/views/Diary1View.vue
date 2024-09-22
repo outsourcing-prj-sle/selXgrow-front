@@ -60,6 +60,9 @@ import router from '@/router';
 import RobotItem from '@/components/RobotItem.vue';
 import ButtonItems from '@/components/ButtonItems.vue';
 
+import { useDiaryStore } from '@/store/diaryStore.js';
+const diaryStore = useDiaryStore();
+
 const selectedMood = ref(null);
 
 const moods = ref([
@@ -146,7 +149,13 @@ const getPosition = (index) => {
 // Handle mood selection
 const setMood = (index) => {
   if (selectedMood.value === index) selectedMood.value = null;
-  else selectedMood.value = index;
+  else {
+    selectedMood.value = index;
+
+    diaryStore.setColor(moods.value[index].color);
+    diaryStore.setIcon(moods.value[index].icon);
+    diaryStore.setMood(moods.value[index].name.toLowerCase());
+  }
 };
 </script>
 

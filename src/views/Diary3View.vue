@@ -16,7 +16,7 @@
           className="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           For what reason are you feeling
-          <span className="text-[#80beeb]">{{ 'sad' }}</span> ?
+          <span className="text-[#80beeb]">{{ mood }}</span> ?
         </p>
         <!-- 드롭박스 -->
         <div class="w-full pr-14 mt-7">
@@ -88,7 +88,7 @@
             />
             <img
               class="absolute -left-[50px] top-[45px] w-[100px]"
-              :src="require(`@/assets/img/diary1-sad-icon.svg`)"
+              :src="require(`@/assets/img/${moodIcon}.svg`)"
               alt="mood icon"
             />
           </div>
@@ -120,6 +120,13 @@ import RobotItem from '@/components/RobotItem.vue';
 import { usePopupStore } from '@/store/popupStore.js';
 const popupStore = usePopupStore();
 
+import { useDiaryStore } from '@/store/diaryStore.js';
+const diaryStore = useDiaryStore();
+
+const mood = computed(() => {
+  // return props.selectedFeel || diaryStore.mood || 'sad';
+  return diaryStore.mood || 'sad';
+});
 const items = ref([
   { value: 'Related to something that happened in class', key: 1 },
   { value: 'Related to friends', key: 2 },
@@ -130,6 +137,10 @@ const items = ref([
 ]);
 const selectedOption = ref(null);
 const isOpened = ref(false);
+
+const moodIcon = computed(() => {
+  return diaryStore.icon || 'diary1-sad-small';
+});
 
 const saveButtonClass = computed(() => {
   let result = '';
@@ -145,6 +156,7 @@ const openDropBox = () => {
 
 const selectOption = (item) => {
   selectedOption.value = item;
+  diaryStore.setReason(item.value);
   openDropBox();
 };
 

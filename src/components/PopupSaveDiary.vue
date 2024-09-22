@@ -88,28 +88,42 @@
         How I feel right now
       </div>
       <div class="text-white text-2xl font-semibold">
-        For what reason are you feeling sad?
+        For what reason are you feeling {{ mood }}?
       </div>
       <div class="text-[#A960FC] text-lg font-semibold mt-3">
         How much do I feel
       </div>
-      <div class="text-white text-2xl font-semibold">A Little</div>
+      <div class="text-white text-2xl font-semibold">{{ levelName }}</div>
       <div class="text-[#A960FC] text-lg font-semibold mt-3">
         The reason why I feel it
       </div>
       <div class="text-white text-2xl font-semibold">
-        Related to something that happened in class
+        {{ reason }}
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import router from '@/router';
 import RobotItem from './RobotItem.vue';
 
 import { usePopupStore } from '@/store/popupStore.js';
 const popupStore = usePopupStore();
+
+import { useDiaryStore } from '@/store/diaryStore.js';
+const diaryStore = useDiaryStore();
+
+const mood = computed(() => {
+  return diaryStore.mood;
+});
+const levelName = computed(() => {
+  return diaryStore.levelName;
+});
+const reason = computed(() => {
+  return diaryStore.reason;
+});
 
 const closePopup = async () => {
   popupStore.openSaveDiaryPopup();
