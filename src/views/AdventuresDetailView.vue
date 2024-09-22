@@ -8,7 +8,11 @@
         </p>
       </div>
       <div class="flex flex-col px-36 justify-center items-center relative">
-        <div class="bg-gray-300 rounded-2xl w-full h-72"></div>
+        <VideoPlayer 
+          class="h-72 w-full" 
+          controls 
+          src="/resources/video/test.mp4"
+        />
         <div class="flex flex-col items-start w-full pt-4">
           <p class="font-extrabold text-lg">Video name</p>
           <div class="flex justify-between items-center w-full">
@@ -28,6 +32,8 @@
 <script setup>
 import router from '@/router';
 import { useRoute } from 'vue-router';
+import { VideoPlayer } from '@videojs-player/vue';
+import 'video.js/dist/video-js.css'
 
 import RobotItem from '@/components/RobotItem.vue';
 import ButtonItems from '@/components/ButtonItems.vue';
@@ -35,4 +41,8 @@ import ButtonItems from '@/components/ButtonItems.vue';
 const route = useRoute();
 </script>
 
-<style scoped></style>
+<style>
+.video-js .vjs-control-bar {
+  background-color: rgba(25, 20, 106, 0.6); /* 컨트롤 바의 배경색 변경 */
+}
+</style>
