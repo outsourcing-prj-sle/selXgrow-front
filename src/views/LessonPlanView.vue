@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col h-full relative">
     <div class="flex flex-col flex-1">
-      <div className="flex items-start">
+      <div class="flex items-start">
         <RobotItem />
         <p
-          className="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
+          class="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
         >
           The lesson plan is provided in detail on the site.
         </p>
@@ -37,7 +37,7 @@
       </div>
       <!-- 페이징 -->
       <div
-        className="h-[70px] w-full flex justify-center gap-10 items-center mt-12"
+        class="h-[70px] w-full flex justify-center gap-10 items-center mt-12"
       >
         <ButtonItems
           name="prev"

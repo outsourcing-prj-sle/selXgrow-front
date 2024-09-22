@@ -4,7 +4,7 @@
     v-if="showHeader"
   >
     <div class="font-extrabold text-2xl flex items-start gap-2">
-      <span className="text-sm">▶</span> {{ title }}
+      <span class="text-sm">▶</span> {{ title }}
     </div>
     <div class="flex gap-4 justify-center items-center">
       <div class="text-sm font-semibold bg-[#ededf5] rounded-full px-8 py-1.5">

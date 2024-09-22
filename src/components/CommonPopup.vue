@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { usePopupStore } from '@/store/popupStore.js';
 import VuePdfEmbed from 'vue-pdf-embed';
 

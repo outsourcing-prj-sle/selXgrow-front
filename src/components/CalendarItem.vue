@@ -1,15 +1,15 @@
 <template>
-    <div className="flex flex-col">
-        <div className="flex justify-between items-center px-2 pb-4">
+    <div class="flex flex-col">
+        <div class="flex justify-between items-center px-2 pb-4">
             <ButtonItems name="calendarPrev" @click="changeMonth(-1)" />
-            <p className="flex-3 font-extrabold text-lg">{{ formattedMonthYear }}</p>
+            <p class="flex-3 font-extrabold text-lg">{{ formattedMonthYear }}</p>
             <ButtonItems name="calendarNext" @click="changeMonth(1)" />
         </div>
-        <div className="flex flex-col w-full h-full calendar">
-            <div className="flex justify justify-between items-center week px-2 py-1">
+        <div class="flex flex-col w-full h-full calendar">
+            <div class="flex justify justify-between items-center week px-2 py-1">
                 <p v-for="(w, i) in DIARY_WEEKS" :key="i">{{ w[0] }}</p>
             </div>
-            <div v-for="(f, i) in formattedDates" :key="i" className="flex justify justify-between items-center px-2 py-1 days">
+            <div v-for="(f, i) in formattedDates" :key="i" class="flex justify justify-between items-center px-2 py-1 days">
                 <p v-for="(d, i) in f" :key="i">{{ d.date }}</p>
             </div>
         </div>

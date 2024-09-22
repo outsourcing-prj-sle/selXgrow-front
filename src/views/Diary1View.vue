@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col h-full relative">
     <div class="flex flex-col flex-1">
-      <div className="flex items-start">
+      <div class="flex items-start">
         <RobotItem />
         <p
-          className="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
+          class="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
         >
           First, pick the picture and word that best describes how you are
           feeling right now.
@@ -47,7 +47,7 @@
     </div>
 
     <div
-      className="absolute bottom-0 h-[70px] w-full flex justify-end items-center"
+      class="absolute bottom-0 h-[70px] w-full flex justify-end items-center"
     >
       <ButtonItems name="next" @click="() => router.push({ name: 'diary2' })" />
     </div>

@@ -1,17 +1,17 @@
 <template>
-  <div className="flex items-start">
+  <div class="flex items-start">
     <RobotItem />
     <p
-      className="font-extrabold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
+      class="font-extrabold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
     >
       You can see your emotional timeline.
     </p>
   </div>
-  <div className="flex h-full w-full sel-diary relative">
-    <div className="mx-8 w-[65%] flex flex-col h-full gap-2">
-      <p className="ml-20 text-2xl text-left font-bold">SEL Diary</p>
+  <div class="flex h-full w-full sel-diary relative">
+    <div class="mx-8 w-[65%] flex flex-col h-full gap-2">
+      <p class="ml-20 text-2xl text-left font-bold">SEL Diary</p>
       <div
-        className="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[calc(100%-70px)] overflow-y-scroll relative"
+        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[calc(100%-70px)] overflow-y-scroll relative"
       >
         <DiaryContents
           v-for="d in data"
@@ -23,7 +23,7 @@
         />
       </div>
     </div>
-    <div className="flex-1 mt-8">
+    <div class="flex-1 mt-8">
       <CalendarItem />
     </div>
   </div>

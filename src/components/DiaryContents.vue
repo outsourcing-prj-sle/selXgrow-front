@@ -1,7 +1,7 @@
 <template>
-    <div className="w-full flex items-start justify-start gap-4 px-4 pt-1.5 beforeLine">
+    <div class="w-full flex items-start justify-start gap-4 px-4 pt-1.5 beforeLine">
         <MoodItem :name="props.name" :textContent="props.name" :textColor="props.color" size="20" fontSize="14" />
-        <div className="flex flex-col justify-start items-start diary-content">
+        <div class="flex flex-col justify-start items-start diary-content">
             <p>{{ props.date }}</p>
             <p>I am feeling 
                 <span :style="`box-shadow: inset 0 20px ${props.color}, 0 -4px ${props.color};`">{{ props.highlightContent }}</span> 

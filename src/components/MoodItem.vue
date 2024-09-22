@@ -1,11 +1,11 @@
 <template>
     <div>
         <picture 
-            className="bg-[#f3f5f7] rounded-full flex items-center justify-center aspect-square" 
+            class="bg-[#f3f5f7] rounded-full flex items-center justify-center aspect-square" 
             :style="`width: ${size*4}px`"
         >
             <img
-            :className="`${isLowNumber && 'p-3.5'} w-full aspect-square`"
+            :class="`${isLowNumber && 'p-3.5'} w-full aspect-square`"
             :src="require(`@/assets/img/${selectedMood.icon}.svg`)"
             alt="mood icon"
             />

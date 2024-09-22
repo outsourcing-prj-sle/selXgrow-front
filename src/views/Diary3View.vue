@@ -1,22 +1,22 @@
 <template>
-  <div className="flex flex-col justify-between h-full relative">
+  <div class="flex flex-col justify-between h-full relative">
     <div>
-      <div className="flex items-start">
+      <div class="flex items-start">
         <RobotItem />
         <p
-          className="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
+          class="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
         >
           Now, select the
-          <span className="underline underline-offset-2">reason</span>
+          <span class="underline underline-offset-2">reason</span>
           you are feeling this way.
         </p>
       </div>
-      <div className="flex flex-col px-24 justify-center items-center mt-4">
+      <div class="flex flex-col px-24 justify-center items-center mt-4">
         <p
-          className="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
+          class="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           For what reason are you feeling
-          <span className="text-[#80beeb]">{{ mood }}</span> ?
+          <span class="text-[#80beeb]">{{ mood }}</span> ?
         </p>
         <!-- 드롭박스 -->
         <div class="w-full pr-14 mt-7">
@@ -96,7 +96,7 @@
       </div>
     </div>
     <div
-      className="absolute bottom-0 h-[70px] w-full flex justify-between items-center"
+      class="absolute bottom-0 h-[70px] w-full flex justify-between items-center"
     >
       <ButtonItems name="prev" @click="() => router.push({ name: 'diary2' })" />
       <Button
