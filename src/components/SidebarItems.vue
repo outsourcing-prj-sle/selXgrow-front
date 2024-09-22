@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col text-left px-8 py-4 relative"
+    class="flex flex-col text-left px-5 py-4 relative"
     :class="{
       'bg-[#0c0a35] active': isSelected,
     }"
@@ -32,7 +32,7 @@ const props = defineProps({
   content: '>';
   position: absolute;
   color: #d3f571;
-  right: 20px;
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
 }

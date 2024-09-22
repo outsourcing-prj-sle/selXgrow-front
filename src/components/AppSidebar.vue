@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full w-44">
+  <div class="flex h-full w-36">
     <div
       class="flex flex-col h-full w-full"
       v-if="showSidebar"
@@ -29,7 +29,7 @@
           </SidebarItems>
         </div>
         <!-- 푸터 -->
-        <div class="text-white text-opacity-50 text-xs px-8 text-left">
+        <div class="text-white text-opacity-50 text-xs px-5 text-left">
           <p>ⓒ 2024</p>
           <p>Grow X Education.</p>
           <p>All right reserved.</p>
