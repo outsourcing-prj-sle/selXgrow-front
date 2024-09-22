@@ -117,6 +117,9 @@ import router from '@/router';
 import ButtonItems from '@/components/ButtonItems.vue';
 import RobotItem from '@/components/RobotItem.vue';
 
+import { usePopupStore } from '@/store/popupStore.js';
+const popupStore = usePopupStore();
+
 const items = ref([
   { value: 'Related to something that happened in class', key: 1 },
   { value: 'Related to friends', key: 2 },
@@ -146,8 +149,7 @@ const selectOption = (item) => {
 };
 
 const openDiarySavePopup = () => {
-  // todo :: store의 isOpenedSavePopup을 켜서 유저 레이아웃에서 diary3SavePopup 만들고 그거 컨트롤
-  // 거기서 router.push({ name: 'diaryHistory' }), isOpenedSavePopup 끄기
+  popupStore.openSaveDiaryPopup();
 };
 </script>
 
