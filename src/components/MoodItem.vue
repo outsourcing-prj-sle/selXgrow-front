@@ -1,6 +1,9 @@
 <template>
     <div>
-        <picture :className="`bg-[#f3f5f7] rounded-full flex items-center justify-center w-${size} aspect-square`">
+        <picture 
+            className="bg-[#f3f5f7] rounded-full flex items-center justify-center aspect-square" 
+            :style="`width: ${size*4}px`"
+        >
             <img
             :className="`${isLowNumber && 'p-3.5'} w-full aspect-square`"
             :src="require(`@/assets/img/${selectedMood.icon}.svg`)"
@@ -9,7 +12,7 @@
         </picture>
         <p 
             :class="`font-bold p-2.5 text-[${fontSize}px]`"
-            :style="textColor && `color: ${textColor}`" v-if="!!textContent"
+            :style="`color: ${textColor}; font-size: ${fontSize}px`" v-if="!!textContent"
         >
             {{ textContent }}
         </p>

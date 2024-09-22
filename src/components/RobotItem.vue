@@ -1,6 +1,6 @@
 <template>
     <picture className="flex justify-center items-center h-36 w-36">
-        <img :src="require(`@/assets/img/robot_${imageName}.svg`)" :class="computedRotateVal" />
+        <img :src="require(`@/assets/img/robot_${imageName}.svg`)" :style="computedRotateVal" />
     </picture>
 </template>
 
@@ -29,8 +29,7 @@ import { computed } from 'vue';
     const rotateVal = (props.rotate || getRandomVal([-12, 0, 12]));
 
     const computedRotateVal = computed(() => {
-        if(rotateVal === -12) return `-rotate-${-rotateVal}`
-        else return `rotate-${rotateVal}`
+        return `rotate: ${rotateVal}deg`
     });
 </script>
 

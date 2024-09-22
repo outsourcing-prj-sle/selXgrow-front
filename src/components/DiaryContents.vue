@@ -1,9 +1,12 @@
 <template>
-    <div className="w-full flex items-start justify-start gap-4 p-8">
-        <MoodItem :name="props.name" :textContent="props.name" :textColor="props.color" />
+    <div className="w-full flex items-start justify-start gap-4 px-4 pt-1.5 beforeLine">
+        <MoodItem :name="props.name" :textContent="props.name" :textColor="props.color" size="20" fontSize="14" />
         <div className="flex flex-col justify-start items-start diary-content">
             <p>{{ props.date }}</p>
-            <p>I am feeling <span :style="`box-shadow: inset 0px 20px ${props.color};`">{{ props.highlightContent }}</span> because of something related my friends.</p>
+            <p>I am feeling 
+                <span :style="`box-shadow: inset 0 20px ${props.color}, 0 -4px ${props.color};`">{{ props.highlightContent }}</span> 
+                because of something related my friends.
+            </p>
         </div>
     </div>
 </template>
@@ -35,15 +38,25 @@ const props = defineProps({
     p {
         width: 100%;
         text-align: left;
-        text-decoration: underline solid 3px;
-        text-decoration-color: #EFEFEF;
-        text-underline-offset: 3px;
         word-break: keep-all;
-        font-weight: bold;
+        font-weight: 900;
         color: black;
         line-height: 30px;
+        z-index: 1;
     }
     .diary-content>p:first-child {
         color: #9A8C81
+    }
+    .beforeLine::before {
+        position: absolute;
+        top: 0;
+        left: 110px;
+        right: 5px;
+        bottom: 0;
+        background-image: linear-gradient(transparent 90%, #EFEFEF 95%);
+        background-size: 100% 2em;
+        background-repeat: repeat-y;
+        content: '';
+        height: 105%;
     }
 </style>

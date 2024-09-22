@@ -69,4 +69,4 @@ export const MOODS = {
 
 export const MOODS_LEVEL = ['A Little', 'Pretty', 'Quite', 'Very', 'Extremely'];
 
-export const DIARY_WEEKS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+export const DIARY_WEEKS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];

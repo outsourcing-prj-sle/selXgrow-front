@@ -1,30 +1,26 @@
 <template>
-    <div className="flex flex-col justify-between h-full mb-12">
-        <div>
-            <div className="flex items-start">
-                <RobotItem />
-                <p className="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full">
-                    You can see your emotional timeline.
-                </p>
+    <div className="flex items-start">
+        <RobotItem />
+        <p className="font-extrabold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full">
+            You can see your emotional timeline.
+        </p>
+    </div>
+    <div className="flex h-full w-full sel-diary relative -top-10">
+        <div className="mx-8 w-[65%] flex flex-col h-full">
+            <p className="ml-20 text-2xl text-left font-bold">SEL Diary</p>
+            <div className="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[calc(100%-70px)] overflow-y-scroll relative">
+                <DiaryContents 
+                    v-for="d in data"
+                    :key="d"
+                    :name="MOODS[d.name].name" 
+                    date="September 5, 2024 1:30pm"
+                    :highlight-content="`${MOODS_LEVEL[d.level].toLowerCase()} ${MOODS[d.name].name}`"
+                    :color="MOODS[d.name].highlightColor"
+                />
             </div>
         </div>
-        <div className="flex h-full w-full">
-            <div className="mx-8 sel-diary relative w-[65%]">
-                <p className="ml-20 text-2xl text-left font-bold mb-4">SEL Diary</p>
-                <div className="bg-white rounded-2xl border-[#E9EBEC] border h-full w-full overflow-y-scroll">
-                    <DiaryContents 
-                        v-for="d in data"
-                        :key="d"
-                        :name="MOODS[d.name].name" 
-                        date="September 5, 2024 1:30pm"
-                        :highlight-content="`${MOODS_LEVEL[d.level].toLowerCase()} ${MOODS[d.name].name}`"
-                        :color="MOODS[d.name].highlightColor"
-                    />
-                </div>
-            </div>
-            <div className="w-[35%]">
-                <CalendarItem />
-            </div>
+        <div className="flex-1">
+            <CalendarItem />
         </div>
     </div>
 </template>
@@ -43,7 +39,11 @@ const data = [
     {
         name: 'Sad',
         level: 1
-    }
+    },
+    {
+        name: 'Sad',
+        level: 1
+    },
 ]
 </script>
 
@@ -51,10 +51,10 @@ const data = [
 .sel-diary::after {
     content: '';
     position: absolute;
-    top: calc(100% - 50px);
-    left: -30px;
+    bottom: 30px;
+    left: -10px;
     background: url('@/assets/img/pencil.svg') no-repeat;
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
 }
 </style>
