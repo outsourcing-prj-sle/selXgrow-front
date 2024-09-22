@@ -11,7 +11,7 @@
         </p>
       </div>
       <!-- Circular Mood Selector -->
-      <div class="flex-1 flex justify-center w-full">
+      <div class="flex-1 flex justify-center w-full mt-8">
         <div
           class="relative w-[350px] h-[350px] flex justify-center items-center rounded-full border-[74px] border-[#F5F5FC]"
         >

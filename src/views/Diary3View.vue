@@ -11,7 +11,7 @@
           you are feeling this way.
         </p>
       </div>
-      <div className="flex flex-col px-24 justify-center items-center">
+      <div className="flex flex-col px-24 justify-center items-center mt-4">
         <p
           className="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
