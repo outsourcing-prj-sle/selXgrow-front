@@ -1,6 +1,6 @@
 import { UserLayout } from '@/layouts';
 import {
-  HomeView,
+  CheckInStartView,
   LoginView,
   SignupView,
   StartView,
@@ -49,9 +49,9 @@ const userRoutes = [
         meta: { ...metaData(false, false, true) },
       },
       {
-        path: 'home',
-        name: 'home',
-        component: HomeView,
+        path: 'check-in/start',
+        name: 'checkInStart',
+        component: CheckInStartView,
         meta: { ...metaData(), isCheckIn: true, headerTitle: 'SEL Check-in' },
       },
       {
