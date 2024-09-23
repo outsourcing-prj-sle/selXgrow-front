@@ -16,10 +16,27 @@
           class="relative w-[350px] h-[350px] flex justify-center items-center rounded-full border-[74px] border-[#F5F5FC]"
         >
           <!-- Center Text -->
-          <div class="absolute flex flex-col justify-center items-center">
+          <div
+            class="absolute flex flex-col justify-center items-center w-full h-full"
+          >
             <h2 class="text-2xl font-bold text-blue-800">
               How do you feel<br />right now?
             </h2>
+            <div
+              class="absolute w-full bottom-10 left-1/2 transform -translate-x-1/2 text-center"
+            >
+              <p
+                v-if="selectedName !== null"
+                :style="{
+                  backgroundColor: selectedColor,
+                  width: 'auto',
+                  display: 'inline-block',
+                }"
+                class="text-white text-base font-semibold mt-1 px-4 py-0.5 rounded-full"
+              >
+                {{ selectedName }}
+              </p>
+            </div>
           </div>
 
           <!-- Mood Options -->
@@ -27,27 +44,36 @@
             v-for="(mood, index) in moods"
             :key="index"
             :style="getPosition(index)"
-            class="absolute flex flex-col justify-center items-center rounded-full cursor-pointer"
+            class="absolute w-[100px] h-[100px] flex flex-col justify-center items-center rounded-full cursor-pointer"
             @click="setMood(index)"
           >
             <!-- Replace with actual image/icon -->
             <div class="rounded-full flex items-center justify-center">
               <img
-                :src="
-                  require(
-                    `@/assets/img/mood/${selectedMood === index ? mood.big_icon : mood.icon}.svg`
-                  )
-                "
+                :src="require(`@/assets/img/mood/${mood.icon}.svg`)"
+                :class="`${selectedMood === index ? 'w-[100px]' : 'w-[74px]'}`"
                 alt="mood icon"
               />
             </div>
+            <p
+              :style="{
+                ...getTextPosition(index),
+                color: selectedMood === index ? `white` : mood.color,
+                backgroundColor:
+                  selectedMood === index ? mood.color : `transparent`,
+                visibility: selectedMood === index ? `hidden` : `visible`,
+              }"
+              :class="`text-center text-sm mt-1 ${selectedMood !== index && 'w-16'} ${selectedMood === index && `px-4 py-0.5 rounded-full`}`"
+            >
+              {{ mood.name }}
+            </p>
           </div>
         </div>
       </div>
     </div>
 
     <div
-      class="absolute bottom-0 h-[70px] w-full flex justify-end items-center"
+      class="absolute bottom-0 h-[70px] w-full flex justify-end items-center -z-10"
     >
       <ButtonItems name="next" @click="() => router.push({ name: 'diary2' })" />
     </div>
@@ -64,72 +90,63 @@ import { useDiaryStore } from '@/store/diaryStore.js';
 const diaryStore = useDiaryStore();
 
 const selectedMood = ref(null);
+const selectedColor = ref(null);
+const selectedName = ref(null);
 
 const moods = ref([
   {
-    name: 'Sad',
-    icon: 'diary1-sad-small',
-    big_icon: 'diary1-sad-big',
+    name: 'sad',
+    icon: 'diary1-sad-icon',
     color: '#007CD6',
   },
   {
-    name: 'Angry',
-    icon: 'diary1-angry-small',
-    big_icon: 'diary1-angry-big',
+    name: 'angry',
+    icon: 'diary1-angry-icon',
     color: '#B81521',
   },
   {
-    name: 'Excited',
-    icon: 'diary1-excited-small',
-    big_icon: 'diary1-excited-big',
+    name: 'excited',
+    icon: 'diary1-excited-icon',
     color: '#F96D30',
   },
   {
-    name: 'Content',
-    icon: 'diary1-content-small',
-    big_icon: 'diary1-content-big',
+    name: 'content',
+    icon: 'diary1-content-icon',
     color: '#D9B341',
   },
   {
-    name: 'Thankful',
-    icon: 'diary1-thankful-small',
-    big_icon: 'diary1-thankful-big',
+    name: 'thankful',
+    icon: 'diary1-thankful-icon',
     color: '#BFBB30',
   },
   {
-    name: 'Proud',
-    icon: 'diary1-proud-small',
-    big_icon: 'diary1-proud-big',
+    name: 'proud',
+    icon: 'diary1-proud-icon',
     color: '#A0BF00',
   },
   {
-    name: 'Happy',
-    icon: 'diary1-happy-small',
-    big_icon: 'diary1-happy-big',
+    name: 'happy',
+    icon: 'diary1-happy-icon',
     color: '#CFAE08',
   },
   {
-    name: 'Confused',
-    icon: 'diary1-confused-small',
-    big_icon: 'diary1-confused-big',
+    name: 'confused',
+    icon: 'diary1-confused-icon',
     color: '#0F9B35',
   },
   {
-    name: 'Bored',
-    icon: 'diary1-bored-small',
-    big_icon: 'diary1-bored-big',
+    name: 'bored',
+    icon: 'diary1-bored-icon',
     color: '#812088',
   },
   {
-    name: 'Embarrassed',
-    icon: 'diary1-embarrassed-small',
-    big_icon: 'diary1-embarrassed-big',
+    name: 'embarrassed',
+    icon: 'diary1-embarrassed-icon',
     color: '#F1649B',
   },
   {
-    name: 'Worried',
-    icon: 'diary1-worried-small',
-    big_icon: 'diary1-worried-big',
+    name: 'worried',
+    icon: 'diary1-worried-icon',
     color: '#57B109',
   },
 ]);
@@ -140,17 +157,44 @@ const getPosition = (index) => {
   const baseRadius = 150;
   const radius = selectedMood.value === index ? baseRadius + 30 : baseRadius;
   const x = radius * Math.cos(angle);
-  const y = radius * Math.sin(angle);
+  const y = radius * Math.sin(angle) + 12;
   return {
     transform: `translate(${x}px, ${y}px)`,
   };
 };
 
+const getTextPosition = (index) => {
+  const total = moods.value.length;
+  const angle = (index / total) * (2 * Math.PI) - (140 * Math.PI) / 180;
+  const baseOffset = 58;
+  const offset = selectedMood.value === index ? baseOffset + 20 : baseOffset;
+  const xOffset = offset * Math.cos(angle) - 3;
+  const yOffset =
+    offset * Math.sin(angle) - (selectedMood.value === index ? 62 : 52);
+
+  const nonSelectedAdjustment = index !== 0 && index < 7 ? 10 : -10;
+  const selectedAdjustment = index !== 0 && index < 7 ? 20 : -20;
+  const adjustment =
+    selectedMood.value === index ? selectedAdjustment : nonSelectedAdjustment;
+  return {
+    transform: `translate(${xOffset + adjustment}px, ${yOffset}px)`,
+  };
+};
+
 // Handle mood selection
 const setMood = (index) => {
-  if (selectedMood.value === index) selectedMood.value = null;
-  else {
+  if (selectedMood.value === index) {
+    selectedMood.value = null;
+    selectedColor.value = null;
+    selectedName.value = null;
+
+    diaryStore.setColor('');
+    diaryStore.setIcon('');
+    diaryStore.setMood('');
+  } else {
     selectedMood.value = index;
+    selectedColor.value = moods.value[index].color;
+    selectedName.value = moods.value[index].name;
 
     diaryStore.setColor(moods.value[index].color);
     diaryStore.setIcon(moods.value[index].icon);
