@@ -11,81 +11,70 @@
     <div class="mx-8 w-[65%] flex flex-col h-full gap-2">
       <p class="ml-20 text-2xl text-left font-bold">SEL Diary</p>
       <div
-        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[calc(100%-70px)] overflow-y-scroll relative"
+        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[420px] overflow-y-scroll relative"
       >
         <DiaryContents
-          v-for="d in data"
-          :key="d"
-          :name="MOODS[d.name].name"
-          date="September 5, 2024 1:30pm"
-          :highlight-content="`${MOODS_LEVEL[d.level].toLowerCase()} ${MOODS[d.name].name}`"
-          :color="MOODS[d.name].highlightColor"
+          v-if="isSelected"
+          :name="currentDiaryContents.mood"
+          :date="currentDiaryContents.formattedDate"
+          :highlight-content="`${currentDiaryContents.levelName} ${currentDiaryContents.mood}`"
+          :reason="currentDiaryContents.reason"
+          :color="currentDiaryContents.color"
+        />
+        <DiaryContents
+          v-else
+          v-for="(diaryContent, index) in currentDiaryContents"
+          :key="index"
+          :name="diaryContent.mood"
+          :date="diaryContent.formattedDate"
+          :highlight-content="`${diaryContent.levelName} ${diaryContent.mood}`"
+          :reason="diaryContent.reason"
+          :color="diaryContent.color"
         />
       </div>
     </div>
     <div class="flex-1 mt-8">
-      <CalendarItem />
+          <CalendarItem @onDateClick="handleDateClick" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
 import CalendarItem from '@/components/CalendarItem.vue';
 import DiaryContents from '@/components/DiaryContents.vue';
 import RobotItem from '@/components/RobotItem.vue';
-import { MOODS, MOODS_LEVEL } from '@/utils/constant';
-
-const data = [
-  {
-    name: 'Happy',
-    level: 3,
-  },
-  {
-    name: 'Sad',
-    level: 1,
-  },
-  {
-    name: 'Sad',
-    level: 1,
-  },
-];
 
 import { useDiaryStore } from '@/store/diaryStore.js';
+import { computed, ref } from 'vue';
+
 const diaryStore = useDiaryStore();
 
-// 색상 코드 ex) #ffffff
-const color = computed(() => {
-  return diaryStore.color;
+const isSelected = ref(false);
+const selectedDiaryNo = ref(0);
+
+const currentDiaryContents = computed(() => {
+  if(isSelected.value) return diaryStore.diaryContents[selectedDiaryNo.value];
+  else return diaryStore.diaryContents;
 });
-// 아이콘 이름 ex) diary1-sad-small
-const icon = computed(() => {
-  return diaryStore.icon;
-});
-// 기분 ex) sad
-const mood = computed(() => {
-  return diaryStore.mood;
-});
-// 선택한 렙 ex) 1
-const level = computed(() => {
-  return diaryStore.level;
-});
-// 선택한 기분 단계 ex) very
-const levelName = computed(() => {
-  return diaryStore.levelName;
-});
-// 선택한 기분 이유 ex) Related to friends
-const reason = computed(() => {
-  return diaryStore.reason;
-});
+
+const handleDateClick = (data) => {
+  selectedDiaryNo.value = diaryStore.diaryContents.findIndex((diaryContent) => {
+    const [month, date] = diaryContent.date.split("/");
+
+    return date === data.date && month === data.month;
+  });
+
+  if (selectedDiaryNo.value !== -1) isSelected.value = true;
+  else isSelected.value = false;
+}
 </script>
 
 <style scoped>
 .sel-diary::after {
   content: '';
   position: absolute;
-  bottom: 30px;
-  left: -10px;
+  bottom: 0;
+  left: 0;
   background: url('@/assets/img/pencil.svg') no-repeat;
   width: 100px;
   height: 100px;

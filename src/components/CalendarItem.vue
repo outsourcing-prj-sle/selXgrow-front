@@ -10,7 +10,12 @@
                 <p v-for="(w, i) in DIARY_WEEKS" :key="i">{{ w[0] }}</p>
             </div>
             <div v-for="(f, i) in formattedDates" :key="i" class="flex justify justify-between items-center px-2 py-1 days">
-                <p v-for="(d, i) in f" :key="i">{{ d.date }}</p>
+                <p 
+                    v-for="(d, i) in f" 
+                    :key="i"
+                    :style="getDiaryStyle(d.date)"
+                    @click="handleDateClick(d.date)"
+                    >{{ d.date }}</p>
             </div>
         </div>
     </div>
@@ -20,15 +25,24 @@
 import { computed, ref } from 'vue';
 import { DIARY_WEEKS } from '@/utils/constant';
 import ButtonItems from './ButtonItems.vue';
+import { useDiaryStore } from '@/store/diaryStore';
+
+const emit = defineEmits(['onDateClick'])
+
+const handleDateClick = (date) => {
+    emit('onDateClick', { month: String(currentMonth.value), date });
+}
+
+const diaryStore = useDiaryStore();
 
 const currentDate = new Date().toLocaleDateString('en-US').split("/");
-const currentMonth = ref(parseInt(currentDate[0]) - 1);
+const currentMonth = ref(parseInt(currentDate[0]));
 const currentYear = ref(parseInt(currentDate[2]));
 
 const formattedDates = computed(() => {
     const dates = [];
-    const startDate = new Date(currentYear.value, currentMonth.value, 1);
-    const endDate = new Date(currentYear.value, currentMonth.value + 1, 0);
+    const startDate = new Date(currentYear.value, currentMonth.value - 1, 1);
+    const endDate = new Date(currentYear.value, currentMonth.value, 0);
 
     let week = [];
 
@@ -37,7 +51,7 @@ const formattedDates = computed(() => {
     }
 
     for (let day = 1; day <= endDate.getDate(); day++) {
-        const currentDate = new Date(currentYear.value, currentMonth.value, day);
+        const currentDate = new Date(currentYear.value, currentMonth.value - 1, day);
         const dayOfWeek = currentDate.toLocaleString('en-US', { weekday: 'long' });
         const formattedDate = currentDate.toLocaleDateString('en-US', { day: 'numeric' });
 
@@ -63,7 +77,7 @@ const formattedDates = computed(() => {
 });
 
 const formattedMonthYear = computed(() => {
-    return `${currentYear.value}.${String(currentMonth.value + 1)}`;
+    return `${currentYear.value}.${String(currentMonth.value)}`;
 });
 
 const changeMonth = (increment) => {
@@ -75,6 +89,19 @@ const changeMonth = (increment) => {
         currentMonth.value = 0;
         currentYear.value += 1;
     }
+};
+
+const getDiaryStyle = (date) => {
+    const diaryContent = diaryStore.diaryContents.find(content => {
+        const [month, day] = content.date.split("/").map(num => parseInt(num));
+        return day === parseInt(date) && month === currentMonth.value;
+    });
+
+    if (diaryContent) {
+        return `background-color: ${diaryContent.color}; color: white; border-radius: 9999px;`;
+    }
+
+    return '';
 };
 </script>
 

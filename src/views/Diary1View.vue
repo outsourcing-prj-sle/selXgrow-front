@@ -154,7 +154,7 @@ const setMood = (index) => {
 
     diaryStore.setColor(moods.value[index].color);
     diaryStore.setIcon(moods.value[index].icon);
-    diaryStore.setMood(moods.value[index].name.toLowerCase());
+    diaryStore.setMood(moods.value[index].name);
   }
 };
 </script>

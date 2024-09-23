@@ -16,7 +16,7 @@
           class="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           For what reason are you feeling
-          <span class="text-[#80beeb]">{{ mood }}</span> ?
+          <span class="text-[#80beeb]">{{ mood.toLowerCase() }}</span> ?
         </p>
         <!-- 드롭박스 -->
         <div class="w-full pr-14 mt-7">
