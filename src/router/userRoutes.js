@@ -102,7 +102,7 @@ const userRoutes = [
       },
       {
         path: 'adventures/:id',
-        name: 'AdventuresDetailView',
+        name: 'adventuresDetail',
         component: AdventuresDetailView,
         meta: {
           ...metaData(),

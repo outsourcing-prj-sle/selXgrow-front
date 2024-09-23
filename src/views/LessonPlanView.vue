@@ -63,6 +63,9 @@ import { ref } from 'vue';
 import router from '@/router';
 import RobotItem from '@/components/RobotItem.vue';
 import ButtonItems from '@/components/ButtonItems.vue';
+import { usePopupStore } from '@/store/popupStore';
+
+const popupStore = usePopupStore();
 
 const textList = ref([
   'MYSTERY MAIL',
@@ -74,7 +77,7 @@ const textList = ref([
 ]);
 
 const openPDFPopup = () => {
-  console.log('open pdf popup');
+  popupStore.openCommonPopup();
 };
 </script>
 

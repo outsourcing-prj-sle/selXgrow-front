@@ -18,14 +18,14 @@
             class="flex flex-col text-[#19146A] text-left"
             v-for="n in 5"
             :key="n"
-            @click="() => goDetail()"
+            @click="() => goDetail(n)"
           >
             <img
               class="w-[226px] h-[130px] object-cover"
               :src="require(`@/assets/img/adventure_thumbnail.svg`)"
               alt="adventure_thumbnail"
             />
-            <p class="font-semibold text-sm mt-3">Video name</p>
+            <p class="font-semibold text-sm mt-2">Video name</p>
             <p class="text-xs font-medium max-w-[200px]">
               This is the area where there is a description of the video above.
             </p>
@@ -54,13 +54,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import router from '@/router';
 import RobotItem from '@/components/RobotItem.vue';
 import ButtonItems from '@/components/ButtonItems.vue';
 
-const goDetail = () => {
-  router.push({ name: 'adventuresdetail' });
+const goDetail = (id) => {
+  router.push({ name: 'adventuresDetail', params: { id } });
 };
 </script>
 
