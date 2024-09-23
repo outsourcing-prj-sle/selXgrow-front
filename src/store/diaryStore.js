@@ -103,6 +103,12 @@ export const useDiaryStore = defineStore('diary', {
       this.formattedDate = formattedDate;
     },
     pushDiaryContents() {
+      const index = this.diaryContents.findIndex(diaryContent => diaryContent.date === this.date);
+
+      if (index !== -1) {
+        this.diaryContents.splice(index, 1);
+      }
+
       this.diaryContents.push({
         mood: this.mood,
         level: this.level,
