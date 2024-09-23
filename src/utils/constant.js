@@ -70,3 +70,5 @@ export const MOODS = {
 export const MOODS_LEVEL = ['A Little', 'Pretty', 'Quite', 'Very', 'Extremely'];
 
 export const DIARY_WEEKS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+export const DIARY_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

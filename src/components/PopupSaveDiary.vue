@@ -43,7 +43,7 @@
     <div
       class="relative w-[700px] h-[280px] bg-[#19146A] rounded-full text-white flex flex-col items-center"
     >
-      <RobotItem class="absolute -top-[50px] left-[30px] scale-125" />
+      <RobotItem class="absolute -top-[60px] -left-[280px] scale-125 -mb-36" />
       <!-- 뒤로가기 -->
       <button
         class="absolute top-[110px] -left-[30px] w-[60px] h-[60px] bg-blue-400 rounded-full text-white"
@@ -131,6 +131,8 @@ const closePopup = async () => {
 
 const goHistory = () => {
   closePopup();
+  diaryStore.setDate(new Date());
+  diaryStore.pushDiaryContents();
   router.push({ name: 'diaryHistory' });
 };
 </script>

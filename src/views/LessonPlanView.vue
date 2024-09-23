@@ -12,7 +12,7 @@
       <!-- 영상 목록 -->
       <div class="flex justify-center">
         <div
-          class="flex gap-x-4 gap-y-8 flex-wrap justify-start max-w-[750px] ml-[100px]"
+          class="flex gap-x-4 gap-y-6 flex-wrap justify-start max-w-[750px] ml-[100px]"
         >
           <div
             class="flex flex-col w-[232px] h-[161px] relative rounded-xl overflow-hidden"

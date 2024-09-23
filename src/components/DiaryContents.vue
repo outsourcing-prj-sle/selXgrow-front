@@ -5,7 +5,7 @@
             <p>{{ props.date }}</p>
             <p>I am feeling 
                 <span :style="`box-shadow: inset 0 20px ${props.color}, 0 -4px ${props.color};`">{{ props.highlightContent }}</span> 
-                because of something related my friends.
+                because of something {{ props.reason.toLowerCase() }}
             </p>
         </div>
     </div>
@@ -30,7 +30,11 @@ const props = defineProps({
     color: {
         type: String,
         required: true
-    }
+    },
+    reason: {
+        type: String,
+        required: true,
+    },
 })
 </script>
 
@@ -57,6 +61,6 @@ const props = defineProps({
         background-size: 100% 2em;
         background-repeat: repeat-y;
         content: '';
-        height: 105%;
+        height: 100%;
     }
 </style>

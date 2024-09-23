@@ -18,7 +18,7 @@
           class="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           How
-          <span class="text-[#80beeb]">{{ mood }}</span> do you feel?
+          <span class="text-[#80beeb]">{{ mood.toLowerCase() }}</span> do you feel?
         </p>
         <div
           class="flex flex-col w-28 aspect-square bg-[#19146a] rounded-2xl justify-center mt-12 -mb-6"
@@ -28,7 +28,7 @@
         </div>
         <div class="flex justify-between items-center w-full px-8 gap-8">
           <MoodItem
-            name="Sad"
+            :name="mood"
             :textContent="`${MOODS_LEVEL[0]}`"
             isLowNumber="true"
           />
@@ -45,7 +45,7 @@
               {{ i }}
             </button>
           </div>
-          <MoodItem name="Sad" :textContent="`${MOODS_LEVEL[4]}`" />
+          <MoodItem :name="mood" :textContent="`${MOODS_LEVEL[4]}`" />
         </div>
       </div>
     </div>
