@@ -35,7 +35,7 @@
               <img
                 :src="
                   require(
-                    `@/assets/img/${selectedMood === index ? mood.big_icon : mood.icon}.svg`
+                    `@/assets/img/mood/${selectedMood === index ? mood.big_icon : mood.icon}.svg`
                   )
                 "
                 alt="mood icon"

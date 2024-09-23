@@ -88,7 +88,7 @@
             />
             <img
               class="absolute -left-[50px] top-[45px] w-[100px]"
-              :src="require(`@/assets/img/${moodIcon}.svg`)"
+              :src="require(`@/assets/img/mood/${moodIcon}.svg`)"
               alt="mood icon"
             />
           </div>
