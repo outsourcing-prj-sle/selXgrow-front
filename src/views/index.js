@@ -1,4 +1,5 @@
 export { default as CheckInStartView } from './CheckInStartView.vue';
+export { default as CheckInNoticeView } from './CheckInNoticeView.vue';
 export { default as LoginView } from './LoginView.vue';
 export { default as SignupView } from './SignupView.vue';
 export { default as StartView } from './StartView.vue';
