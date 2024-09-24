@@ -1,11 +1,11 @@
 <template>
   <div class="flex h-full w-36">
-    <div
-      class="flex flex-col h-full w-full"
-      v-if="showSidebar"
-    >
+    <div class="flex flex-col h-full w-full" v-if="showSidebar">
       <!-- 로고 -->
-      <div class="cursor-pointer flex justify-center items-center mt-8 mb-2 mx-4" @click="goMain">
+      <div
+        class="cursor-pointer flex justify-center items-center mt-8 mb-2 mx-4"
+        @click="goMain"
+      >
         <img
           class="w-full"
           src="@/assets/img/header_logo.svg"
@@ -13,19 +13,21 @@
         />
       </div>
       <!-- 목록 -->
-      <div class="flex flex-col justify-between bg-[#19146a] py-14 pb-12 h-full rounded-r-[40px]">
+      <div
+        class="flex flex-col justify-between bg-[#19146a] py-14 pb-12 h-full rounded-r-[40px]"
+      >
         <div class="flex flex-col">
           <SidebarItems :isSelected="isCheckIn" @click="goCheckIn">
-            SEL<br>Check-in
+            SEL<br />Check-in
           </SidebarItems>
           <SidebarItems :isSelected="isDiary" @click="goDiary">
-            SEL<br>Diary
+            SEL<br />Diary
           </SidebarItems>
           <SidebarItems :isSelected="isAdventyres" @click="goAdventures">
-            SEL<br>Adventures
+            SEL<br />Adventures
           </SidebarItems>
           <SidebarItems :isSelected="isLessonPlan" @click="goLessonPlan">
-            SEL<br>Lesson Plan
+            SEL<br />Lesson Plan
           </SidebarItems>
         </div>
         <!-- 푸터 -->
@@ -68,22 +70,25 @@ const goMain = () => {
 };
 
 const goDiary = () => {
-  if (isDiary.value) return;
+  // if (isDiary.value) return;
   router.push({ name: 'diary1' });
 };
 
 const goAdventures = () => {
-  if (isAdventyres.value) return;
+  // if (isAdventyres.value) return;
   router.push({ name: 'adventures' });
 };
 
 const goCheckIn = () => {
-  if (isCheckIn.value) return;
-  router.push({ name: 'check-in' });
+  // if (isCheckIn.value) return;
+  router.push({
+    name: 'checkInNotice',
+    params: { type: 1 },
+  });
 };
 
 const goLessonPlan = () => {
-  if (isLessonPlan.value) return;
+  // if (isLessonPlan.value) return;
   router.push({ name: 'lesson-plan' });
 };
 
