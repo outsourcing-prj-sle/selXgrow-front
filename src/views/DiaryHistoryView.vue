@@ -11,30 +11,25 @@
     <div class="mx-8 w-[65%] flex flex-col h-full gap-2">
       <p class="ml-20 text-2xl text-left font-bold">SEL Diary</p>
       <div
-        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[420px] overflow-y-scroll relative"
+        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[420px] overflow-y-scroll relative beforeLine"
+        ref="diaryContainer"
+        :style="beforeLineHeight"
       >
         <DiaryContents
-          v-if="isSelected"
-          :name="currentDiaryContents.mood"
-          :date="currentDiaryContents.formattedDate"
-          :highlight-content="`${currentDiaryContents.levelName} ${currentDiaryContents.mood}`"
-          :reason="currentDiaryContents.reason"
-          :color="currentDiaryContents.color"
-        />
-        <DiaryContents
-          v-else
           v-for="(diaryContent, index) in currentDiaryContents"
           :key="index"
           :name="diaryContent.mood"
+          :level="diaryContent.level"
           :date="diaryContent.formattedDate"
           :highlight-content="`${diaryContent.levelName} ${diaryContent.mood}`"
           :reason="diaryContent.reason"
           :color="diaryContent.color"
+          :index="index"
         />
       </div>
     </div>
     <div class="flex-1 mt-8">
-          <CalendarItem @onDateClick="handleDateClick" />
+          <CalendarItem @onDateClick="handleDateClick" @onMonthChange="handleMonthChange" />
     </div>
   </div>
 </template>
@@ -49,24 +44,51 @@ import { computed, ref } from 'vue';
 
 const diaryStore = useDiaryStore();
 
-const isSelected = ref(false);
-const selectedDiaryNo = ref(0);
+const diaryContainer = ref(null);
+const currentMonth = ref(diaryStore.date.split("/")[0]);
 
 const currentDiaryContents = computed(() => {
-  if(isSelected.value) return diaryStore.diaryContents[selectedDiaryNo.value];
-  else return diaryStore.diaryContents;
+  return diaryStore.diaryContents.filter((diaryContent) => {
+    if(diaryContent.date.split("/")[0] === currentMonth.value) return diaryContent;
+  });
 });
 
+const scrollToDiaryContent = (index) => {
+  const target = diaryContainer.value.querySelector(`[data-index="${index}"]`);
+
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
 const handleDateClick = (data) => {
-  selectedDiaryNo.value = diaryStore.diaryContents.findIndex((diaryContent) => {
+  const index = diaryStore.diaryContents.findIndex((diaryContent) => {
     const [month, date] = diaryContent.date.split("/");
 
     return date === data.date && month === data.month;
   });
+  scrollToDiaryContent(index);
+};
 
-  if (selectedDiaryNo.value !== -1) isSelected.value = true;
-  else isSelected.value = false;
-}
+const handleMonthChange = (month) => {
+  currentMonth.value = month;
+};
+
+const beforeLineHeight = computed(() => {
+  const calcHeight = 130 * currentDiaryContents.value.length;
+
+  if(calcHeight > 420) {
+    return {
+      '--before-line-height': `${130 * currentDiaryContents.value.length}px`,
+    };
+  } else {
+    return {
+      '--before-line-height': `100%`,
+    };
+  }
+
+  
+});
 </script>
 
 <style scoped>
@@ -78,5 +100,18 @@ const handleDateClick = (data) => {
   background: url('@/assets/img/pencil.svg') no-repeat;
   width: 100px;
   height: 100px;
+}
+
+.beforeLine::after {
+    position: absolute;
+    top: 0;
+    left: 110px;
+    right: 5px;
+    bottom: 0;
+    background-image: linear-gradient(transparent 90%, #EFEFEF 95%);
+    background-size: 100% 2em;
+    background-repeat: repeat-y;
+    content: '';
+    height: var(--before-line-height);
 }
 </style>

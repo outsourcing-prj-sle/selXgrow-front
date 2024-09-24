@@ -29,8 +29,8 @@
         <div class="flex justify-between items-center w-full px-8 gap-8">
           <MoodItem
             :name="mood"
-            :textContent="`${MOODS_LEVEL[0]}`"
-            isLowNumber="true"
+            :level="feelScore"
+            :textContent="feelDescription"
           />
           <div
             class="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex w-full justify-between items-center px-2"
@@ -45,7 +45,7 @@
               {{ i }}
             </button>
           </div>
-          <MoodItem :name="mood" :textContent="`${MOODS_LEVEL[4]}`" />
+          <MoodItem :name="mood" level="5" :textContent="`${MOODS_LEVEL[4]}`" />
         </div>
       </div>
     </div>

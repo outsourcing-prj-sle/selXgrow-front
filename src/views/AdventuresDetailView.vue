@@ -11,7 +11,7 @@
         <VideoPlayer 
           class="h-72 w-full" 
           controls 
-          src="/resources/video/test.mp4"
+          src="/grow/resources/video/test.mp4"
         />
         <div class="flex flex-col items-start w-full pt-4">
           <p class="font-extrabold text-lg">Video name</p>

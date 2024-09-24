@@ -73,9 +73,9 @@
     </div>
 
     <div
-      class="absolute bottom-0 h-[70px] w-full flex justify-end items-center -z-10"
+      class="absolute bottom-0 h-[70px] w-full flex justify-end items-center"
     >
-      <ButtonItems name="next" @click="() => router.push({ name: 'diary2' })" />
+      <ButtonItems class="z-10" name="next" @click="() => router.push({ name: 'diary2' })" />
     </div>
   </div>
 </template>
@@ -95,57 +95,57 @@ const selectedName = ref(null);
 
 const moods = ref([
   {
-    name: 'sad',
+    name: 'Sad',
     icon: 'diary1-sad-icon',
     color: '#007CD6',
   },
   {
-    name: 'angry',
+    name: 'Angry',
     icon: 'diary1-angry-icon',
     color: '#B81521',
   },
   {
-    name: 'excited',
+    name: 'Excited',
     icon: 'diary1-excited-icon',
     color: '#F96D30',
   },
   {
-    name: 'content',
+    name: 'Content',
     icon: 'diary1-content-icon',
     color: '#D9B341',
   },
   {
-    name: 'thankful',
+    name: 'Thankful',
     icon: 'diary1-thankful-icon',
     color: '#BFBB30',
   },
   {
-    name: 'proud',
+    name: 'Proud',
     icon: 'diary1-proud-icon',
     color: '#A0BF00',
   },
   {
-    name: 'happy',
+    name: 'Happy',
     icon: 'diary1-happy-icon',
     color: '#CFAE08',
   },
   {
-    name: 'confused',
+    name: 'Confused',
     icon: 'diary1-confused-icon',
     color: '#0F9B35',
   },
   {
-    name: 'bored',
+    name: 'Bored',
     icon: 'diary1-bored-icon',
     color: '#812088',
   },
   {
-    name: 'embarrassed',
+    name: 'Embarrassed',
     icon: 'diary1-embarrassed-icon',
     color: '#F1649B',
   },
   {
-    name: 'worried',
+    name: 'Worried',
     icon: 'diary1-worried-icon',
     color: '#57B109',
   },
