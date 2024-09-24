@@ -75,6 +75,9 @@ import ReportNotice6 from '@/components/ReportNotice6.vue';
 import ReportService from '@/service/ReportService.js';
 import { _mixDate } from '@/utils/utils.js';
 
+import { useHeaderStore } from '@/store/headerStore.js';
+const headerStore = useHeaderStore();
+
 const route = useRoute();
 const router = useRouter();
 
@@ -83,8 +86,7 @@ const expired = ref(false);
 const needVoice = ref(false);
 const nextFlag = ref(false);
 const isAllowed = computed(() => {
-  const ary = ['4', '5'];
-  return ary.includes(nttNo.value) || nextFlag.value;
+  return nextFlag.value;
 });
 const announceText = ref('');
 const announceVoiceText = ref([]);
@@ -109,9 +111,38 @@ onMounted(() => {
   setDate();
 });
 
-const setTitle = () => {};
+const setTitle = () => {
+  const t = type.value;
+  let title = '';
 
-const setDate = () => {};
+  switch (t) {
+    case 1:
+      title = '01.My Mindset';
+      break;
+    case 2:
+      title = '02.About Me';
+      break;
+    case 3:
+      title = '03.How do they feel?';
+      break;
+    case 4:
+      title = '04.How do they feel?';
+      break;
+    case 5:
+      title = '05.How do they feel?';
+      break;
+    case 6:
+      title = '06.How do they feel?';
+      break;
+  }
+
+  headerStore.initTitle(title);
+};
+
+const setDate = () => {
+  const date = '09.20.2024 ~ 10.28.2025';
+  headerStore.initDate(date);
+};
 
 const setAnnounceText = () => {};
 
