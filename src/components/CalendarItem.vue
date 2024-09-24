@@ -27,7 +27,7 @@ import { DIARY_WEEKS } from '@/utils/constant';
 import ButtonItems from './ButtonItems.vue';
 import { useDiaryStore } from '@/store/diaryStore';
 
-const emit = defineEmits(['onDateClick'])
+const emit = defineEmits(['onDateClick', 'onMonthChange'])
 
 const handleDateClick = (date) => {
     emit('onDateClick', { month: String(currentMonth.value), date });
@@ -89,6 +89,8 @@ const changeMonth = (increment) => {
         currentMonth.value = 0;
         currentYear.value += 1;
     }
+
+    emit('onMonthChange', String(currentMonth.value));
 };
 
 const getDiaryStyle = (date) => {

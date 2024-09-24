@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex items-start justify-start gap-4 px-4 pt-1.5 beforeLine">
+    <div class="w-full flex items-start justify-start gap-4 px-4 pt-1.5" :data-index="index">
         <MoodItem :name="props.name" :level="props.level" :textContent="props.name" :textColor="props.color" size="20" fontSize="14" />
         <div class="flex flex-col justify-start items-start diary-content">
             <p>{{ props.date }}</p>
@@ -39,32 +39,24 @@ const props = defineProps({
         type: String,
         required: true,
     },
+    index: {
+        type: Number,
+        required: true,
+    }
 })
 </script>
 
 <style scoped>
-    p {
-        width: 100%;
-        text-align: left;
-        word-break: keep-all;
-        font-weight: 900;
-        color: black;
-        line-height: 30px;
-        z-index: 1;
-    }
-    .diary-content>p:first-child {
-        color: #9A8C81
-    }
-    .beforeLine::before {
-        position: absolute;
-        top: 0;
-        left: 110px;
-        right: 5px;
-        bottom: 0;
-        background-image: linear-gradient(transparent 90%, #EFEFEF 95%);
-        background-size: 100% 2em;
-        background-repeat: repeat-y;
-        content: '';
-        height: 100%;
-    }
+p {
+    width: 100%;
+    text-align: left;
+    word-break: keep-all;
+    font-weight: 900;
+    color: black;
+    line-height: 30px;
+    z-index: 1;
+}
+.diary-content>p:first-child {
+    color: #9A8C81
+}
 </style>
