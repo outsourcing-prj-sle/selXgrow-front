@@ -7,9 +7,11 @@
       <span class="text-sm">▶</span> {{ title }}
     </div>
     <div class="flex gap-4 justify-center items-center">
-      <div class="text-sm font-semibold bg-[#ededf5] rounded-full px-8 py-1.5">
-        <p>09.20.2024 ~ 09.28.2024</p>
-        <!-- date -->
+      <div
+        class="text-sm font-semibold bg-[#ededf5] rounded-full px-8 py-1.5"
+        v-if="date"
+      >
+        <p>{{ date }}</p>
       </div>
       <div class="cursor-pointer" @click="goMyInfo">
         <img
@@ -30,31 +32,48 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
-  import { useUserStore } from '@/store/userStore.js';
-  import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useUserStore } from '@/store/userStore.js';
+import { useHeaderStore } from '@/store/headerStore.js';
+import { useI18n } from 'vue-i18n';
 
-  const route = useRoute();
-  const router = useRouter();
-  const { locale } = useI18n();
+const route = useRoute();
+const router = useRouter();
+const { locale } = useI18n();
 
-  const showHeader = computed(() => route.meta.headerVisible);
+const showHeader = computed(() => route.meta.headerVisible);
 
-  const userStore = useUserStore();
-  const userId = computed(() => userStore.token);
-  const loginType = computed(() => userStore.type);
-  // todo :: route.meta.title || { stateStore.title } || 'Title'
-  const title = computed(() => route.meta.headerTitle || 'Title');
-  // todo :: const date = computed(() => route.meta.needDate && { stateStore.title });
+const userStore = useUserStore();
+const headerStore = useHeaderStore();
+const userId = computed(() => userStore.token);
+const loginType = computed(() => userStore.type);
+// todo :: route.meta.title || { stateStore.title } || 'Title'
+const title = computed(() => {
+  let result = 'Title';
+  if (route.meta.needTitle) {
+    result = headerStore.title;
+  } else if (route.meta.headerTitle) {
+    result = route.meta.headerTitle;
+  }
+  return result;
+});
+const date = computed(() => {
+  let result = 'date';
+  if (route.meta.needDate) {
+    result = headerStore.date;
+  }
+  return result;
+});
+// todo :: const date = computed(() => route.meta.needDate && { stateStore.title });
 
-  const logout = () => {
-    alert('로그아웃')
-  };
+const logout = () => {
+  alert('로그아웃');
+};
 
-  const goMyInfo = () => {
-    alert('내정보')
-  };
+const goMyInfo = () => {
+  alert('내정보');
+};
 </script>
 
 <style>
