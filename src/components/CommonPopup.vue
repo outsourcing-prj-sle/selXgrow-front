@@ -5,7 +5,7 @@
         <div class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.3)]">
           <div class="loading-spinner"></div>
         </div>
-        <VuePdfEmbed source="/resources/pdf/test.pdf" />
+        <VuePdfEmbed source="/grow/resources/pdf/test.pdf" />
       </div>
     </div>
     <div>

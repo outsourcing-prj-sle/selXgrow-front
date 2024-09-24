@@ -3,7 +3,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: '/',
+  publicPath: '/grow/',
   configureWebpack: {
     plugins: [
       new ESLintPlugin({
@@ -13,7 +13,7 @@ module.exports = defineConfig({
     ],
     resolve: {
       alias: {
-        '@': require('path').resolve(__dirname, 'src'),
+                '@': require('path').resolve(__dirname, 'src'),
       },
     },
     module: {
