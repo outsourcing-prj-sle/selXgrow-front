@@ -5,8 +5,8 @@
       :style="`width: ${size * 4}px`"
     >
       <img
-        :class="`${isLowNumber && 'p-3.5'} w-full aspect-square`"
-        :src="require(`@/assets/img/mood/${selectedMood.icon}.svg`)"
+        class="w-full aspect-square"
+        :src="require(`@/assets/img/moods/${selectedMood.icons[props.level - 1]}.svg`)"
         alt="mood icon"
       />
     </picture>
@@ -29,15 +29,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  level: {
+    type: Number,
+    default: 5,
+  },
   textContent: {
     type: String,
   },
   textColor: {
     type: Text,
-  },
-  isLowNumber: {
-    type: Boolean,
-    default: false,
   },
   size: {
     type: Number,

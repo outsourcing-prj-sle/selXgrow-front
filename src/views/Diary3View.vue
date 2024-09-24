@@ -86,10 +86,11 @@
               alt="selected img"
               v-else
             />
-            <img
-              class="absolute -left-[50px] top-[45px] w-[100px]"
-              :src="require(`@/assets/img/mood/${moodIcon}.svg`)"
-              alt="mood icon"
+            <MoodItem
+              class="absolute -left-[50px] top-[45px]"
+              :name="mood"
+              :level="level"
+              size="25"
             />
           </div>
         </div>
@@ -116,6 +117,7 @@ import router from '@/router';
 
 import ButtonItems from '@/components/ButtonItems.vue';
 import RobotItem from '@/components/RobotItem.vue';
+import MoodItem from '@/components/MoodItem.vue';
 
 import { usePopupStore } from '@/store/popupStore.js';
 const popupStore = usePopupStore();
@@ -126,6 +128,9 @@ const diaryStore = useDiaryStore();
 const mood = computed(() => {
   // return props.selectedFeel || diaryStore.mood || 'sad';
   return diaryStore.mood || 'sad';
+});
+const level = computed(() => {
+  return diaryStore.level;
 });
 const items = ref([
   { value: 'Related to something that happened in class', key: 1 },

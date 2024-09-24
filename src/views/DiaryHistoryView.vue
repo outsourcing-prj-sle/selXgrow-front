@@ -16,6 +16,7 @@
         <DiaryContents
           v-if="isSelected"
           :name="currentDiaryContents.mood"
+          :level="currentDiaryContents.level"
           :date="currentDiaryContents.formattedDate"
           :highlight-content="`${currentDiaryContents.levelName} ${currentDiaryContents.mood}`"
           :reason="currentDiaryContents.reason"
@@ -26,6 +27,7 @@
           v-for="(diaryContent, index) in currentDiaryContents"
           :key="index"
           :name="diaryContent.mood"
+          :level="diaryContent.level"
           :date="diaryContent.formattedDate"
           :highlight-content="`${diaryContent.levelName} ${diaryContent.mood}`"
           :reason="diaryContent.reason"

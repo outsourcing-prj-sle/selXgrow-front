@@ -1,6 +1,6 @@
 <template>
     <div class="w-full flex items-start justify-start gap-4 px-4 pt-1.5 beforeLine">
-        <MoodItem :name="props.name" :textContent="props.name" :textColor="props.color" size="20" fontSize="14" />
+        <MoodItem :name="props.name" :level="props.level" :textContent="props.name" :textColor="props.color" size="20" fontSize="14" />
         <div class="flex flex-col justify-start items-start diary-content">
             <p>{{ props.date }}</p>
             <p>I am feeling 
@@ -18,6 +18,10 @@ const props = defineProps({
     name: {
         type: String,
         required: true
+    },
+    level: {
+        type: Number,
+        required: true,
     },
     date: {
         type: String,
