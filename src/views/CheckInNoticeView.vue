@@ -88,23 +88,20 @@ const nextFlag = ref(false);
 const isAllowed = computed(() => {
   return nextFlag.value;
 });
-const announceText = ref('');
-const announceVoiceText = ref([]);
+const announceTextList = ref([]);
 
 onMounted(() => {
   // 글 읽어주는 기능 on / off
   const needVoiceList = [3, 4, 5, 6];
   if (needVoiceList.includes(type.value)) {
     needVoice.value = true;
-    // 로봇 안내 음성 리스트 준비
-    setAnnounceVoiceText();
   }
 
   // 설문 종료 여부 확인
   expired.value = false;
 
   // 로봇 안내 텍스트
-  setAnnounceText();
+  setAnnounceTextList();
 
   // 헤더 정보 업데이트
   setTitle();
@@ -144,9 +141,87 @@ const setDate = () => {
   headerStore.initDate(date);
 };
 
-const setAnnounceText = () => {};
+const setAnnounceTextList = () => {
+  const t = type.value;
+  let textList = [];
 
-const setAnnounceVoiceText = () => {};
+  switch (t) {
+    case 1:
+      textList = [
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+      ];
+      break;
+    case 2:
+      textList = [
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+      ];
+      break;
+    case 3:
+      textList = [
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+      ];
+      break;
+    case 4:
+      textList = [
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+      ];
+      break;
+    case 5:
+      textList = [
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+      ];
+      break;
+    case 6:
+      textList = [
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
+        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
+        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
+        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+      ];
+      break;
+  }
+
+  announceTextList.value = textList;
+};
 
 const allowNext = (flag) => {
   nextFlag.value = flag;
