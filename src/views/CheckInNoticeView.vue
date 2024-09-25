@@ -1,5 +1,53 @@
 <template>
-  <section
+  <div class="flex flex-col justify-between h-full relative">
+    <div class="flex flex-col flex-1">
+      <div class="flex items-start">
+        <RobotItem />
+        <!-- needVoice -->
+        <div class="h-full flex items-center justify-center mr-3">
+          <div
+            class="w-12 h-12 flex justify-center items-center bg-white rounded-full"
+            @click="readAnnounce"
+            v-if="needVoice"
+          >
+            <img
+              :src="require(`@/assets/img/checkInSpeaker.svg`)"
+              class="w-[20px]"
+              alt="checkInSpeaker"
+            />
+          </div>
+        </div>
+        <div class="flex flex-1">
+          <div
+            class="overflow-y-scroll rounded-lg h-[110px] w-full py-2.5 px-4 bg-white border-l-2 text-left custom-scrollbar"
+          >
+            <p class="text-sm font-semibold text-[#8D36EF]" v-if="needVoice">
+              When you click the button, you can hear a voice guidance.
+            </p>
+            <p
+              class="text-sm font-semibold text-[#555195]"
+              v-for="(v, i) in announceTextList"
+              :key="`announceTextList${i}`"
+              :id="`announceTextList${i}`"
+              :class="{
+                'text-red-500': isSpeaking && currentSentence === i + 1,
+              }"
+            >
+              {{ v }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end w-full">
+      <button
+        v-if="isAllowed"
+        @click="startReport"
+        :disabled="!isAllowed"
+      ></button>
+    </div>
+  </div>
+  <!-- <section
     class="flex flex-col items-end px-20 mt-4 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full"
   >
     <div class="flex gap-1 items-start self-stretch max-md:max-w-full">
@@ -60,20 +108,21 @@
       v-if="isAllowed"
       @click="startReport"
     >
-      {{ $t('common.start') }}
+      <p>START</p>
     </button>
-  </section>
+  </section> -->
 </template>
 
-<script>
+<script setup>
 import { onMounted, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import ReportNotice1 from '@/components/ReportNotice1.vue';
-import ReportNotice2 from '@/components/ReportNotice2.vue';
-import ReportNotice3 from '@/components/ReportNotice3.vue';
-import ReportNotice6 from '@/components/ReportNotice6.vue';
-import ReportService from '@/service/ReportService.js';
-import { _mixDate } from '@/utils/utils.js';
+
+import RobotItem from '@/components/RobotItem.vue';
+// import ReportNotice1 from '@/components/ReportNotice1.vue';
+// import ReportNotice2 from '@/components/ReportNotice2.vue';
+// import ReportNotice3 from '@/components/ReportNotice3.vue';
+// import ReportNotice6 from '@/components/ReportNotice6.vue';
+import { waitSec } from '@/utils/utils';
 
 import { useHeaderStore } from '@/store/headerStore.js';
 const headerStore = useHeaderStore();
@@ -89,12 +138,17 @@ const isAllowed = computed(() => {
   return nextFlag.value;
 });
 const announceTextList = ref([]);
+const isSpeaking = ref(false);
+const currentSentence = ref(0);
+const speakCnt = ref(0);
 
 onMounted(() => {
   // 글 읽어주는 기능 on / off
   const needVoiceList = [3, 4, 5, 6];
   if (needVoiceList.includes(type.value)) {
     needVoice.value = true;
+  } else {
+    needVoice.value = false;
   }
 
   // 설문 종료 여부 확인
@@ -237,8 +291,87 @@ const startReport = () => {
     params: { type: type.value },
   });
 };
+
+const readAnnounce = async () => {
+  // 대화 끝나기전엔 비활성화
+  if (speakCnt.value > 2) return;
+  if (isSpeaking.value) return;
+  speakCnt.value += 1;
+  isSpeaking.value = true;
+  const utterance = new SpeechSynthesisUtterance();
+  utterance.lang = 'en-US';
+  utterance.rate = 1;
+  utterance.pitch = 1;
+
+  for (const index in announceTextList.value) {
+    const sentence = announceTextList.value[index];
+    utterance.text = sentence;
+    utterance.onstart = () => {
+      currentSentence.value = parseInt(index) + 1;
+      // 현재 읽고 있는 문장으로 스크롤 이동
+      const currentTextElement = document.getElementById(
+        `announceTextList${index}`
+      );
+      if (currentTextElement) {
+        const container = currentTextElement.closest('.overflow-y-scroll'); // 부모 컨테이너
+        if (container) {
+          const offset = currentTextElement.offsetHeight; // 강조가 두번째 줄에 오게 글 높이 구함
+          // container.scrollTop =
+          //   currentTextElement.offsetTop - container.offsetTop - offset; // 스크롤 위치 조정
+          const targetScrollTop =
+            currentTextElement.offsetTop - container.offsetTop - offset; // 스크롤 위치
+          // 부드러운 스크롤 이동
+          container.scrollTo({
+            top: targetScrollTop,
+            behavior: 'smooth', // 부드러운 스크롤
+          });
+        }
+      }
+    };
+    utterance.onend = () => {
+      if (announceTextList.value.length <= currentSentence.value)
+        isSpeaking.value = false;
+      currentSentence.value = 0;
+    };
+    window.speechSynthesis.speak(utterance);
+    await waitForSentence();
+  }
+};
+
+const waitForSentence = async () => {
+  console.log('start wait');
+  await new Promise((resolve) => {
+    let interval;
+    interval = setInterval(() => {
+      if (!currentSentence.value) {
+        clearInterval(interval);
+        resolve();
+      }
+    }, 250);
+  });
+  await waitSec(0.5);
+  return;
+};
 </script>
 
 <style scoped>
-/* 필요한 경우 추가적인 스타일을 여기에 추가할 수 있습니다 */
+/* 웹킷 기반 브라우저용 커스터마이징 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d8b5ff; /* 보라색 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f3f4f6; /* 연한 배경 */
+}
+
+/* Firefox용 커스터마이징 */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d8b5ff #f3f4f6;
+}
 </style>
