@@ -38,16 +38,30 @@
           </div>
         </div>
       </div>
+
+      <CheckInNotice1View v-if="title === '마음알기 설문1'" @allowNext="allowNext" />
     </div>
     <div class="flex justify-end w-full">
       <button
-        v-if="isAllowed"
+        class="w-[120px] h-[56px] bg-[#3C36A7] flex justify-end rounded-full items-center font-bold text-base text-white pr-5"
+        :class="{
+          'bg-[#DADFF5]': !isAllowed,
+        }"
         @click="startReport"
         :disabled="!isAllowed"
-      ></button>
+      >
+        START
+        <img
+          :src="require(`@/assets/img/startArrow.svg`)"
+          class="w-[15px] ml-2"
+          :class="{
+            'opacity-20': !isAllowed,
+          }"
+          alt="startArrow"
+        />
+      </button>
     </div>
   </div>
-  <!-- <section
     class="flex flex-col items-end px-20 mt-4 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full"
   >
     <div class="flex gap-1 items-start self-stretch max-md:max-w-full">
@@ -118,10 +132,10 @@ import { onMounted, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import RobotItem from '@/components/RobotItem.vue';
-// import ReportNotice1 from '@/components/ReportNotice1.vue';
-// import ReportNotice2 from '@/components/ReportNotice2.vue';
-// import ReportNotice3 from '@/components/ReportNotice3.vue';
-// import ReportNotice6 from '@/components/ReportNotice6.vue';
+// import CheckInNotice1View from '@/components/CheckInNotice1View.vue';
+// import CheckInNotice2View from '@/components/CheckInNotice2View.vue';
+// import CheckInNotice3View from '@/components/CheckInNotice3View.vue';
+// import CheckInNotice6View from '@/components/CheckInNotice6View.vue';
 import { waitSec } from '@/utils/utils';
 
 import { useHeaderStore } from '@/store/headerStore.js';
@@ -135,6 +149,8 @@ const expired = ref(false);
 const needVoice = ref(false);
 const nextFlag = ref(false);
 const isAllowed = computed(() => {
+  const allowedType = [4, 5];
+  if (allowedType.includes(type.value)) return true;
   return nextFlag.value;
 });
 const announceTextList = ref([]);
