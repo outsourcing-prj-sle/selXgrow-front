@@ -20,6 +20,7 @@
         <div class="flex flex-1">
           <div
             class="overflow-y-scroll rounded-lg h-[110px] w-full py-2.5 px-4 bg-white border-l-2 text-left custom-scrollbar"
+            style="overflow-y: auto; max-height: 110px"
           >
             <p class="text-sm font-semibold text-[#8D36EF]" v-if="needVoice">
               When you click the button, you can hear a voice guidance.
@@ -39,10 +40,10 @@
         </div>
       </div>
 
-      <CheckInNotice1View
-        v-if="title === '마음알기 설문1'"
-        @allowNext="allowNext"
-      />
+      <CheckInNotice1View v-if="type === 1" @allowNext="allowNext" />
+      <CheckInNotice2View v-if="type === 2" @allowNext="allowNext" />
+      <CheckInNotice3View v-if="type === 3" @allowNext="allowNext" />
+      <CheckInNotice6View v-if="type === 6" @allowNext="allowNext" />
     </div>
     <div class="flex justify-end w-full">
       <button
@@ -72,10 +73,10 @@ import { onMounted, ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import RobotItem from '@/components/RobotItem.vue';
-// import CheckInNotice1View from '@/components/CheckInNotice1View.vue';
-// import CheckInNotice2View from '@/components/CheckInNotice2View.vue';
-// import CheckInNotice3View from '@/components/CheckInNotice3View.vue';
-// import CheckInNotice6View from '@/components/CheckInNotice6View.vue';
+import CheckInNotice1View from '@/components/CheckInNotice1View.vue';
+import CheckInNotice2View from '@/components/CheckInNotice2View.vue';
+import CheckInNotice3View from '@/components/CheckInNotice3View.vue';
+import CheckInNotice6View from '@/components/CheckInNotice6View.vue';
 import { waitSec } from '@/utils/utils';
 
 import { useHeaderStore } from '@/store/headerStore.js';
@@ -158,74 +159,66 @@ const setAnnounceTextList = () => {
   switch (t) {
     case 1:
       textList = [
+        'This section contains sentences that tell how some boys and girls think or feel or act. Read each sentence carefully. You will have four answer choices: 1, 2, 3, 4 and 5.',
+        '',
+        'Check 1 if the sentence is NOT AT ALL POSSIBLE TO CHANGE for you.',
+        'Check 2 if the sentence is A LITTLE POSSIBLE TO CHANGE for you.',
+        'Check 3 if the sentence is SOMEWHAT POSSIBLE TO CHANGE for you.',
         'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
         'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        '',
+        'Press "start" to begin.',
       ];
       break;
     case 2:
       textList = [
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'This section contains sentences that tell how some boys and girls think or feel or act. Read each sentence carefully. You will have four answer choices: 1, 2, 3, and 4.  ',
+        '',
+        'Check 1 if the sentence NEVER describes you or how you feel.  ',
+        'Check 2 if the sentence SOMETIMES describes you or how you feel.  ',
+        'Check 3 if the sentence OFTEN describes you or how you feel.  ',
+        'Check 4 if the sentence ALMOST ALWAYS describes you or how you feel.  ',
+        '',
+        'Press "start" to begin.',
       ];
       break;
     case 3:
       textList = [
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'On the screen, you will see a photo of a person with just their eyes shown, like the one below. You will also see words written on each corner of the screen. You are to choose from four words that best describe what the person in the photo is thinking or feeling as quickly as possible.  ',
+        'Give the best answer as quickly as possible, even if it is hard to make up your mind.  ',
+        'If no answer, repeat: “give the best answer as quickly as possible, even if it is hard to make up your mind.”  ',
+        '',
+        'Press "start" to begin.',
       ];
       break;
     case 4:
       textList = [
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'Once we begin, you will see the photo of a person inside this black screen.  ',
+        'Watch carefully, as the photo will only be displayed on the screen for a second. Try to see what the person in the photo is thinking or feeling. Ready? On the count of 3, 2, 1!  ',
+        'Which of the six words best describes what the person in the photo was thinking or feeling?  ',
+        'If no answer, say: “give the best answer as quickly as possible, even if it is hard to make up your mind.”  ',
+        'Always count down so that students will pay attention and not miss the photo being displayed.  ',
+        '',
+        'Press "start" to begin.',
       ];
       break;
     case 5:
       textList = [
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'On this screen, there are words that represent pictures and emotions.  ',
+        'Hear each sentence carefully. You will have four answer choices: 1, 2, 3, and 4.  ',
+        'You can only listen to the guide voice once, so please listen carefully and choose in a quiet place. Are you ready?  ',
+        '',
+        'Press "start" to begin.',
       ];
       break;
     case 6:
       textList = [
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
-        'Check 4 if the sentence is QUITE POSSIBLE TO CHANGE for you.',
-        'Check 5 if the sentence is COMPLETELY POSSIBLE TO CHANGE for you.',
-        'Give the best answer for you for each sentence, even if it is hard to make up your mind.',
-        'There area no right or wrong answers.  Just answer each question to the best of your ability.',
+        'On this task, you will choose one of the eyes as well as the nose/mouth pieces to create a facial expression that best matches the given scenario.  ',
+        'For example, to create a happy face, I would choose these two pieces. [demonstrate the choosing of the correct pieces]. As you click, you will see your selections on the kid’s face.  ',
+        'Pay attention to the scenario.  ',
+        '',
+        'Give the best answer as quickly as possible, even if it is hard to make up your mind.  ',
+        'When you are ready, press "start" to begin.',
       ];
       break;
   }
