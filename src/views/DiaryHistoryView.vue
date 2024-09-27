@@ -7,11 +7,11 @@
       You can see your emotional timeline.
     </p>
   </div>
-  <div class="flex h-full w-full sel-diary relative">
-    <div class="mx-8 w-[65%] flex flex-col h-full gap-2">
+  <div class="flex w-full sel-diary relative">
+    <div class="mx-8 w-[65%] flex flex-col h-full gap-2 relative">
       <p class="ml-20 text-2xl text-left font-bold">SEL Diary</p>
       <div
-        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 max-h-[420px] overflow-y-scroll relative beforeLine"
+        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 min-h-[420px] max-h-[420px] overflow-y-scroll relative beforeLine"
         ref="diaryContainer"
         :style="beforeLineHeight"
       >
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="flex-1 mt-8">
-          <CalendarItem @onDateClick="handleDateClick" @onMonthChange="handleMonthChange" />
+      <CalendarItem @onDateClick="handleDateClick" @onMonthChange="handleMonthChange" />
     </div>
   </div>
 </template>
@@ -48,9 +48,15 @@ const diaryContainer = ref(null);
 const currentMonth = ref(diaryStore.date.split("/")[0]);
 
 const currentDiaryContents = computed(() => {
-  return diaryStore.diaryContents.filter((diaryContent) => {
+  const filteredDiaryContents = diaryStore.diaryContents.filter((diaryContent) => {
     if(diaryContent.date.split("/")[0] === currentMonth.value) return diaryContent;
   });
+
+  console.log(filteredDiaryContents)
+
+  return filteredDiaryContents.sort((content1, content2) => {
+    return parseInt(content2.date.split("/")[1]) - parseInt(content1.date.split("/")[1])
+  })
 });
 
 const scrollToDiaryContent = (index) => {
@@ -62,7 +68,7 @@ const scrollToDiaryContent = (index) => {
 };
 
 const handleDateClick = (data) => {
-  const index = diaryStore.diaryContents.findIndex((diaryContent) => {
+  const index = currentDiaryContents.value.findIndex((diaryContent) => {
     const [month, date] = diaryContent.date.split("/");
 
     return date === data.date && month === data.month;

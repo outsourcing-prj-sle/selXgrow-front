@@ -75,7 +75,7 @@
     <div
       class="absolute bottom-0 h-[70px] w-full flex justify-end items-center"
     >
-      <ButtonItems class="z-10" name="next" @click="() => router.push({ name: 'diary2' })" />
+      <ButtonItems class="z-10" name="next" @click="handleClickNext" />
     </div>
   </div>
 </template>
@@ -92,6 +92,11 @@ const diaryStore = useDiaryStore();
 const selectedMood = ref(null);
 const selectedColor = ref(null);
 const selectedName = ref(null);
+
+const handleClickNext = () => {
+  if(selectedMood.value !== null) router.push({ name: 'diary2' });
+  else alert('Pick the picture first.');
+}
 
 const moods = ref([
   {

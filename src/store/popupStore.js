@@ -4,6 +4,7 @@ export const usePopupStore = defineStore('popup', {
   state: () => ({
     isOpenedSaveDiaryPopup: false,
     isOpenedCommonPopup: false,
+    commonPopupId: '',
   }),
   actions: {
     closeAllPopup() {

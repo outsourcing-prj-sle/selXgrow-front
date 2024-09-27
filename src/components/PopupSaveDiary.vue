@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex flex-col h-full bg-white bg-opacity-50 rounded-2xl justify-center items-center absolute top-0 left-0 z-50"
+    class="w-full flex flex-col h-full bg-white bg-opacity-90 rounded-2xl justify-center items-center absolute top-0 left-0 z-50"
   >
     <div
       class="w-[700px] pl-[150px] pr-[110px] text-left text-[#716CC2] text-base font-medium mb-2"

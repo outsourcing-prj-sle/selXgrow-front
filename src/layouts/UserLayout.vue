@@ -2,9 +2,9 @@
   <div
     class="w-screen h-screen bg-[url('@/assets/img/bg.svg')] bg-no-repeat bg-cover"
   >
-    <div class="flex w-screen h-[95vh] overflow-hidden">
+    <div class="flex w-screen h-[95vh]">
       <AppSidebar />
-      <div class="flex-1 mt-12 px-12 flex flex-col overflow-hidden relative">
+      <div class="flex-1 mt-12 px-12 flex flex-col relative">
         <PopupSaveDiary v-if="isOpenedSaveDiaryPopup" />
         <CommonPopup v-if="isOpenedCommonPopup" />
         <div class="flex">

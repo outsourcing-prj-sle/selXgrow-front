@@ -19,7 +19,7 @@
           <span class="text-[#80beeb]">{{ mood.toLowerCase() }}</span> ?
         </p>
         <!-- 드롭박스 -->
-        <div class="w-full pr-14 mt-7">
+        <div class="w-full pr-14 mt-7 relative">
           <div
             class="rounded-full border-[#3C36A7] border pl-[54px] pr-1 flex justify-between items-center w-full py-1"
             @click="openDropBox"
@@ -44,9 +44,9 @@
               />
             </div>
           </div>
-          <div class="w-full h-[200px] pl-6 pr-[42px]" v-if="isOpened">
+          <div class="absolute w-full h-[315px] pl-6 pr-[102px] z-50" v-if="isOpened">
             <div
-              class="h-full w-full rounded-es-[15px] rounded-ee-[15px] bg-[#3C36A7] overflow-hidden"
+              class="h-full w-full rounded-es-[15px] rounded-ee-[15px] bg-[#3C36A7]"
             >
               <div class="w-full h-full overflow-auto">
                 <div class="w-full h-3"></div>
@@ -72,8 +72,8 @@
           </div>
         </div>
         <!-- 로봇 && 이미지 -->
-        <div class="flex mt-12 w-full justify-center">
-          <div class="w-[390px] h-[190px] relative rounded-[15px] bg-[#E9ECFC]">
+        <div class="flex mt-6 w-full justify-center">
+          <div class="w-[450px] h-[260px] relative rounded-[15px] bg-[#E9ECFC]">
             <div
               class="w-full h-full flex justify-center items-center text-[80px] font-medium text-white"
               v-if="selectedOption === null"
@@ -87,9 +87,9 @@
               v-else
             />
             <MoodItem
-              class="absolute -left-[50px] top-[45px]"
+              class="absolute top-1/2 -left-[50px] -translate-y-[50px]"
               :name="mood"
-              :level="level"
+              :level="parseInt(level)"
               size="25"
             />
           </div>
@@ -142,10 +142,6 @@ const items = ref([
 ]);
 const selectedOption = ref(null);
 const isOpened = ref(false);
-
-const moodIcon = computed(() => {
-  return diaryStore.icon || 'diary1-sad-small';
-});
 
 const saveButtonClass = computed(() => {
   let result = '';

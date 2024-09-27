@@ -11,7 +11,7 @@
       />
     </picture>
     <p
-      :class="`font-bold p-2.5 text-[${fontSize}px]`"
+      :class="`font-bold p-2.5 leading-none text-[${fontSize}px]`"
       :style="`color: ${textColor}; font-size: ${fontSize}px`"
       v-if="!!textContent"
     >

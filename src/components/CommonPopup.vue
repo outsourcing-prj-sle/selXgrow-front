@@ -1,11 +1,14 @@
 <template>
-  <div class="w-2/3 flex h-full bg-[#19146A] rounded-2xl justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+  <div class="w-3/4 flex h-full bg-[#19146A] rounded-2xl justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
     <div class="flex-1 pl-8 py-2">
       <div class="w-full h-full pr-4 overflow-y-scroll popup-custom relative">
         <div class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.3)]">
           <div class="loading-spinner"></div>
         </div>
-        <VuePdfEmbed source="/grow/resources/pdf/test.pdf" />
+        <VuePdfEmbed :source="`/grow/resources/pdf/${pdf}.pdf`" />
+        <button class="absolute top-2 right-6 text-black z-50 p-1 bg-slate-200 rounded-full" @click="printPdf">
+          <img class="w-4" src="@/assets/img/print.svg" alt="print" />
+        </button>
       </div>
     </div>
     <div>
@@ -15,13 +18,27 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
 import { usePopupStore } from '@/store/popupStore.js';
 import VuePdfEmbed from 'vue-pdf-embed';
+import { PDFS } from '@/utils/constant'
 
 const popupStore = usePopupStore();
 
 const closePopup = async () => {
   popupStore.openCommonPopup();
+};
+
+const pdf = computed(() => {
+  const id = popupStore.commonPopupId;
+  return PDFS[id - 1];
+});
+
+const printPdf = () => {
+  const pdfWindow = window.open(`/grow/resources/pdf/${pdf.value}.pdf`);
+  pdfWindow.onload = function() {
+    pdfWindow.print();
+  };
 };
 </script>
 

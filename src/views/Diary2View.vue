@@ -27,11 +27,7 @@
           <p class="text-white opacity-50">{{ feelDescription }}</p>
         </div>
         <div class="flex justify-between items-center w-full px-8 gap-8">
-          <MoodItem
-            :name="mood"
-            :level="feelScore"
-            :textContent="feelDescription"
-          />
+          <MoodItem :name="mood" level="1" :textContent="`${MOODS_LEVEL[0]}`" />
           <div
             class="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex w-full justify-between items-center px-2"
           >

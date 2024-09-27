@@ -72,3 +72,14 @@ export const MOODS_LEVEL = ['A Little', 'Pretty', 'Quite', 'Very', 'Extremely'];
 export const DIARY_WEEKS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export const DIARY_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+export const VIDEOS = ['02_Feeling Flowers', '04_Calming Jar Meditation'];
+
+export const PDFS = [
+    'Lesson plan_Acitivity 1_story time',
+    'Lesson plan_Acitivity 2_mystery mail',
+    'Lesson plan_Acitivity 3_create a garden of feeling flowers',
+    'Lesson plan_Acitivity 4_practice rainbow breathing',
+    'Lesson plan_Extension activity - pinwheels 1',
+    'Lesson plan_Extension activity - pinwheels 2',
+];

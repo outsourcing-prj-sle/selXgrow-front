@@ -11,7 +11,7 @@
         <VideoPlayer 
           class="h-72 w-full" 
           controls 
-          src="/grow/resources/video/test.mp4"
+          :src="`/grow/resources/video/${video}.mp4`"
         />
         <div class="flex flex-col items-start w-full pt-4">
           <p class="font-extrabold text-lg">Video name</p>
@@ -30,19 +30,31 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import router from '@/router';
 import { useRoute } from 'vue-router';
 import { VideoPlayer } from '@videojs-player/vue';
 import 'video.js/dist/video-js.css'
+import { VIDEOS } from '@/utils/constant'
 
 import RobotItem from '@/components/RobotItem.vue';
 import ButtonItems from '@/components/ButtonItems.vue';
 
 const route = useRoute();
+
+const video = computed(() => {
+  const id = route.params.id
+  return VIDEOS[id - 1]
+})
 </script>
 
 <style>
 .video-js .vjs-control-bar {
-  background-color: rgba(25, 20, 106, 0.6); /* 컨트롤 바의 배경색 변경 */
+  background-color: rgba(25, 20, 106, 0.6);
+}
+.video-js .vjs-big-play-button {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

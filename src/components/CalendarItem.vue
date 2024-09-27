@@ -9,7 +9,7 @@
             <div class="flex justify justify-between items-center week px-2 py-1">
                 <p v-for="(w, i) in DIARY_WEEKS" :key="i">{{ w[0] }}</p>
             </div>
-            <div v-for="(f, i) in formattedDates" :key="i" class="flex justify justify-between items-center px-2 py-1 days">
+            <div v-for="(f, i) in formattedDates" :key="i" class="flex justify justify-between items-center px-2 py-1 cursor-default days">
                 <p 
                     v-for="(d, i) in f" 
                     :key="i"
@@ -100,7 +100,7 @@ const getDiaryStyle = (date) => {
     });
 
     if (diaryContent) {
-        return `background-color: ${diaryContent.color}; color: white; border-radius: 9999px;`;
+        return `background-color: ${diaryContent.color}; color: white; border-radius: 9999px; cursor: pointer;`;
     }
 
     return '';
