@@ -61,7 +61,7 @@
                   </p>
                   <img
                     class="w-6"
-                    :src="require(`@/assets/img/diary3_dropbox_check.svg`)"
+                    :src="require(`@/assets/img/diary/step3/diary3_dropbox_check.svg`)"
                     alt="diary3_dropbox_check"
                     v-if="selectedOption === item"
                   />
@@ -82,7 +82,7 @@
             </div>
             <img
               class="w-full h-full rounded-[15px] object-cover"
-              :src="require(`@/assets/img/diary3_test.svg`)"
+              :src="require(`@/assets/img/diary/step3/reason_${selectedOption.key}.svg`)"
               alt="selected img"
               v-else
             />

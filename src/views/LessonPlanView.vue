@@ -23,7 +23,7 @@
             >
               <img
                 class="w-full h-full object-cover rounded-xl border-2 border-[#e1e1e1]"
-                :src="require(`@/assets/img/lesson_thumbnail_${n}.svg`)"
+                :src="require(`@/assets/img/lesson/lesson_thumbnail_${n}.svg`)"
                 :alt="`lesson_thumbnail_${n}`"
               />
               <p class="text-base font-extrabold text-left leading-none pl-2 break-keep">

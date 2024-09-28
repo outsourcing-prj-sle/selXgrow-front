@@ -50,7 +50,7 @@
             <!-- Replace with actual image/icon -->
             <div class="rounded-full flex items-center justify-center">
               <img
-                :src="require(`@/assets/img/mood/${mood.icon}.svg`)"
+                :src="require(`@/assets/img/diary/step1/${mood.icon}.svg`)"
                 :class="`${selectedMood === index ? 'w-[100px]' : 'w-[74px]'}`"
                 alt="mood icon"
               />

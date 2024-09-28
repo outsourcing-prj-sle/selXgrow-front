@@ -6,7 +6,7 @@
     >
       <img
         class="w-full aspect-square"
-        :src="require(`@/assets/img/moods/${selectedMood.icons[props.level - 1]}.svg`)"
+        :src="require(`@/assets/img/diary/moods/${selectedMood.icons[props.level - 1]}.svg`)"
         alt="mood icon"
       />
     </picture>
