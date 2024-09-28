@@ -14,12 +14,11 @@
           :src="`/grow/resources/video/${video}.mp4`"
         />
         <div class="flex flex-col items-start w-full pt-4">
-          <p class="font-extrabold text-lg">Video name</p>
+          <p class="font-extrabold text-lg">{{  route.query.header  }}</p>
           <div class="flex justify-between items-center w-full">
-            <b>This is the area where there is a description of the video above.</b>
-            <p class="text-[#6FB3F2]">08.27.2024</p>
+            <p class="semibold">{{ route.query.content }}</p>
+            <p class="text-[#6FB3F2] font-semibold">08.27.2024</p>
           </div>
-          <b class="pt-2 text-[#8D36EF]">SEL Admin</b>
         </div>
       </div>
     </div>
@@ -55,6 +54,5 @@ const video = computed(() => {
 .video-js .vjs-big-play-button {
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 }
 </style>

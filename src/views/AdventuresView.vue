@@ -17,38 +17,21 @@
           >
             <div
               class="flex flex-col text-[#19146A] text-left"
-              v-for="n in 5"
+              v-for="n in 6"
               :key="n"
-              @click="() => goDetail(n)"
+              @click="() => goDetail({ id: n, header: headerList[n-1], content: contentList[n-1] })"
             >
               <img
-                class="w-[226px] h-[140px] object-cover rounded-2xl"
+                class="w-[226px] h-[140px] object-cover rounded-xl border-4 border-[#deefff]"
                 :src="require(`@/assets/img/adventure_thumbnail_${n}.svg`)"
                 alt="adventure_thumbnail"
               />
-              <p class="font-semibold text-sm mt-2">{{ headerList[n - 1] }}</p>
+              <p class="font-bold text-sm mt-2">{{ headerList[n - 1] }}</p>
               <p class="text-xs font-medium max-w-[200px]">
                 {{ contentList[n - 1] }}
               </p>
             </div>
           </div>
-        </div>
-        <!-- 페이징 -->
-        <div class="h-[70px] w-full flex justify-center gap-10 items-center">
-          <ButtonItems
-            name="prev"
-            @click="() => router.push({ name: 'diary1' })"
-          />
-          <div class="flex text-[#B1B0C5] text-sm font-medium">
-            <div class="p-0.5 text-[#8D36EF] font-semibold">1</div>
-            <div class="p-0.5">2</div>
-            <div class="p-0.5">3</div>
-            <div class="p-0.5">4</div>
-          </div>
-          <ButtonItems
-            name="next"
-            @click="() => router.push({ name: 'diary3' })"
-          />
         </div>
       </div>
     </div>
@@ -58,12 +41,11 @@
 <script setup>
 import router from '@/router';
 import RobotItem from '@/components/RobotItem.vue';
-import ButtonItems from '@/components/ButtonItems.vue';
 import { VIDEOS } from '@/utils/constant';
 
-const goDetail = (id) => {
+const goDetail = ({ id, header, content }) => {
   if(id > VIDEOS.length) alert('준비 중입니다.')
-  else router.push({ name: 'adventuresDetail', params: { id } });
+  else router.push({ name: 'adventuresDetail', params: { id }, query: { header, content } });
 };
 
 const headerList = [
@@ -72,6 +54,7 @@ const headerList = [
   'Mindfulness my magic breath',
   'Emotions are part of who i am',
   'Mindfulness practice',
+  'Comparing Facial Expressions',
 ];
 
 const contentList = [
@@ -80,6 +63,7 @@ const contentList = [
   'running time 3:08',
   'running time 5:23',
   'running time 13:54',
+  'running time: 12:10',
 ];
 </script>
 
