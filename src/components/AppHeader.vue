@@ -8,10 +8,11 @@
     </div>
     <div class="flex gap-4 justify-center items-center">
       <div
-        class="text-sm font-semibold bg-[#ededf5] rounded-full px-8 py-1.5"
-        v-if="date"
+        class="text-sm font-semibold bg-[#ededf5] rounded-full px-8 py-1.5 flex gap-x-3"
+        v-if="date && time"
       >
         <p>{{ date }}</p>
+        <p>{{ time }}</p>
       </div>
       <div class="cursor-pointer" @click="goMyInfo">
         <img
@@ -32,7 +33,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onBeforeUnmount, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '@/store/userStore.js';
 import { useHeaderStore } from '@/store/headerStore.js';
@@ -58,14 +59,19 @@ const title = computed(() => {
   }
   return result;
 });
-const date = computed(() => {
-  let result = 'date';
-  if (route.meta.needDate) {
-    result = headerStore.date;
-  }
-  return result;
-});
+const date = computed(() => headerStore.date);
+const time = computed(() => headerStore.time);
 // todo :: const date = computed(() => route.meta.needDate && { stateStore.title });
+
+onMounted(() => {
+  headerStore.updateDate();
+
+  const interval = setInterval(() => {
+    headerStore.updateDate();
+  }, 1000);
+
+  onBeforeUnmount(() => clearInterval(interval));
+});
 
 const logout = () => {
   alert('로그아웃');

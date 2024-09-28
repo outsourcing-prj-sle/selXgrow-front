@@ -30,7 +30,6 @@ const popupStore = usePopupStore();
 
 onMounted(() => {
   const routerView = document.querySelector('router-view');
-  console.log('safdasdasds');
   console.log(AppSidebar);
   console.log('router-view:', routerView);
 
