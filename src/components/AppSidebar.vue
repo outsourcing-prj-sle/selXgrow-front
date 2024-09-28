@@ -3,7 +3,7 @@
     <div class="flex flex-col h-full w-full" v-if="showSidebar">
       <!-- 로고 -->
       <div
-        class="cursor-pointer flex justify-center items-center mt-8 mb-2 mx-4"
+        class="cursor-pointer flex justify-center items-center mt-6 mb-4 mx-2"
         @click="goMain"
       >
         <img

@@ -46,7 +46,7 @@
                 v-model="selectedOption"
               />
               <div
-                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center"
+                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center cursor-pointer cursor-pointer"
                 :class="selectedOption === 1 && 'border-[#3C36A7] bg-[#3C36A7]'"
               >
                 <img
@@ -69,7 +69,7 @@
                 v-model="selectedOption"
               />
               <div
-                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center"
+                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center cursor-pointer cursor-pointer"
                 :class="selectedOption === 2 && 'border-[#3C36A7] bg-[#3C36A7]'"
               >
                 <img
@@ -92,7 +92,7 @@
                 v-model="selectedOption"
               />
               <div
-                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center"
+                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center cursor-pointer cursor-pointer"
                 :class="selectedOption === 3 && 'border-[#3C36A7] bg-[#3C36A7]'"
               >
                 <img
@@ -115,7 +115,7 @@
                 v-model="selectedOption"
               />
               <div
-                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center"
+                class="w-10 h-10 rounded-full border-2 border-[#BECEDE] flex items-center justify-center cursor-pointer cursor-pointer"
                 :class="selectedOption === 4 && 'border-[#3C36A7] bg-[#3C36A7]'"
               >
                 <img

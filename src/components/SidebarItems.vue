@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col text-left px-5 py-4 relative"
+    class="flex flex-col text-left px-5 py-4 relative cursor-pointer"
     :class="{
       'bg-[#0c0a35] active': isSelected,
     }"
