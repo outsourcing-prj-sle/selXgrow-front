@@ -15,7 +15,7 @@ export const MOODS = {
         name: 'Joyful',
         icons: ['mood-joyful-1', 'mood-joyful-2', 'mood-joyful-3', 'mood-joyful-4', 'mood-joyful-5'], 
         color: '#CBBF16',
-        highlightColor: '#B81521',
+        highlightColor: '#F2E744',
     },
     Excited: {
         name: 'Excited',
