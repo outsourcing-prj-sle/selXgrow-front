@@ -1,10 +1,16 @@
 <template>
   <div class="flex flex-col justify-between h-full relative">
+    <PopupWatchCarefully v-if="showWatchCarefully" />
+    <PopupTimer v-if="showTimer" :showTimer="showTimer" />
+
     <div class="flex flex-col flex-1">
       <div class="flex items-start">
         <RobotItem />
         <!-- needVoice -->
-        <div class="h-full flex items-center justify-center mr-3">
+        <div
+          class="h-full flex items-center justify-center mr-3"
+          v-if="!showWatchCarefully"
+        >
           <div
             class="w-12 h-12 flex justify-center items-center bg-white rounded-full"
             :class="isSpeaking && 'opacity-30'"
@@ -37,41 +43,53 @@
               {{ `${nowPage} / ${totalQuestion}` }}
             </div>
           </div>
-          <!-- 로봇 멘트 -->
-          <div
-            class="rounded-lg w-full py-2.5 px-4 font-extrabold bg-white border-l-2 text-left custom-scrollbar"
-            v-if="type === 1 || type === 2"
-          >
-            {{ whiteAnnounceText }}
-          </div>
-          <div
-            class="overflow-y-scroll rounded-lg w-full h-[64px] py-2.5 px-4 font-semibold bg-[#494857] text-white border-l-2 text-left custom-scrollbar"
-            style="overflow-y: auto; max-height: 110px"
-            v-else
-          >
-            <span class="text-[#CB9CFF]"> {{ questionP }} &nbsp; </span>
-            <span
-              v-for="(v, i) in announceTextList"
-              :key="`announceTextList${i}`"
-              :id="`announceTextList${i}`"
-              :class="{
-                'text-red-500': isSpeaking && currentSentence === i + 1,
-              }"
+          <template v-if="!showWatchCarefully">
+            <!-- 로봇 멘트 -->
+            <div
+              class="rounded-lg w-full py-2.5 px-4 font-extrabold bg-white border-l-2 text-left custom-scrollbar"
+              v-if="type === 1 || type === 2"
             >
-              <template v-if="v === ''">&nbsp;</template>
-              <template v-else>{{ v }}</template>
-            </span>
-          </div>
+              {{ whiteAnnounceText }}
+            </div>
+            <div
+              class="overflow-y-scroll rounded-lg w-full h-[64px] py-2.5 px-4 font-semibold bg-[#494857] text-white border-l-2 text-left custom-scrollbar"
+              style="overflow-y: auto; max-height: 110px"
+              v-else
+            >
+              <span class="text-[#CB9CFF]"> {{ questionP }} &nbsp; </span>
+              <span
+                v-for="(v, i) in announceTextList"
+                :key="`announceTextList${i}`"
+                :id="`announceTextList${i}`"
+                :class="{
+                  'text-red-500': isSpeaking && currentSentence === i + 1,
+                }"
+              >
+                <template v-if="v === ''">&nbsp;</template>
+                <template v-else>{{ v }}</template>
+              </span>
+            </div>
+          </template>
         </div>
       </div>
 
       <CheckInReport1View v-if="type === 1" @allowNext="allowNext" />
       <CheckInReport2View v-if="type === 2" @allowNext="allowNext" />
       <CheckInReport3View v-if="type === 3" @allowNext="allowNext" />
+      <CheckInReport4View
+        v-if="type === 4 && !showWatchCarefully"
+        :flag="report4Flag"
+        :show="report4Show"
+        @allowNext="allowNext"
+      />
+      <CheckInReport5View v-if="type === 5" @allowNext="allowNext" />
       <CheckInNotice6View v-if="type === 6" @allowNext="allowNext" />
     </div>
 
-    <div class="flex justify-between w-full">
+    <div
+      class="absolute bottom-0 h-[70px] w-full flex justify-between items-center"
+      v-if="showButtons"
+    >
       <ButtonItems name="prev" @click="() => goPrev()" />
       <ButtonItems
         v-if="!isLastPage"
@@ -81,9 +99,10 @@
       />
       <button
         v-else
-        class="w-[120px] h-[56px] bg-[#3C36A7] flex justify-center rounded-full items-center font-bold text-base text-white"
+        class="w-[120px] h-[56px] flex justify-center rounded-full items-center font-bold text-base text-white"
         :class="{
           'bg-[#DADFF5]': !isAllowed,
+          'bg-[#3C36A7]': isAllowed,
         }"
         @click="goNext"
         :disabled="!isAllowed"
@@ -98,11 +117,15 @@
 import { onMounted, ref, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import PopupTimer from '@/components/PopupTimer.vue';
+import PopupWatchCarefully from '@/components/PopupWatchCarefully.vue';
 import ButtonItems from '@/components/ButtonItems.vue';
 import RobotItem from '@/components/RobotItem.vue';
 import CheckInReport1View from '@/components/CheckInReport1View.vue';
 import CheckInReport2View from '@/components/CheckInReport2View.vue';
 import CheckInReport3View from '@/components/CheckInReport3View.vue';
+import CheckInReport4View from '@/components/CheckInReport4View.vue';
+import CheckInReport5View from '@/components/CheckInReport5View.vue';
 import CheckInNotice6View from '@/components/CheckInNotice6View.vue';
 import { waitSec } from '@/utils/utils';
 
@@ -117,8 +140,6 @@ const expired = ref(false);
 const needVoice = ref(false);
 const nextFlag = ref(false);
 const isAllowed = computed(() => {
-  const allowedType = [4, 5];
-  if (allowedType.includes(type.value)) return true;
   return nextFlag.value;
 });
 const announceTextList = ref([]);
@@ -130,6 +151,11 @@ const nowPage = ref(1);
 const totalQuestion = ref(6);
 const question = ref([]);
 const questionP = ref('');
+const report4Flag = ref('empty');
+const report4Show = ref(false);
+const showButtons = ref(true);
+const showWatchCarefully = ref(true);
+const showTimer = ref(false);
 
 onMounted(() => {
   onLoad();
@@ -158,6 +184,8 @@ const whiteAnnounceText = computed(() => {
 
 const onLoad = () => {
   console.log('onLoad CheckInReportView');
+  showButtons.value = true;
+
   // 글 읽어주는 기능 on / off
   const needVoiceList = [3, 4, 5, 6];
   if (needVoiceList.includes(type.value)) {
@@ -332,13 +360,28 @@ const setAnnounceTextList = async () => {
       break;
     case 4:
       isSpeaking.value = true;
+
+      showWatchCarefully.value = true;
+      await waitSec(2);
+      showWatchCarefully.value = false;
+
+      report4Flag.value = 'empty';
+      report4Show.value = false;
+      showButtons.value = false;
+      showTimer.value = true;
+
       announceTextList.value = [
         'Remember, the question is, what the person in the photo is thinking  or feeling?',
       ];
       await waitSec(3);
+      showTimer.value = false;
       announceTextList.value = [''];
+      report4Flag.value = '1';
       await waitSec(1);
+      report4Flag.value = 'empty';
       isSpeaking.value = false;
+      report4Show.value = true;
+      showButtons.value = true;
       announceTextList.value = [
         'Which of six words best describes what the person in the photo was thinking or feeling?',
       ];
