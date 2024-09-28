@@ -2,6 +2,7 @@ import { UserLayout } from '@/layouts';
 import {
   CheckInStartView,
   CheckInNoticeView,
+  CheckInReportView,
   LoginView,
   SignupView,
   StartView,
@@ -59,6 +60,17 @@ const userRoutes = [
         path: 'check-in/notice/:type',
         name: 'checkInNotice',
         component: CheckInNoticeView,
+        meta: {
+          ...metaData(),
+          isCheckIn: true,
+          needDate: true,
+          needTitle: true,
+        },
+      },
+      {
+        path: 'check-in/report/:type',
+        name: 'checkInReport',
+        component: CheckInReportView,
         meta: {
           ...metaData(),
           isCheckIn: true,

@@ -1,18 +1,11 @@
 <template>
-  <div class="flex w-full mt-3 justify-end">
-    <div class="pt-6 font-bold text-sm text-[#555195]">(Example)</div>
-    <div class="flex flex-col w-[650px] mr-5 ml-4">
-      <div
-        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-base text-white font-normal text-left"
-      >
-        Which of four words best describes what this person in the <br />photo
-        is thinking or feeling?
-      </div>
+  <div class="flex mt-5 ml-[193px]">
+    <div class="flex flex-col flex-1">
       <div
         class="flex mt-4 py-[70px] justify-center items-center bg-[#F6FBFF] relative rounded-xl text-base font-semibold text-[#606060]"
       >
         <img
-          src="@/assets/img/report/report3_notice.svg"
+          src="@/assets/img/report/report3_1.svg"
           alt="Eyes"
           class="object-cover rounded-lg w-[298px] h-[120px]"
         />
