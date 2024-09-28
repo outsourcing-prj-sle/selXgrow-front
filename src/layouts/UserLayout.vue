@@ -33,6 +33,9 @@ onMounted(() => {
   console.log('safdasdasds');
   console.log(AppSidebar);
   console.log('router-view:', routerView);
+
+  popupStore.closeAllPopup();
+  popupStore.closeCommonPopup();
 });
 
 const isOpenedSaveDiaryPopup = computed(() => {
