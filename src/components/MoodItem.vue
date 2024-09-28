@@ -1,7 +1,7 @@
 <template>
   <div>
     <picture
-      class="bg-[#f3f5f7] rounded-full flex items-center justify-center aspect-square"
+      :class="`bg-[#f3f5f7] rounded-full flex items-center justify-center aspect-square ${isBorder ? 'border-4 border-[#6f7182]' : ''}`"
       :style="`width: ${size * 4}px`"
     >
       <img
@@ -46,6 +46,9 @@ const props = defineProps({
   fontSize: {
     type: Number,
     default: 16,
+  },
+  isBorder: {
+    type: String,
   },
 });
 

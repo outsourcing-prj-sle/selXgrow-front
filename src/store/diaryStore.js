@@ -4,6 +4,7 @@ import { DIARY_MONTHS, MOODS, MOODS_LEVEL } from '@/utils/constant'
 export const useDiaryStore = defineStore('diary', {
   state: () => ({
     color: '',
+    highlightColor: '',
     icon: '',
     mood: '',
     level: '1',
@@ -17,7 +18,8 @@ export const useDiaryStore = defineStore('diary', {
         level: '3',
         levelName: MOODS_LEVEL[2],
         reason: 'related to friends.',
-        color: MOODS.Embarrassed.highlightColor,
+        color: MOODS.Embarrassed.color,
+        highlightColor: MOODS.Embarrassed.highlightColor,
         formattedDate: 'September 18,2024 3:10pm',
         date: '9/18/2024',
       },
@@ -26,7 +28,8 @@ export const useDiaryStore = defineStore('diary', {
         level: '4',
         levelName: MOODS_LEVEL[3],
         reason: 'about myself.',
-        color: MOODS.Worried.highlightColor,
+        color: MOODS.Worried.color,
+        highlightColor: MOODS.Worried.highlightColor,
         formattedDate: 'September 16, 2024 12:10pm',
         date: '9/16/2024',
       },
@@ -35,7 +38,8 @@ export const useDiaryStore = defineStore('diary', {
         level: '2',
         levelName: MOODS_LEVEL[1],
         reason: 'related to my family.',
-        color: MOODS.Thankful.highlightColor,
+        color: MOODS.Thankful.color,
+        highlightColor: MOODS.Thankful.highlightColor,
         formattedDate: 'September 14, 2024 9:10pm',
         date: '9/14/2024',
       },
@@ -44,7 +48,8 @@ export const useDiaryStore = defineStore('diary', {
         level: '4',
         levelName: MOODS_LEVEL[3],
         reason: 'related to family.',
-        color: MOODS.Proud.highlightColor,
+        color: MOODS.Proud.color,
+        highlightColor: MOODS.Proud.highlightColor,
         formattedDate: 'September 13, 2024  1:12pm',
         date: '9/13/2024',
       },
@@ -53,7 +58,8 @@ export const useDiaryStore = defineStore('diary', {
         level: '1',
         levelName: MOODS_LEVEL[0],
         reason: 'related to school grade.',
-        color: MOODS.Sad.highlightColor,
+        color: MOODS.Sad.color,
+        highlightColor: MOODS.Sad.highlightColor,
         formattedDate: 'September 10, 2024 2:30pm',
         date: '9/10/2024',
       },
@@ -62,8 +68,8 @@ export const useDiaryStore = defineStore('diary', {
         level: '3',
         levelName: MOODS_LEVEL[2],
         reason: 'related to friends.',
-        color: MOODS.Excited.highlightColor,
-        
+        color: MOODS.Excited.color,
+        highlightColor: MOODS.Excited.highlightColor,
         formattedDate: 'September 9, 2024 4:20pm',
         date: '9/9/2024',
       },
@@ -72,7 +78,8 @@ export const useDiaryStore = defineStore('diary', {
         level: '5',
         levelName: MOODS_LEVEL[4],
         reason: 'something that happened in class.',
-        color: MOODS.Confused.highlightColor,
+        color: MOODS.Confused.color,
+        highlightColor: MOODS.Confused.highlightColor,
         formattedDate: 'September 7, 2024 3:29pm',
         date: '9/7/2024',
       },
@@ -80,15 +87,21 @@ export const useDiaryStore = defineStore('diary', {
   }),
   actions: {
     resetDiary() {
-      this.color = '';
+      this.color= '';
+      this.highlightColor = '';
       this.icon = '';
       this.mood = '';
       this.level = '';
       this.levelName = '';
       this.reason = '';
+      this.date = '';
+      this.formattedDate = '';
     },
     setColor(data) {
       this.color = data;
+    },
+    setHighlightColor(data) {
+      this.highlightColor = data;
     },
     setIcon(data) {
       this.icon = data;
@@ -134,6 +147,7 @@ export const useDiaryStore = defineStore('diary', {
         levelName: this.levelName,
         reason: this.reason,
         color: this.color,
+        highlightColor: this.highlightColor,
         formattedDate: this.formattedDate,
         date: this.date,
       })

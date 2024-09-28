@@ -29,17 +29,31 @@
         <div class="flex justify-between items-center w-full px-8 gap-8">
           <MoodItem :name="mood" level="1" :textContent="`${MOODS_LEVEL[0]}`" />
           <div
-            class="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex w-full justify-between items-center px-2"
+            class="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex h-5 w-full justify-between items-center px-2"
           >
-            <button
-              v-for="i in [1, 2, 3, 4, 5]"
-              :key="i"
-              class="font-bold aspect-square px-2 rounded-full text-xs"
-              type="button"
-              @click="clickFeelScoreHandler(i)"
-            >
-              {{ i }}
-            </button>
+            <div class="relative flex items-center" v-for="i in [1, 2, 3, 4, 5]" :key="i">
+              <button v-if="feelScore === i"
+                class="absolute top-1/2 -left-2.5 -translate-y-1/2 flex items-center" 
+                type="button"
+                @click="clickFeelScoreHandler(i-1)"
+              >
+                <img src="@/assets/img/arrow_left.svg" alt="left_arrow" />
+              </button>
+              <button
+                :class="`font-extrabold px-2 py-4 rounded-full text-xs ${feelScore === i ? 'bg-[#524DA1] text-white border-2 border-[#19146A]' : ''}`"
+                type="button"
+                @click="clickFeelScoreHandler(i)"
+              >
+                {{ i }}
+              </button>
+              <button v-if="feelScore === i"
+                class="absolute top-1/2 -right-2.5 -translate-y-1/2 flex items-center" 
+                type="button"
+                @click="clickFeelScoreHandler(i+1)"
+              >
+                <img src="@/assets/img/arrow_right.svg" alt="right_arrow" />
+              </button>
+            </div>
           </div>
           <MoodItem :name="mood" level="5" :textContent="`${MOODS_LEVEL[4]}`" />
         </div>
@@ -84,10 +98,13 @@ const feelDescription = computed(() => {
 });
 
 const clickFeelScoreHandler = (number) => {
+  if(number < 1) return;
+  if(number > 5) return;
   feelScore.value = number;
   diaryStore.setLevel(number);
   diaryStore.setLevelName(MOODS_LEVEL[number - 1]);
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

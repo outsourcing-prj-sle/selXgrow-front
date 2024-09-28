@@ -88,7 +88,7 @@
         How I feel right now
       </div>
       <div class="text-white text-2xl font-semibold">
-        For what reason are you feeling {{ mood }}?
+        {{ mood }}
       </div>
       <div class="text-[#A960FC] text-lg font-semibold mt-3">
         How much do I feel

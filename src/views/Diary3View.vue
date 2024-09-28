@@ -51,7 +51,7 @@
               <div class="w-full h-full overflow-auto">
                 <div class="w-full h-3"></div>
                 <div
-                  class="w-full px-7 text-[#A4A1DF] text-xl font-medium text-left flex justify-between items-center"
+                  :class="`w-full px-7 text-xl font-medium text-left flex justify-between items-center ${selectedOption === item ? 'text-white' : 'text-[#A4A1DF]'}`"
                   v-for="item in items"
                   :key="`${item.value}dropdox`"
                   @click="() => selectOption(item)"
@@ -73,7 +73,7 @@
         </div>
         <!-- 로봇 && 이미지 -->
         <div class="flex mt-6 w-full justify-center">
-          <div class="w-[450px] h-[260px] relative rounded-[15px] bg-[#E9ECFC]">
+          <div class="w-[400px] h-[200px] relative rounded-[15px] bg-[#E9ECFC]">
             <div
               class="w-full h-full flex justify-center items-center text-[80px] font-medium text-white"
               v-if="selectedOption === null"
@@ -87,10 +87,13 @@
               v-else
             />
             <MoodItem
-              class="absolute top-1/2 -left-[50px] -translate-y-[50px]"
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%]"
               :name="mood"
               :level="parseInt(level)"
-              size="25"
+              :text-content="MOODS_LEVEL[parseInt(level)]"
+              isBorder="true"
+              size="32"
+              font-size="18"
             />
           </div>
         </div>
@@ -123,6 +126,7 @@ import { usePopupStore } from '@/store/popupStore.js';
 const popupStore = usePopupStore();
 
 import { useDiaryStore } from '@/store/diaryStore.js';
+import { MOODS_LEVEL } from '@/utils/constant';
 const diaryStore = useDiaryStore();
 
 const mood = computed(() => {

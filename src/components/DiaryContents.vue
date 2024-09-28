@@ -4,7 +4,7 @@
         <div class="flex flex-col justify-start items-start diary-content">
             <p>{{ props.date }}</p>
             <p>I am feeling 
-                <span :style="`box-shadow: inset 0 20px ${props.color}, 0 -4px ${props.color};`">{{ props.highlightContent }}</span> 
+                <span :style="`box-shadow: inset 0 20px ${props.highlightColor}, 0 -4px ${props.highlightColor};`">{{ props.highlightContent }}</span> 
                 because of something {{ props.reason.toLowerCase() }}
             </p>
         </div>
@@ -32,6 +32,10 @@ const props = defineProps({
         required: true
     },
     color: {
+        type: String,
+        required: true
+    },
+    highlightColor: {
         type: String,
         required: true
     },

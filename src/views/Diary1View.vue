@@ -87,10 +87,12 @@ import RobotItem from '@/components/RobotItem.vue';
 import ButtonItems from '@/components/ButtonItems.vue';
 
 import { useDiaryStore } from '@/store/diaryStore.js';
+import { MOODS } from '@/utils/constant';
 const diaryStore = useDiaryStore();
 
 const selectedMood = ref(null);
 const selectedColor = ref(null);
+const selectedHighlightColor = ref(null);
 const selectedName = ref(null);
 
 const handleClickNext = () => {
@@ -102,57 +104,68 @@ const moods = ref([
   {
     name: 'Sad',
     icon: 'diary1-sad-icon',
-    color: '#007CD6',
+    color: MOODS.Sad.color,
+    highlightColor: MOODS.Sad.highlightColor,
   },
   {
     name: 'Angry',
     icon: 'diary1-angry-icon',
-    color: '#B81521',
+    color: MOODS.Angry.color,
+    highlightColor: MOODS.Angry.highlightColor,
   },
   {
     name: 'Excited',
     icon: 'diary1-excited-icon',
-    color: '#F96D30',
+    color: MOODS.Excited.color,
+    highlightColor: MOODS.Excited.highlightColor,
   },
   {
     name: 'Content',
     icon: 'diary1-content-icon',
-    color: '#D9B341',
+    color: MOODS.Content.color,
+    highlightColor: MOODS.Content.highlightColor,
   },
   {
     name: 'Thankful',
     icon: 'diary1-thankful-icon',
-    color: '#BFBB30',
+    color: MOODS.Thankful.color,
+    highlightColor: MOODS.Thankful.highlightColor,
   },
   {
     name: 'Proud',
     icon: 'diary1-proud-icon',
-    color: '#A0BF00',
+    color: MOODS.Proud.color,
+    highlightColor: MOODS.Proud.highlightColor,
   },
   {
     name: 'Happy',
     icon: 'diary1-happy-icon',
-    color: '#CFAE08',
+    color: MOODS.Happy.color,
+    highlightColor: MOODS.Happy.highlightColor,
   },
   {
     name: 'Confused',
     icon: 'diary1-confused-icon',
-    color: '#0F9B35',
+    color: MOODS.Confused.color,
+    highlightColor: MOODS.Confused.highlightColor,
   },
   {
     name: 'Bored',
     icon: 'diary1-bored-icon',
-    color: '#812088',
+    color: MOODS.Bored.color,
+    highlightColor: MOODS.Bored.highlightColor,
   },
   {
     name: 'Embarrassed',
     icon: 'diary1-embarrassed-icon',
-    color: '#F1649B',
+    color: MOODS.Embarrassed.color,
+    highlightColor: MOODS.Embarrassed.highlightColor,
   },
   {
     name: 'Worried',
     icon: 'diary1-worried-icon',
-    color: '#57B109',
+    color: MOODS.Worried.color,
+    highlightColor: MOODS.Worried.highlightColor,
   },
 ]);
 
@@ -191,17 +204,21 @@ const setMood = (index) => {
   if (selectedMood.value === index) {
     selectedMood.value = null;
     selectedColor.value = null;
+    selectedHighlightColor.value = null;
     selectedName.value = null;
 
     diaryStore.setColor('');
+    diaryStore.setHighlightColor('');
     diaryStore.setIcon('');
     diaryStore.setMood('');
   } else {
     selectedMood.value = index;
     selectedColor.value = moods.value[index].color;
+    selectedHighlightColor.value = moods.value[index].highlightColor;
     selectedName.value = moods.value[index].name;
 
     diaryStore.setColor(moods.value[index].color);
+    diaryStore.setHighlightColor(moods.value[index].highlightColor);
     diaryStore.setIcon(moods.value[index].icon);
     diaryStore.setMood(moods.value[index].name);
   }

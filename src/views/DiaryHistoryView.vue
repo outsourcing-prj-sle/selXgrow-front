@@ -24,6 +24,7 @@
           :highlight-content="`${diaryContent.levelName} ${diaryContent.mood}`"
           :reason="diaryContent.reason"
           :color="diaryContent.color"
+          :highlight-color="diaryContent.highlightColor"
           :index="index"
         />
       </div>
@@ -48,11 +49,11 @@ const diaryContainer = ref(null);
 const currentMonth = ref(diaryStore.date.split("/")[0]);
 
 const currentDiaryContents = computed(() => {
+  console.log(`diaryContents: ${JSON.stringify(diaryStore.diaryContents)}`)
+
   const filteredDiaryContents = diaryStore.diaryContents.filter((diaryContent) => {
     if(diaryContent.date.split("/")[0] === currentMonth.value) return diaryContent;
   });
-
-  console.log(filteredDiaryContents)
 
   return filteredDiaryContents.sort((content1, content2) => {
     return parseInt(content2.date.split("/")[1]) - parseInt(content1.date.split("/")[1])
@@ -92,8 +93,6 @@ const beforeLineHeight = computed(() => {
       '--before-line-height': `100%`,
     };
   }
-
-  
 });
 </script>
 
