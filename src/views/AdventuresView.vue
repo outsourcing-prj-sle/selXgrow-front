@@ -23,7 +23,7 @@
             >
               <img
                 class="w-[226px] h-[140px] object-cover rounded-xl border-4 border-[#deefff]"
-                :src="require(`@/assets/img/adventure_thumbnail_${n}.svg`)"
+                :src="require(`@/assets/img/adventure/adventure_thumbnail_${n}.svg`)"
                 alt="adventure_thumbnail"
               />
               <p class="font-bold text-sm mt-2">{{ headerList[n - 1] }}</p>

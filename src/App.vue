@@ -6,9 +6,15 @@
 <script setup>
 import { onMounted } from 'vue';
 import AppLoading from '@/components/AppLoading';
+import { useDiaryStore } from './store/diaryStore';
 
 onMounted(() => {
+  const diaryStore = useDiaryStore()
+
   console.log('app mounted')
+  
+  diaryStore.setLevel('1')
+  diaryStore.initDiaryContents()
 });
 </script>
 
