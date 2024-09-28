@@ -40,10 +40,21 @@ const pdf = computed(() => {
 
 const printPdf = () => {
   closePopup();
-  const pdfWindow = window.open(`/grow/resources/pdf/${pdf.value}.pdf`);
-  pdfWindow.onload = function() {
-    pdfWindow.print();
-  };
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const pdfUrl = `/grow/resources/pdf/${pdf.value}.pdf`;
+
+  if (isMobile) {
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = `${pdf.value}.pdf`;
+    link.click();
+  } else {
+    const pdfWindow = window.open(pdfUrl);
+    pdfWindow.onload = function() {
+      pdfWindow.print();
+    };
+  }
 };
 </script>
 
