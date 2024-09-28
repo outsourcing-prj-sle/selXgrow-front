@@ -235,9 +235,9 @@ const startReport = () => {
     alert('기간이 지났습니다.');
     return;
   }
-  type.value += 1;
+
   router.push({
-    name: 'checkInNotice',
+    name: 'checkInReport',
     params: { type: type.value },
   });
 };
