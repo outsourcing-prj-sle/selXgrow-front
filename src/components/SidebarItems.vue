@@ -18,11 +18,9 @@ import { defineProps } from 'vue';
 const props = defineProps({
   text: {
     type: String,
-    required: true,
   },
   isSelected: {
     type: Boolean,
-    default: false,
   },
 });
 </script>
@@ -36,7 +34,7 @@ const props = defineProps({
   top: 50%;
   transform: translateY(-50%);
 }
-.active>p {
+.active > p {
   color: #d3f571;
 }
 </style>

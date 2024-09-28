@@ -11,11 +11,15 @@
       <div
         v-for="(item, index) in itemList"
         :key="`${title}list${index}`"
-        class="w-full h-full border-2 border-solid border-green-400 flex justify-center items-center cursor-pointer"
-        :class="selected === index + 1 && 'border-red-600'"
+        class="w-full h-full border-2 border-[#D4EAFF] rounded-lg border-solid flex justify-center items-center cursor-pointer"
+        :class="selected === index + 1 && 'border-[#8D36EF]'"
         @click="selectItem(index + 1)"
       >
-        <img :src="item" class="w-full h-full" alt="item" />
+        <img
+          :src="require(`@/assets/img/report/${item}.svg`)"
+          class="w-full h-full"
+          alt="item"
+        />
       </div>
     </div>
   </div>
