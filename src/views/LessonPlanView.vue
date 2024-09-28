@@ -13,16 +13,16 @@
         <!-- 영상 목록 -->
         <div class="flex justify-center">
           <div
-            class="flex gap-x-4 gap-y-14 flex-wrap justify-start max-w-[750px] ml-[100px]"
+            class="flex gap-x-8 gap-y-16 flex-wrap justify-start max-w-[750px] ml-[100px]"
           >
             <div
-              class="flex flex-col w-[232px] h-[140px] relative items-start gap-y-2"
+              class="flex flex-col w-[228px] h-[180px] relative items-start gap-y-3"
               v-for="n in 6"
               :key="n"
               @click="() => openPDFPopup(n)"
             >
               <img
-                class="w-full h-full object-cover rounded-xl"
+                class="w-full h-full object-cover rounded-xl border-2 border-[#e1e1e1]"
                 :src="require(`@/assets/img/lesson_thumbnail_${n}.svg`)"
                 :alt="`lesson_thumbnail_${n}`"
               />
@@ -32,25 +32,6 @@
             </div>
           </div>
         </div>
-        <!-- 페이징 -->
-        <div
-          class="h-[70px] w-full flex justify-center gap-10 items-center mt-12"
-        >
-          <ButtonItems
-            name="prev"
-            @click="() => router.push({ name: 'diary1' })"
-          />
-          <div class="flex text-[#B1B0C5] text-sm font-medium">
-            <div class="p-0.5 text-[#8D36EF] font-semibold">1</div>
-            <div class="p-0.5">2</div>
-            <div class="p-0.5">3</div>
-            <div class="p-0.5">4</div>
-          </div>
-          <ButtonItems
-            name="next"
-            @click="() => router.push({ name: 'diary3' })"
-          />
-        </div>
       </div>
     </div>
   </div>
@@ -58,9 +39,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import router from '@/router';
 import RobotItem from '@/components/RobotItem.vue';
-import ButtonItems from '@/components/ButtonItems.vue';
 import { usePopupStore } from '@/store/popupStore';
 
 const popupStore = usePopupStore();

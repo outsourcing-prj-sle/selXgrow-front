@@ -4,7 +4,7 @@
   >
     <div class="flex w-screen h-[95vh]">
       <AppSidebar />
-      <div class="flex-1 mt-12 px-12 flex flex-col relative">
+      <div class="flex-1 mt-12 px-12 flex flex-col">
         <PopupSaveDiary v-if="isOpenedSaveDiaryPopup" />
         <CommonPopup v-if="isOpenedCommonPopup" />
         <div class="flex">

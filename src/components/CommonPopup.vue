@@ -1,24 +1,28 @@
 <template>
-  <div class="w-3/4 flex h-full bg-[#19146A] rounded-2xl justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+  <button class="absolute inset-0 w-full h-full z-40" @click="closePopup"></button>
+  <div class="w-[60%] flex h-5/6 bg-[#4D4C61] rounded-2xl justify-between absolute top-1/2 left-1/2 -translate-x-[38%] -translate-y-[45%] z-50 shadow-xl">
     <div class="flex-1 pl-8 py-2">
       <div class="w-full h-full pr-4 overflow-y-scroll popup-custom relative">
         <div class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.3)]">
           <div class="loading-spinner"></div>
         </div>
         <VuePdfEmbed :source="`/grow/resources/pdf/${pdf}.pdf`" />
-        <button class="absolute top-2 right-6 text-black z-50 p-1 bg-slate-200 rounded-full" @click="printPdf">
-          <img class="w-4" src="@/assets/img/print.svg" alt="print" />
-        </button>
       </div>
     </div>
     <div>
-      <button class="text-[#8F8DB4] py-4 px-6 text-2xl" type="button" @click="closePopup">x</button>
+      <button class="text-[#8F8DB4] py-4 pr-3 pl-1 text-2xl" type="button" @click="closePopup">
+        <img src="@/assets/img/close.svg" alt="close" />
+      </button>
     </div>
+    <button class="absolute bottom-0 -left-14 text-black z-50 bg-[#3C36A7] rounded-lg flex flex-col justify-items items-center px-2.5 pt-2 pb-1 gap-y-0.5" @click="printPdf">
+      <img class="w-5" src="@/assets/img/print.svg" alt="print" />
+      <p class="text-[rgba(255,255,255,0.4)] text-[10px]">PRINT</p>
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { usePopupStore } from '@/store/popupStore.js';
 import VuePdfEmbed from 'vue-pdf-embed';
 import { PDFS } from '@/utils/constant'
@@ -35,6 +39,7 @@ const pdf = computed(() => {
 });
 
 const printPdf = () => {
+  closePopup();
   const pdfWindow = window.open(`/grow/resources/pdf/${pdf.value}.pdf`);
   pdfWindow.onload = function() {
     pdfWindow.print();
@@ -45,11 +50,11 @@ const printPdf = () => {
 <style scoped>
   .popup-custom::-webkit-scrollbar {
     width: 12px;
-    background-color: #3e3a7a;
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .popup-custom::-webkit-scrollbar-thumb {
-    background: #82c2fd;
+    background: #82C2FD;
     border-radius: 20px;
     border: 0;
   }
