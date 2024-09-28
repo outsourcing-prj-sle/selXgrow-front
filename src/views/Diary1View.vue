@@ -44,14 +44,14 @@
             v-for="(mood, index) in moods"
             :key="index"
             :style="getPosition(index)"
-            class="absolute w-[100px] h-[100px] flex flex-col justify-center items-center rounded-full cursor-pointer"
+            class="absolute w-[100px] h-[100px] flex flex-col justify-start items-center rounded-full cursor-pointer"
             @click="setMood(index)"
           >
             <!-- Replace with actual image/icon -->
             <div class="rounded-full flex items-center justify-center">
               <img
                 :src="require(`@/assets/img/diary/step1/${mood.icon}.svg`)"
-                :class="`${selectedMood === index ? 'w-[100px]' : 'w-[74px]'}`"
+                :class="`${selectedMood === index ? 'w-[85px]' : 'w-[74px]'}`"
                 alt="mood icon"
               />
             </div>
@@ -96,9 +96,9 @@ const selectedHighlightColor = ref(null);
 const selectedName = ref(null);
 
 const handleClickNext = () => {
-  if(selectedMood.value !== null) router.push({ name: 'diary2' });
+  if (selectedMood.value !== null) router.push({ name: 'diary2' });
   else alert('Pick the picture first.');
-}
+};
 
 const moods = ref([
   {
@@ -114,10 +114,10 @@ const moods = ref([
     highlightColor: MOODS.Angry.highlightColor,
   },
   {
-    name: 'Excited',
-    icon: 'diary1-excited-icon',
-    color: MOODS.Excited.color,
-    highlightColor: MOODS.Excited.highlightColor,
+    name: 'Joyful',
+    icon: 'diary1-joyful-icon',
+    color: MOODS.Joyful.color,
+    highlightColor: MOODS.Joyful.highlightColor,
   },
   {
     name: 'Content',
@@ -130,6 +130,12 @@ const moods = ref([
     icon: 'diary1-thankful-icon',
     color: MOODS.Thankful.color,
     highlightColor: MOODS.Thankful.highlightColor,
+  },
+  {
+    name: 'Excited',
+    icon: 'diary1-excited-icon',
+    color: MOODS.Excited.color,
+    highlightColor: MOODS.Excited.highlightColor,
   },
   {
     name: 'Proud',
