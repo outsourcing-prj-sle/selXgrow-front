@@ -82,8 +82,7 @@ const goAdventures = () => {
 const goCheckIn = () => {
   // if (isCheckIn.value) return;
   router.push({
-    name: 'checkInNotice',
-    params: { type: 1 },
+    name: 'checkInStart',
   });
 };
 

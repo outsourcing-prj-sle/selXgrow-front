@@ -1,6 +1,5 @@
 <template>
-    <button :style="buttonStyles" type="button">
-        {{ selectedItem.content }}
+    <button v-html="selectedItem.content" :style="buttonStyles" type="button">
     </button>
 </template>
 
@@ -44,6 +43,15 @@ const meta = [
         px: 8,
         isAspect: true,
         text: 18
+    },
+    {
+        name: "start",
+        content: "START <span class='text-[#82C2FD]'>→<span>",
+        background: "#3C36A7",
+        px: 24,
+        py: 8,
+        text: 18,
+        font: 'white'
     }
 ];
 
