@@ -22,7 +22,7 @@
             class="overflow-y-scroll rounded-lg h-[110px] w-full py-2.5 px-4 bg-white border-l-2 text-left custom-scrollbar"
             style="overflow-y: auto; max-height: 110px"
           >
-            <p class="text-sm font-semibold text-[#8D36EF]" v-if="needVoice">
+            <p class="text-sm font-normal text-[#8D36EF] underline underline-offset-2" v-if="needVoice">
               When you click the button, you can hear a voice guidance.
             </p>
             <p
