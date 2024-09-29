@@ -18,7 +18,7 @@
           class="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           How
-          <span class="text-[#80beeb]">{{ mood.toLowerCase() }}</span> do you feel?
+          <span :style="`color: ${textColor}`">{{ mood.toLowerCase() }}</span> do you feel?
         </p>
         <div
           class="flex flex-col w-28 aspect-square bg-[#19146a] rounded-2xl justify-center mt-12 -mb-6"
@@ -27,7 +27,7 @@
           <p class="text-white opacity-50">{{ feelDescription }}</p>
         </div>
         <div class="flex justify-between items-center w-full px-8 gap-8">
-          <MoodItem :name="mood" level="1" :textContent="`${MOODS_LEVEL[0]}`" isSmall="true" />
+          <MoodItem :name="mood" level="1" :textContent="`${MOODS_LEVEL[0]}`" size="30" isSmall="true" />
           <div
             class="bg-gradient-to-r from-white to-[#8785B2] rounded-2xl flex h-5 w-full justify-between items-center px-2"
           >
@@ -55,7 +55,7 @@
               </button>
             </div>
           </div>
-          <MoodItem :name="mood" level="5" :textContent="`${MOODS_LEVEL[4]}`" />
+          <MoodItem :name="mood" level="5" :textContent="`${MOODS_LEVEL[4]}`" size="30" />
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@ import router from '@/router';
 import ButtonItems from '@/components/ButtonItems.vue';
 import MoodItem from '@/components/MoodItem.vue';
 import RobotItem from '@/components/RobotItem.vue';
-import { MOODS_LEVEL } from '@/utils/constant';
+import { MOODS, MOODS_LEVEL } from '@/utils/constant';
 
 import { useDiaryStore } from '@/store/diaryStore.js';
 const diaryStore = useDiaryStore();
@@ -97,6 +97,7 @@ const mood = computed(() => {
 });
 const feelScore = ref(1);
 
+const textColor = computed(() => MOODS[mood.value].highlightColor);
 const feelDescription = computed(() => {
   return MOODS_LEVEL[feelScore.value - 1];
 });
