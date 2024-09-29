@@ -90,7 +90,7 @@
               class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%]"
               :name="mood"
               :level="parseInt(level)"
-              :text-content="MOODS_LEVEL[parseInt(level)]"
+              :text-content="MOODS_LEVEL[parseInt(level)-1]"
               isBorder="true"
               size="32"
               font-size="18"

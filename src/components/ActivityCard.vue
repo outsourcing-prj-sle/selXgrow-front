@@ -2,7 +2,7 @@
     <picture class="bg-white border-[#EFF3FB] border-2 py-2 px-6 rounded-2xl relative">
         <img :class="positionStyle" :src="require(`@/assets/img/start/activity_step_${step}.svg`)" :alt="`activity_${step}`"/>
         <p class=" py-2 font-semibold">Activity {{step}}</p>
-        <picture v-if="!props.active" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-50 rounded-full w-14 aspect-square flex px-4 item-center" type="button">
+        <picture v-if="!props.active" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-70 rounded-full w-14 aspect-square flex px-4 item-center shadow-2xl drop-shadow-2xl" type="button">
             <img :src="require('@/assets/img/inactive.svg')" alt="inactive" />
         </picture>
     </picture>

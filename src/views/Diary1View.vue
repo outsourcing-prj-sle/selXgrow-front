@@ -63,7 +63,7 @@
                   selectedMood === index ? mood.color : `transparent`,
                 visibility: selectedMood === index ? `hidden` : `visible`,
               }"
-              :class="`text-center text-sm mt-1 ${selectedMood !== index && 'w-16'} ${selectedMood === index && `px-4 py-0.5 rounded-full`}`"
+              :class="`text-center text-sm mt-1 ${selectedMood !== index && 'w-18'} ${selectedMood === index && `px-4 py-0.5 rounded-full`}`"
             >
               {{ mood.name }}
             </p>
@@ -190,11 +190,11 @@ const getPosition = (index) => {
 const getTextPosition = (index) => {
   const total = moods.value.length;
   const angle = (index / total) * (2 * Math.PI) - (140 * Math.PI) / 180;
-  const baseOffset = 58;
+  const baseOffset = 68;
   const offset = selectedMood.value === index ? baseOffset + 20 : baseOffset;
   const xOffset = offset * Math.cos(angle) - 3;
   const yOffset =
-    offset * Math.sin(angle) - (selectedMood.value === index ? 62 : 52);
+    offset * Math.sin(angle) - (selectedMood.value === index ? 62 : 48);
 
   const nonSelectedAdjustment = index !== 0 && index < 7 ? 10 : -10;
   const selectedAdjustment = index !== 0 && index < 7 ? 20 : -20;

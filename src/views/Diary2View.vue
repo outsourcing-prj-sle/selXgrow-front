@@ -69,7 +69,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import router from '@/router';
 
 import ButtonItems from '@/components/ButtonItems.vue';
@@ -79,6 +79,10 @@ import { MOODS_LEVEL } from '@/utils/constant';
 
 import { useDiaryStore } from '@/store/diaryStore.js';
 const diaryStore = useDiaryStore();
+
+onMounted(() => {
+  diaryStore.setLevel('1')
+})
 
 const props = defineProps({
   selectedFeel: {

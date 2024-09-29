@@ -44,7 +44,7 @@ import RobotItem from '@/components/RobotItem.vue';
 import { VIDEOS } from '@/utils/constant';
 
 const goDetail = ({ id, header, content }) => {
-  if(id > VIDEOS.length) alert('준비 중입니다.')
+  if(id > VIDEOS.length) return;
   else router.push({ name: 'adventuresDetail', params: { id }, query: { header, content } });
 };
 
