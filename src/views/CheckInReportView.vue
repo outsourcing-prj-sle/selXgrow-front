@@ -404,16 +404,57 @@ const allowNext = (flag) => {
   nextFlag.value = flag;
 };
 
+const loadVoices = () => {
+  return new Promise((resolve) => {
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length !== 0) {
+      resolve(voices); // 이미 음성이 로드된 경우 바로 반환
+    } else {
+      // 음성 목록이 변경될 때까지 대기
+      window.speechSynthesis.onvoiceschanged = () => {
+        resolve(window.speechSynthesis.getVoices());
+      };
+    }
+  });
+};
+
 const readAnnounce = async () => {
   // 대화 끝나기전엔 비활성화
   if (speakCnt.value > 2) return;
   if (isSpeaking.value) return;
   speakCnt.value += 1;
   isSpeaking.value = true;
+
+  // 음성 목록 가져오기
+  const voices = await loadVoices();
+
+  // 음성 선택
+  let selectedVoice = voices.find(
+    (voice) => voice.lang === 'en-US' && voice.name.includes('Google')
+  );
+  if (!selectedVoice) {
+    selectedVoice = voices.find(
+      (voice) => voice.lang === 'en-US' && voice.name.includes('Microsoft')
+    );
+  }
+  if (!selectedVoice) {
+    selectedVoice = voices.find((voice) => voice.lang === 'en-US');
+  }
+
+  if (!selectedVoice) {
+    selectedVoice = voices.find((voice) => voice.lang.startsWith('en'));
+  }
+
+  // 기본값이 없다면, 사용 가능한 첫 번째 음성 사용 (안전 장치)
+  if (!selectedVoice) {
+    selectedVoice = voices[0];
+  }
+
   const utterance = new SpeechSynthesisUtterance();
   utterance.lang = 'en-US';
-  utterance.rate = 1;
-  utterance.pitch = 1;
+  utterance.voice = selectedVoice;
+  utterance.rate = 0.9;
+  utterance.pitch = 0.9;
 
   for (const index in announceTextList.value) {
     const sentence = announceTextList.value[index];
