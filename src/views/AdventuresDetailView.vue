@@ -51,8 +51,4 @@ const video = computed(() => {
 .video-js .vjs-control-bar {
   background-color: rgba(25, 20, 106, 0.6);
 }
-.video-js .vjs-big-play-button {
-  top: 50%;
-  left: 50%;
-}
 </style>
