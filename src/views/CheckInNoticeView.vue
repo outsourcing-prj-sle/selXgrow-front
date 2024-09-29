@@ -20,8 +20,8 @@
         </div>
         <div class="flex flex-1">
           <div
-            class="overflow-y-scroll rounded-lg h-[110px] w-full py-2.5 px-4 bg-white border-l-2 text-left custom-scrollbar"
-            style="overflow-y: auto; max-height: 110px"
+            class="overflow-y-scroll rounded-lg h-[110px] w-full py-2.5 px-4 bg-white border-l-2 text-left custom-scroll"
+            style="max-height: 110px"
           >
             <p class="text-sm font-semibold text-[#8D36EF]" v-if="needVoice">
               When you click the button, you can hear a voice guidance.
@@ -301,23 +301,12 @@ const waitForSentence = async () => {
 </script>
 
 <style scoped>
-/* 웹킷 기반 브라우저용 커스터마이징 */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
+.custom-scroll:-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #d8b5ff; /* 보라색 */
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background-color: #f3f4f6; /* 연한 배경 */
-}
-
-/* Firefox용 커스터마이징 */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #d8b5ff #f3f4f6;
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #d8b5ff;
 }
 </style>
