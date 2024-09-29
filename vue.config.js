@@ -3,7 +3,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: '/grow/',
+  publicPath: '/growxsel/',
   configureWebpack: {
     plugins: [
       new ESLintPlugin({
