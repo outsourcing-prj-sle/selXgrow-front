@@ -22,7 +22,7 @@
               @click="() => goDetail({ id: n, header: headerList[n-1], content: contentList[n-1] })"
             >
               <img
-                class="w-[226px] h-[140px] object-cover rounded-xl border-4 border-[#deefff]"
+                class="w-[226px] h-[140px] object-cover"
                 :src="require(`@/assets/img/adventure/adventure_thumbnail_${n}.svg`)"
                 alt="adventure_thumbnail"
               />
