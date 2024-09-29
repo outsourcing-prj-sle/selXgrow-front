@@ -4,7 +4,7 @@
       <div class="flex items-start">
         <RobotItem />
         <p class="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full">
-          Let’s go on an adventure! Here are some recommended videos for you.
+          Have a great time on your SEL adventure!
         </p>
       </div>
       <div class="flex flex-col px-36 justify-center items-center relative">
