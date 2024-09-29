@@ -195,8 +195,7 @@ const onLoad = () => {
   currentSentence.value = '';
   allowNextSentence.value = false;
 
-  // 이전 음성 중단
-  window.speechSynthesis.cancel();
+  stopSpeech();
 
   // 글 읽어주는 기능 on / off
   const needVoiceList = [3, 4, 5, 6];
@@ -215,6 +214,11 @@ const onLoad = () => {
 
   // 헤더 정보 업데이트
   setTitle();
+};
+
+const stopSpeech = () => {
+  // 이전 음성 중단
+  window.speechSynthesis.cancel();
 };
 
 const setTotalQuestion = () => {
@@ -321,6 +325,7 @@ const setTitle = () => {
 
 const goPrev = () => {
   ttsFlag.value = new Date().getTime();
+  stopSpeech();
 
   if (type.value === 4) {
     router.push({
@@ -349,6 +354,7 @@ const goPrev = () => {
 
 const goNext = () => {
   ttsFlag.value = new Date().getTime();
+  stopSpeech();
 
   if (type.value < 5) {
     if (type.value === 3) {
@@ -451,8 +457,7 @@ const readAnnounce = async () => {
   speakCnt.value += 1;
   isSpeaking.value = true;
 
-  // 이전 음성 중단
-  window.speechSynthesis.cancel();
+  stopSpeech();
 
   // 음성 목록 가져오기
   const voices = await loadVoices();
