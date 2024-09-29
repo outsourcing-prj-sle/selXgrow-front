@@ -18,7 +18,7 @@
           class="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           How
-          <span class="text-[#80beeb]">{{ mood.toLowerCase() }}</span> do you feel?
+          <span :style="`color: ${textColor}`">{{ mood.toLowerCase() }}</span> do you feel?
         </p>
         <div
           class="flex flex-col w-28 aspect-square bg-[#19146a] rounded-2xl justify-center mt-12 -mb-6"
@@ -75,7 +75,7 @@ import router from '@/router';
 import ButtonItems from '@/components/ButtonItems.vue';
 import MoodItem from '@/components/MoodItem.vue';
 import RobotItem from '@/components/RobotItem.vue';
-import { MOODS_LEVEL } from '@/utils/constant';
+import { MOODS, MOODS_LEVEL } from '@/utils/constant';
 
 import { useDiaryStore } from '@/store/diaryStore.js';
 const diaryStore = useDiaryStore();
@@ -97,6 +97,7 @@ const mood = computed(() => {
 });
 const feelScore = ref(1);
 
+const textColor = computed(() => MOODS[mood.value].highlightColor);
 const feelDescription = computed(() => {
   return MOODS_LEVEL[feelScore.value - 1];
 });

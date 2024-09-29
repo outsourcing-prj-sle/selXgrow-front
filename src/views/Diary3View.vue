@@ -16,7 +16,7 @@
           class="text-white w-full bg-[#494857] py-4 break-all text-2xl rounded-xl"
         >
           For what reason are you feeling
-          <span class="text-[#80beeb]">{{ mood.toLowerCase() }}</span> ?
+          <span :style="`color: ${textColor}`">{{ mood.toLowerCase() }}</span> ?
         </p>
         <!-- 드롭박스 -->
         <div class="w-full pr-14 mt-7 relative">
@@ -126,7 +126,7 @@ import { usePopupStore } from '@/store/popupStore.js';
 const popupStore = usePopupStore();
 
 import { useDiaryStore } from '@/store/diaryStore.js';
-import { MOODS_LEVEL } from '@/utils/constant';
+import { MOODS, MOODS_LEVEL } from '@/utils/constant';
 const diaryStore = useDiaryStore();
 
 const mood = computed(() => {
@@ -136,6 +136,7 @@ const mood = computed(() => {
 const level = computed(() => {
   return diaryStore.level;
 });
+const textColor = computed(() => MOODS[mood.value].highlightColor);
 const items = ref([
   { value: 'Related to something that happened in class', key: 1 },
   { value: 'Related to friends', key: 2 },
