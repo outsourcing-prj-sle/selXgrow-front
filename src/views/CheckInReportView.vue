@@ -46,13 +46,13 @@
           <template v-if="!showWatchCarefully">
             <!-- 로봇 멘트 -->
             <div
-              class="rounded-lg py-2.5 px-4 font-extrabold bg-white w-[650px] border border-[#F6F0FF] text-left custom-scrollbar"
+              class="rounded-lg py-2.5 px-4 font-extrabold bg-white w-[650px] border border-[#F6F0FF] text-left custom-scroll"
               v-if="type === 1 || type === 2"
             >
               {{ whiteAnnounceText }}
             </div>
             <div
-              class="overflow-y-scroll rounded-lg w-full h-[64px] py-2.5 px-4 font-semibold bg-[#494857] text-white border-l-2 text-left custom-scrollbar"
+              class="overflow-y-scroll rounded-lg w-full h-[64px] py-2.5 px-4 font-semibold bg-[#494857] text-white border-l-2 text-left custom-scroll"
               style="overflow-y: auto; max-height: 110px"
               v-else
             >
@@ -464,23 +464,14 @@ const waitForSentence = async () => {
 </script>
 
 <style scoped>
-/* 웹킷 기반 브라우저용 커스터마이징 */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
+/* 웹킷 기반 브라우저용 */
+.custom-scroll:-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #d8b5ff; /* 보라색 */
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background-color: #f3f4f6; /* 연한 배경 */
-}
-
-/* Firefox용 커스터마이징 */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #d8b5ff #f3f4f6;
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #d8b5ff;
+  border: 8px solid #494857;
 }
 </style>
