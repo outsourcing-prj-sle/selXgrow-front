@@ -190,18 +190,19 @@ const getPosition = (index) => {
 const getTextPosition = (index) => {
   const total = moods.value.length;
   const angle = (index / total) * (2 * Math.PI) - (140 * Math.PI) / 180;
-  const baseOffset = 68;
+  const baseOffset = 58;
   const offset = selectedMood.value === index ? baseOffset + 20 : baseOffset;
   const xOffset = offset * Math.cos(angle) - 3;
   const yOffset =
-    offset * Math.sin(angle) - (selectedMood.value === index ? 62 : 48);
+    offset * Math.sin(angle) - (selectedMood.value === index ? 62 : 52);
 
   const nonSelectedAdjustment = index !== 0 && index < 7 ? 10 : -10;
   const selectedAdjustment = index !== 0 && index < 7 ? 20 : -20;
+  const isEmbarrassed = index === 10 ? 20 : 0;
   const adjustment =
     selectedMood.value === index ? selectedAdjustment : nonSelectedAdjustment;
   return {
-    transform: `translate(${xOffset + adjustment}px, ${yOffset}px)`,
+    transform: `translate(${xOffset + adjustment}px, ${yOffset + isEmbarrassed}px)`,
   };
 };
 
