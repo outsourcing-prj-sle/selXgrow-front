@@ -185,6 +185,7 @@ const whiteAnnounceText = computed(() => {
 const onLoad = () => {
   console.log('onLoad CheckInReportView');
   showButtons.value = true;
+  nextFlag.value = false;
 
   // 글 읽어주는 기능 on / off
   const needVoiceList = [3, 4, 5, 6];
