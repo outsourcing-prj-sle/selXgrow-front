@@ -32,7 +32,7 @@ watch(
   async (newVal) => {
     if (newVal) {
       timer.value = 3;
-      await waitSec(1);
+      await waitSec(3);
       timer.value = 2;
       await waitSec(1);
       timer.value = 1;

@@ -3,16 +3,16 @@
     <PopupWatchCarefully v-if="showWatchCarefully" />
     <PopupTimer v-if="showTimer" :showTimer="showTimer" />
 
-    <div class="flex flex-col flex-1">
+    <div class="flex flex-col">
       <div class="flex items-start">
         <RobotItem />
         <!-- needVoice -->
         <div
-          class="h-full flex items-center justify-center mr-3"
+          class="h-full flex items-center justify-center"
           v-if="!showWatchCarefully"
         >
           <div
-            class="w-12 h-12 flex justify-center items-center bg-white rounded-full"
+            class="w-12 h-12 flex justify-center items-center bg-white rounded-full mr-3"
             :class="isSpeaking && 'opacity-30'"
             @click="readAnnounce"
             v-if="needVoice"
@@ -373,7 +373,7 @@ const setAnnounceTextList = async () => {
       announceTextList.value = [
         'Remember, the question is, what the person in the photo is thinking  or feeling?',
       ];
-      await waitSec(3);
+      await waitSec(6);
       showTimer.value = false;
       announceTextList.value = [''];
       report4Flag.value = '1';
@@ -388,10 +388,10 @@ const setAnnounceTextList = async () => {
       break;
     case 5:
       announceTextList.value = [
-        'After a little while, Olivia can’t stop herself from eating a chocolate chip cookie. ',
-        'Later, she goes home and remembers that she ate a chocolate chip cookie without asking. ',
-        'She wonders if she should tell her mom about it. ',
-        'In the end, April never tells her mom about taking the cookie. ',
+        'After a little while, Olivia couldn’t hold back and ate the cookies. ',
+        'Once she returned home, she couldn’t stop thinking about the fact that she had eaten the cookies without permission. ',
+        'Olivia struggled with whether to tell her mom about it, but in the end, she decided not to say anything. ',
+        'What is Olivia feeling right now? ',
       ];
       break;
   }

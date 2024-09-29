@@ -4,9 +4,9 @@
       <div class="flex items-start">
         <RobotItem />
         <!-- needVoice -->
-        <div class="h-full flex items-center justify-center mr-3">
+        <div class="h-full flex items-center justify-center">
           <div
-            class="w-12 h-12 flex justify-center items-center bg-white rounded-full"
+            class="w-12 h-12 mr-3 flex justify-center items-center bg-white rounded-full"
             @click="readAnnounce"
             v-if="needVoice"
           >
@@ -22,7 +22,7 @@
             class="overflow-y-scroll rounded-lg h-[110px] w-full py-2.5 px-4 bg-white border-l-2 text-left custom-scrollbar"
             style="overflow-y: auto; max-height: 110px"
           >
-            <p class="text-sm font-normal text-[#8D36EF] underline underline-offset-2" v-if="needVoice">
+            <p class="text-sm font-semibold text-[#8D36EF]" v-if="needVoice">
               When you click the button, you can hear a voice guidance.
             </p>
             <p
@@ -116,6 +116,7 @@ onMounted(() => {
 
   // 헤더 정보 업데이트
   setTitle();
+  setDate();
 });
 
 const setTitle = () => {
@@ -144,6 +145,11 @@ const setTitle = () => {
   }
 
   headerStore.initTitle(title);
+};
+
+const setDate = () => {
+  const date = '09.20.2024 ~ 10.28.2025';
+  headerStore.initDate(date);
 };
 
 const setAnnounceTextList = () => {
