@@ -11,7 +11,7 @@
         <VideoPlayer 
           class="h-72 w-full" 
           controls 
-          :src="`/grow/resources/video/${video}.mp4`"
+          :src="`/growxsel/resources/video/${video}.mp4`"
         />
         <div class="flex flex-col items-start w-full pt-4">
           <p class="font-extrabold text-lg">{{  route.query.header  }}</p>

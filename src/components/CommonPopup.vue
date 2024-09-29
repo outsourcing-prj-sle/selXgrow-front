@@ -6,7 +6,7 @@
         <div class="absolute inset-0 w-full h-full bg-[rgba(0,0,0,0.3)]">
           <div class="loading-spinner"></div>
         </div>
-        <VuePdfEmbed :source="`/grow/resources/pdf/${pdf}.pdf`" />
+        <VuePdfEmbed :source="`/growxsel/resources/pdf/${pdf}.pdf`" />
       </div>
     </div>
     <div>
@@ -42,7 +42,7 @@ const printPdf = () => {
   closePopup();
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  const pdfUrl = `/grow/resources/pdf/${pdf.value}.pdf`;
+  const pdfUrl = `/growxsel/resources/pdf/${pdf.value}.pdf`;
 
   if (isMobile) {
     const link = document.createElement('a');

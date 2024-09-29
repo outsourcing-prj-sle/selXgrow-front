@@ -29,7 +29,7 @@ const metaData = (
 
 const userRoutes = [
   {
-    path: '/grow',
+    path: '/growxsel',
     component: UserLayout,
     children: [
       {
