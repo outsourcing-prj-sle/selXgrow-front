@@ -74,11 +74,11 @@ onMounted(() => {
 });
 
 const logout = () => {
-  alert('로그아웃');
+  router.push({ name: 'start' });
 };
 
 const goMyInfo = () => {
-  alert('내정보');
+  // alert('내정보');
 };
 </script>
 

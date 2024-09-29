@@ -322,7 +322,12 @@ const setTitle = () => {
 const goPrev = () => {
   ttsFlag.value = new Date().getTime();
 
-  if (type.value > 1) {
+  if (type.value === 4) {
+    router.push({
+      name: 'checkInNotice',
+      params: { type: type.value },
+    });
+  } else if (type.value > 1) {
     type.value -= 1;
     router.replace({
       name: 'checkInReport',
@@ -389,7 +394,7 @@ const setAnnounceTextList = async () => {
       announceTextList.value = [
         'Remember, the question is, what the person in the photo is thinking  or feeling?',
       ];
-      await waitSec(6);
+      await waitSec(5.5);
       showTimer.value = false;
       announceTextList.value = [''];
       report4Flag.value = '1';
