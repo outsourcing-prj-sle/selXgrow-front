@@ -100,12 +100,15 @@ const announceTextList = ref([]);
 const isSpeaking = ref(false);
 const currentSentence = ref(0);
 const speakCnt = ref(0);
+const ttsFlag = ref();
 
 onMounted(() => {
   onLoad();
 });
 
 const onLoad = () => {
+  ttsFlag.value = new Date().getTime();
+
   speakCnt.value = 0;
   currentSentence.value = '';
 
@@ -242,6 +245,8 @@ const startReport = () => {
     return;
   }
 
+  ttsFlag.value = new Date().getTime();
+
   router.push({
     name: 'checkInReport',
     params: { type: type.value },
@@ -263,6 +268,8 @@ const loadVoices = () => {
 };
 
 const readAnnounce = async () => {
+  console.log('readAnnounce asdf');
+  const ttsFlagTmp = ttsFlag.value;
   const t = type.value;
 
   // 대화 끝나기전엔 비활성화
@@ -306,9 +313,11 @@ const readAnnounce = async () => {
   utterance.pitch = 0.9;
 
   for (const index in announceTextList.value) {
-    // 페이지 타입 바뀌면 for문 멈추기
-    if (t !== parseInt(route.params.type)) return;
-    // 위랑 비슷한거로 나중에 nowPage로 추가
+    // 페이지 바뀌면
+    if (ttsFlag.value !== ttsFlagTmp) return;
+
+    console.log('for');
+    console.log(index);
 
     const sentence = announceTextList.value[index];
     utterance.text = sentence;
