@@ -34,7 +34,8 @@
                 'text-red-500': isSpeaking && currentSentence === i + 1,
               }"
             >
-              {{ v }}
+              <template v-if="v === ''">&nbsp;</template>
+              <template v-else>{{ v }}</template>
             </p>
           </div>
         </div>
