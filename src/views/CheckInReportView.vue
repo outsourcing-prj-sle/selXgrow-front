@@ -154,7 +154,7 @@ const questionP = ref('');
 const report4Flag = ref('empty');
 const report4Show = ref(false);
 const showButtons = ref(true);
-const showWatchCarefully = ref(true);
+const showWatchCarefully = ref(false);
 const showTimer = ref(false);
 
 onMounted(() => {
@@ -343,7 +343,7 @@ const goNext = () => {
       });
     }
   } else {
-    console.log('5페이지');
+    router.push({ name: 'diary1' });
   }
 };
 
