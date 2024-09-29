@@ -6,6 +6,7 @@
       !isAllowed ? { opacity: '0.5', 'background-color': '#DADFF5' } : '',
     ]"
     type="button"
+    :disabled="!isAllowed"
   ></button>
 </template>
 
