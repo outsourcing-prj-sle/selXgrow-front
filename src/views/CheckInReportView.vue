@@ -13,7 +13,7 @@
         >
           <div
             class="w-12 h-12 flex justify-center items-center bg-white rounded-full mr-3"
-            :class="isSpeaking && 'opacity-30'"
+            :class="isSpeaking ? 'opacity-30' : 'cursor-pointer'"
             @click="readAnnounce"
             v-if="needVoice"
           >

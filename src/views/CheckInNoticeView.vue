@@ -7,6 +7,7 @@
         <div class="h-full flex items-center justify-center">
           <div
             class="w-12 h-12 mr-3 flex justify-center items-center bg-white rounded-full"
+            :class="isSpeaking ? 'opacity-30' : 'cursor-pointer'"
             @click="readAnnounce"
             v-if="needVoice"
           >
