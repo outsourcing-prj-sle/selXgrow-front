@@ -116,7 +116,6 @@ onMounted(() => {
 
   // 헤더 정보 업데이트
   setTitle();
-  setDate();
 });
 
 const setTitle = () => {
@@ -145,11 +144,6 @@ const setTitle = () => {
   }
 
   headerStore.initTitle(title);
-};
-
-const setDate = () => {
-  const date = '09.20.2024 ~ 10.28.2025';
-  headerStore.initDate(date);
 };
 
 const setAnnounceTextList = () => {
