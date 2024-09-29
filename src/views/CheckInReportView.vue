@@ -46,7 +46,7 @@
           <template v-if="!showWatchCarefully">
             <!-- 로봇 멘트 -->
             <div
-              class="rounded-lg w-full py-2.5 px-4 font-extrabold bg-white border-l-2 text-left custom-scrollbar"
+              class="rounded-lg py-2.5 px-4 font-extrabold bg-white w-[650px] border border-[#F6F0FF] text-left custom-scrollbar"
               v-if="type === 1 || type === 2"
             >
               {{ whiteAnnounceText }}
