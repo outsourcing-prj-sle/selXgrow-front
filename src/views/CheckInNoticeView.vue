@@ -101,6 +101,7 @@ const isSpeaking = ref(false);
 const currentSentence = ref(0);
 const speakCnt = ref(0);
 const ttsFlag = ref();
+const allowNextSentence = ref(false);
 
 onMounted(() => {
   onLoad();
@@ -108,7 +109,7 @@ onMounted(() => {
 
 const onLoad = () => {
   ttsFlag.value = new Date().getTime();
-
+  allowNextSentence.value = false;
   speakCnt.value = 0;
   currentSentence.value = '';
 
@@ -195,7 +196,7 @@ const setAnnounceTextList = () => {
       textList = [
         'On the screen, you will see a photo of a person with just their eyes shown, like the one below. You will also see words written on each corner of the screen. You are to choose from four words that best describe what the person in the photo is thinking or feeling as quickly as possible.  ',
         'Give the best answer as quickly as possible, even if it is hard to make up your mind.  ',
-        'If no answer, repeat: “give the best answer as quickly as possible, even if it is hard to make up your mind.”  ',
+        'If no answer, repeat: "give the best answer as quickly as possible, even if it is hard to make up your mind."  ',
         '',
         'Press "start" to begin.',
       ];
@@ -205,17 +206,17 @@ const setAnnounceTextList = () => {
         'Once we begin, you will see the photo of a person inside this black screen.  ',
         'Watch carefully, as the photo will only be displayed on the screen for a second. Try to see what the person in the photo is thinking or feeling. Ready? On the count of 3, 2, 1!  ',
         'Which of the six words best describes what the person in the photo was thinking or feeling?  ',
-        'If no answer, say: “give the best answer as quickly as possible, even if it is hard to make up your mind.”  ',
-        'Always count down so that students will pay attention and not miss the photo being displayed.  ',
+        'If no answer, say: "give the best answer as quickly as possible, even if it is hard to make up your mind." ',
+        'Always count down so that students will pay attention and not miss the photo being displayed. ',
         '',
         'Press "start" to begin.',
       ];
       break;
     case 5:
       textList = [
-        'On this screen, there are words that represent pictures and emotions.  ',
-        'Hear each sentence carefully. You will have four answer choices: 1, 2, 3, and 4.  ',
-        'You can only listen to the guide voice once, so please listen carefully and choose in a quiet place. Are you ready?  ',
+        'On this screen, there are words that represent pictures and emotions. ',
+        'Hear each sentence carefully. You will have four answer choices: 1, 2, 3, and 4. ',
+        'You can only listen to the guide voice once, so please listen carefully and choose in a quiet place. Are you ready? ',
         '',
         'Press "start" to begin.',
       ];
@@ -270,7 +271,6 @@ const loadVoices = () => {
 const readAnnounce = async () => {
   console.log('readAnnounce asdf');
   const ttsFlagTmp = ttsFlag.value;
-  const t = type.value;
 
   // 대화 끝나기전엔 비활성화
   if (speakCnt.value > 2) return;
@@ -316,9 +316,6 @@ const readAnnounce = async () => {
     // 페이지 바뀌면
     if (ttsFlag.value !== ttsFlagTmp) return;
 
-    console.log('for');
-    console.log(index);
-
     const sentence = announceTextList.value[index];
     utterance.text = sentence;
     utterance.onstart = () => {
@@ -347,28 +344,31 @@ const readAnnounce = async () => {
       if (announceTextList.value.length <= currentSentence.value)
         isSpeaking.value = false;
       currentSentence.value = 0;
+      allowNextSentence.value = true;
+      console.log('onend');
     };
     window.speechSynthesis.speak(utterance);
-    await waitForSentence();
+
+    allowNextSentence.value = false;
+    // 마지막 문장이 아니면 기다리지않음
+    if (index + 1 < announceTextList.value) {
+      await waitForSentence();
+    }
   }
 };
 
 const waitForSentence = async () => {
   console.log('start wait');
-  const sentenceTmp = currentSentence.value;
   await new Promise((resolve) => {
     let interval;
     interval = setInterval(() => {
-      if (sentenceTmp !== currentSentence.value) {
-        clearInterval(interval);
-        resolve();
-      } else if (currentSentence.value) {
+      if (allowNextSentence.value) {
+        console.log('fin wait');
         clearInterval(interval);
         resolve();
       }
-    }, 250);
+    }, 100);
   });
-  await waitSec(0.5);
   return;
 };
 </script>

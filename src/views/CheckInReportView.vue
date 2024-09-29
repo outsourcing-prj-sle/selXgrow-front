@@ -66,7 +66,7 @@
                 }"
               >
                 <template v-if="v === ''">&nbsp;</template>
-                <template v-else>{{ v }}</template>
+                <template v-else>{{ v }}&nbsp;</template>
               </span>
             </div>
           </template>
@@ -157,6 +157,7 @@ const showButtons = ref(true);
 const showWatchCarefully = ref(false);
 const showTimer = ref(false);
 const ttsFlag = ref();
+const allowNextSentence = ref(false);
 
 onMounted(() => {
   onLoad();
@@ -192,6 +193,7 @@ const onLoad = () => {
   showTimer.value = false;
   speakCnt.value = 0;
   currentSentence.value = '';
+  allowNextSentence.value = false;
 
   // 이전 음성 중단
   window.speechSynthesis.cancel();
@@ -402,10 +404,10 @@ const setAnnounceTextList = async () => {
       break;
     case 5:
       announceTextList.value = [
-        'After a little while, Olivia couldn’t hold back and ate the cookies. ',
-        'Once she returned home, she couldn’t stop thinking about the fact that she had eaten the cookies without permission. ',
-        'Olivia struggled with whether to tell her mom about it, but in the end, she decided not to say anything. ',
-        'What is Olivia feeling right now? ',
+        'After a little while, Olivia couldn’t hold back and ate the cookies.',
+        'Once she returned home, she couldn’t stop thinking about the fact that she had eaten the cookies without permission.',
+        'Olivia struggled with whether to tell her mom about it, but in the end, she decided not to say anything.',
+        'What is Olivia feeling right now?',
       ];
       break;
   }
@@ -436,7 +438,6 @@ const loadVoices = () => {
 };
 
 const readAnnounce = async () => {
-  const t = type.value;
   const ttsFlagTmp = ttsFlag.value;
 
   // 대화 끝나기전엔 비활성화
@@ -483,9 +484,6 @@ const readAnnounce = async () => {
     // 페이지 바뀌면
     if (ttsFlag.value !== ttsFlagTmp) return;
 
-    console.log('for');
-    console.log(index);
-
     const sentence = announceTextList.value[index];
     utterance.text = sentence;
     utterance.onstart = () => {
@@ -511,28 +509,31 @@ const readAnnounce = async () => {
       if (announceTextList.value.length <= currentSentence.value)
         isSpeaking.value = false;
       currentSentence.value = 0;
+      allowNextSentence.value = true;
+      console.log('onend');
     };
     window.speechSynthesis.speak(utterance);
-    await waitForSentence();
+
+    allowNextSentence.value = false;
+    // 마지막 문장이 아니면 기다리지않음
+    if (index + 1 < announceTextList.value) {
+      await waitForSentence();
+    }
   }
 };
 
 const waitForSentence = async () => {
   console.log('start wait');
-  const sentenceTmp = currentSentence.value;
   await new Promise((resolve) => {
     let interval;
     interval = setInterval(() => {
-      if (sentenceTmp !== currentSentence.value) {
-        clearInterval(interval);
-        resolve();
-      } else if (currentSentence.value) {
+      if (allowNextSentence.value) {
+        console.log('fin wait');
         clearInterval(interval);
         resolve();
       }
-    }, 250);
+    }, 100);
   });
-  await waitSec(0.5);
   return;
 };
 </script>
