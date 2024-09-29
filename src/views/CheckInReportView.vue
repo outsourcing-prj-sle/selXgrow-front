@@ -188,6 +188,11 @@ const onLoad = () => {
   nextFlag.value = false;
   showWatchCarefully.value = false;
   showTimer.value = false;
+  speakCnt.value = 0;
+  currentSentence.value = '';
+
+  // 이전 음성 중단
+  window.speechSynthesis.cancel();
 
   // 글 읽어주는 기능 on / off
   const needVoiceList = [3, 4, 5, 6];
@@ -318,10 +323,16 @@ const goPrev = () => {
       params: { type: type.value },
     });
   } else {
-    router.push({
-      name: 'checkInNotice',
-      params: { type: type.value },
-    });
+    if (type.value === 1) {
+      router.push({
+        name: 'checkInStart',
+      });
+    } else {
+      router.push({
+        name: 'checkInNotice',
+        params: { type: type.value },
+      });
+    }
   }
 };
 
@@ -419,11 +430,16 @@ const loadVoices = () => {
 };
 
 const readAnnounce = async () => {
+  const t = type.value;
+
   // 대화 끝나기전엔 비활성화
   if (speakCnt.value > 2) return;
   if (isSpeaking.value) return;
   speakCnt.value += 1;
   isSpeaking.value = true;
+
+  // 이전 음성 중단
+  window.speechSynthesis.cancel();
 
   // 음성 목록 가져오기
   const voices = await loadVoices();
@@ -457,6 +473,10 @@ const readAnnounce = async () => {
   utterance.pitch = 0.9;
 
   for (const index in announceTextList.value) {
+    // 페이지 타입 바뀌면 for문 멈추기
+    if (t !== parseInt(route.params.type)) return;
+    // 위랑 비슷한거로 나중에 nowPage로 추가
+
     const sentence = announceTextList.value[index];
     utterance.text = sentence;
     utterance.onstart = () => {
@@ -490,10 +510,14 @@ const readAnnounce = async () => {
 
 const waitForSentence = async () => {
   console.log('start wait');
+  const sentenceTmp = currentSentence.value;
   await new Promise((resolve) => {
     let interval;
     interval = setInterval(() => {
-      if (!currentSentence.value) {
+      if (sentenceTmp !== currentSentence.value) {
+        clearInterval(interval);
+        resolve();
+      } else if (currentSentence.value) {
         clearInterval(interval);
         resolve();
       }
