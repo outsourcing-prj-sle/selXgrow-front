@@ -1,7 +1,7 @@
 <template>
   <div>
     <picture
-      :class="`bg-[#f3f5f7] rounded-full flex items-center justify-center aspect-square ${isBorder && 'border-4 border-[#6f7182]'} ${isSmall && 'border-[12px]'}`"
+      :class="`bg-[#f3f5f7] rounded-full flex items-center justify-center aspect-square ${isBorder && 'border-4 border-[#6f7182]'} ${isSmall && 'border-[15px]'}`"
       :style="`width: ${size * 4}px; border-color: rgba(215, 219, 226, 0.3);`"
     >
       <img
