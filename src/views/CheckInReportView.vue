@@ -388,7 +388,7 @@ const setAnnounceTextList = async () => {
       break;
     case 5:
       announceTextList.value = [
-        'After a little while, April can’t stop herself from eating a chocolate chip cookie. ',
+        'After a little while, Olivia can’t stop herself from eating a chocolate chip cookie. ',
         'Later, she goes home and remembers that she ate a chocolate chip cookie without asking. ',
         'She wonders if she should tell her mom about it. ',
         'In the end, April never tells her mom about taking the cookie. ',
