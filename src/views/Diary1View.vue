@@ -51,7 +51,7 @@
             <div class="rounded-full flex items-center justify-center">
               <img
                 :src="require(`@/assets/img/diary/step1/${mood.icon}.svg`)"
-                :class="`${selectedMood === index ? 'w-[85px]' : 'w-[74px]'}`"
+                :class="`${selectedMood === index ? 'w-[100px] border-4 border-[#6f7182] rounded-full' : 'w-[74px]'}`"
                 alt="mood icon"
               />
             </div>
@@ -182,8 +182,9 @@ const getPosition = (index) => {
   const radius = selectedMood.value === index ? baseRadius + 30 : baseRadius;
   const x = radius * Math.cos(angle);
   const y = radius * Math.sin(angle) + 12;
+  const isSelectedY = selectedMood.value === index ? -10 : 0;
   return {
-    transform: `translate(${x}px, ${y}px)`,
+    transform: `translate(${x}px, ${y + isSelectedY}px)`,
   };
 };
 
