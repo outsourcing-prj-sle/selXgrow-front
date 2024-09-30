@@ -35,7 +35,7 @@
           <p>ⓒ 2024</p>
           <p>Grow X Education.</p>
           <p>All right reserved.</p>
-          <p>growxeducation@gmail.com</p>
+          <p>growxeducation<br />@gmail.com</p>
         </div>
       </div>
     </div>
