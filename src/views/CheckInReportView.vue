@@ -26,7 +26,7 @@
         </div>
         <div class="flex flex-1 flex-col">
           <!-- 진행도 막대 -->
-          <div class="w-full flex flex-col justify-end items-end mb-2">
+          <div class="w-full flex flex-col justify-end items-end">
             <div class="w-full justify-end flex h-1">
               <div
                 v-for="i in totalQuestion"
@@ -39,9 +39,9 @@
                 ></div>
               </div>
             </div>
-            <!-- <div class="text-[#A7A7A7] font-normal text-sm mt-1">
+            <div class="text-[#A7A7A7] font-normal text-sm mt-1">
               {{ `${nowPage} / ${totalQuestion}` }}
-            </div> -->
+            </div>
           </div>
           <template v-if="!showWatchCarefully">
             <!-- 로봇 멘트 -->
