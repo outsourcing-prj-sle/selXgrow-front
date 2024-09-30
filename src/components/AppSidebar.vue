@@ -67,6 +67,7 @@ const termStartText = ref('Terms and conditions');
 
 const goMain = () => {
   // router.push({ name: 'home' });
+  router.push({ name: 'start' });
 };
 
 const goDiary = () => {

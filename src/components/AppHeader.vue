@@ -79,6 +79,7 @@ const logout = () => {
 
 const goMyInfo = () => {
   // alert('내정보');
+  router.push({ name: 'start' });
 };
 </script>
 
