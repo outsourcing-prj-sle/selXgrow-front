@@ -11,7 +11,7 @@
     <div class="mx-8 w-[65%] flex flex-col h-full gap-2 relative">
       <p class="ml-20 text-2xl text-left font-bold">SEL Diary</p>
       <div
-        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 min-h-[420px] max-h-[420px] overflow-y-scroll relative beforeLine"
+        class="bg-white rounded-2xl border-[#E9EBEC] border w-full flex-1 min-h-[400px] max-h-[400px] overflow-y-scroll relative beforeLine"
         ref="diaryContainer"
         :style="beforeLineHeight"
       >
