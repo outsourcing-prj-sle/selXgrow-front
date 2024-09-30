@@ -6,12 +6,16 @@
     >
       <img
         :class="`w-full aspect-square ${isSmall && 'border-2 border-[rgb(217,220,226)] rounded-full'}`"
-        :src="require(`@/assets/img/diary/moods/${selectedMood.icons[props.level - 1]}.svg`)"
+        :src="
+          require(
+            `@/assets/img/diary/moods/${selectedMood.icons[props.level - 1]}.svg`
+          )
+        "
         alt="mood icon"
       />
     </picture>
     <p
-      :class="`font-bold p-2.5 leading-none cursor-default text-[${fontSize}px]`"
+      :class="`font-bold py-2.5 leading-none cursor-default text-[${fontSize}px] whitespace-nowrap`"
       :style="`color: ${textColor}; font-size: ${fontSize}px`"
       v-if="!!textContent"
     >
@@ -52,7 +56,7 @@ const props = defineProps({
   },
   isSmall: {
     type: Boolean,
-  }
+  },
 });
 
 const selectedMood = computed(() => {
