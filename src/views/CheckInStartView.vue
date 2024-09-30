@@ -4,16 +4,14 @@
       <div class="flex items-start">
         <RobotItem />
         <div class="w-full flex-col">
-          <p class="text-left text-white font-semibold">Hello, Jessika!</p>
+          <p class="text-left text-[#555195] font-semibold">Hello, Jessika!</p>
           <div
             class="px-4 py-2 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-2/3 flex-col"
           >
             <p class="font-semibold">
               Nice to meet you! I'd like to get to know you better!
             </p>
-            <p class="font-fontsemibold">
-              I have four activities for you to try.
-            </p>
+            <p class="font-semibold">I have four activities for you to try.</p>
             <p class="font-extrabold mt-4">
               Click the "Start" button to begin the activity!
             </p>
