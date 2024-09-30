@@ -19,7 +19,7 @@
           <div
             class="absolute flex flex-col justify-center items-center w-full h-full"
           >
-            <h2 class="text-2xl font-bold text-blue-800">
+            <h2 class="text-[24px] leading-[26px] font-bold text-blue-800">
               How do you feel<br />right now?
             </h2>
             <div
