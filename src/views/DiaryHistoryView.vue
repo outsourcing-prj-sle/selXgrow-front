@@ -30,7 +30,10 @@
       </div>
     </div>
     <div class="flex-1 mt-8">
-      <CalendarItem @onDateClick="handleDateClick" @onMonthChange="handleMonthChange" />
+      <CalendarItem
+        @onDateClick="handleDateClick"
+        @onMonthChange="handleMonthChange"
+      />
     </div>
   </div>
 </template>
@@ -46,18 +49,24 @@ import { computed, ref } from 'vue';
 const diaryStore = useDiaryStore();
 
 const diaryContainer = ref(null);
-const currentMonth = ref(diaryStore.date.split("/")[0]);
+const currentMonth = ref(diaryStore.date.split('/')[0]);
 
 const currentDiaryContents = computed(() => {
-  console.log(`diaryContents: ${JSON.stringify(diaryStore.diaryContents)}`)
+  console.log(`diaryContents: ${JSON.stringify(diaryStore.diaryContents)}`);
 
-  const filteredDiaryContents = diaryStore.diaryContents.filter((diaryContent) => {
-    if(diaryContent.date.split("/")[0] === currentMonth.value) return diaryContent;
-  });
+  const filteredDiaryContents = diaryStore.diaryContents.filter(
+    (diaryContent) => {
+      if (diaryContent.date.split('/')[0] === currentMonth.value)
+        return diaryContent;
+    }
+  );
 
   return filteredDiaryContents.sort((content1, content2) => {
-    return parseInt(content2.date.split("/")[1]) - parseInt(content1.date.split("/")[1])
-  })
+    return (
+      parseInt(content2.date.split('/')[1]) -
+      parseInt(content1.date.split('/')[1])
+    );
+  });
 });
 
 const scrollToDiaryContent = (index) => {
@@ -70,7 +79,7 @@ const scrollToDiaryContent = (index) => {
 
 const handleDateClick = (data) => {
   const index = currentDiaryContents.value.findIndex((diaryContent) => {
-    const [month, date] = diaryContent.date.split("/");
+    const [month, date] = diaryContent.date.split('/');
 
     return date === data.date && month === data.month;
   });
@@ -84,7 +93,7 @@ const handleMonthChange = (month) => {
 const beforeLineHeight = computed(() => {
   const calcHeight = 130 * currentDiaryContents.value.length;
 
-  if(calcHeight > 420) {
+  if (calcHeight > 420) {
     return {
       '--before-line-height': `${130 * currentDiaryContents.value.length}px`,
     };
@@ -100,23 +109,23 @@ const beforeLineHeight = computed(() => {
 .sel-diary::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: -35px;
+  left: -7px;
   background: url('@/assets/img/pencil.svg') no-repeat;
   width: 100px;
   height: 100px;
 }
 
 .beforeLine::after {
-    position: absolute;
-    top: 0;
-    left: 110px;
-    right: 5px;
-    bottom: 0;
-    background-image: linear-gradient(transparent 90%, #EFEFEF 95%);
-    background-size: 100% 2em;
-    background-repeat: repeat-y;
-    content: '';
-    height: var(--before-line-height);
+  position: absolute;
+  top: 0;
+  left: 110px;
+  right: 5px;
+  bottom: 0;
+  background-image: linear-gradient(transparent 90%, #efefef 95%);
+  background-size: 100% 2em;
+  background-repeat: repeat-y;
+  content: '';
+  height: var(--before-line-height);
 }
 </style>
