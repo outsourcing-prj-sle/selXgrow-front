@@ -1,5 +1,5 @@
 <template>
-  <div class="flex ml-[193px] mt-20">
+  <div class="flex ml-[193px] mt-[60px]">
     <div class="flex flex-1">
       <div
         class="border border-[#F5F5F5] rounded-xl w-[236px] h-[303px] overflow-hidden"

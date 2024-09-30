@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mt-5 ml-[193px]">
+  <div class="flex mt-10 ml-[193px]">
     <div class="flex flex-col flex-1">
       <div
         class="flex mt-4 py-[70px] justify-center items-center bg-[#F6FBFF] relative rounded-xl text-base font-semibold text-[#606060]"
