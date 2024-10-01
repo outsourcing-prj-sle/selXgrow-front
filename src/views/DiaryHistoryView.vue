@@ -4,7 +4,7 @@
     <p
       class="font-extrabold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
     >
-      You can see your emotional timeline.
+      Here is your emotion timeline.
     </p>
   </div>
   <div class="flex w-full sel-diary relative">

@@ -14,28 +14,28 @@
           :class="selectedOption === 1 ? 'bg-[#8F61EC] text-white' : 'bg-white'"
           @click="() => setSelectOption(1)"
         >
-          Sad
+          embarrassed
         </button>
         <button
           class="absolute w-[120px] top-[40px] right-[34px] transform -translate-y-1/2 rounded-full py-3 shadow"
           :class="selectedOption === 2 ? 'bg-[#8F61EC] text-white' : 'bg-white'"
           @click="() => setSelectOption(2)"
         >
-          Happy
+          happy
         </button>
         <button
           class="absolute w-[120px] bottom-0 left-[34px] transform -translate-y-1/2 rounded-full py-3 shadow"
           :class="selectedOption === 3 ? 'bg-[#8F61EC] text-white' : 'bg-white'"
           @click="() => setSelectOption(3)"
         >
-          Scared
+          out of control
         </button>
         <button
           class="absolute w-[120px] bottom-0 right-[34px] transform -translate-y-1/2 rounded-full py-3 shadow"
           :class="selectedOption === 4 ? 'bg-[#8F61EC] text-white' : 'bg-white'"
           @click="() => setSelectOption(4)"
         >
-          Angry
+          astonished
         </button>
       </div>
     </div>

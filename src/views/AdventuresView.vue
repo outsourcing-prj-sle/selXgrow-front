@@ -16,14 +16,23 @@
             class="flex gap-4 flex-wrap justify-start max-w-[750px] ml-[100px]"
           >
             <div
-              class="flex flex-col text-[#19146A] text-left"
+              class="flex flex-col text-[#19146A] text-left cursor-pointer"
               v-for="n in 6"
               :key="n"
-              @click="() => goDetail({ id: n, header: headerList[n-1], content: contentList[n-1] })"
+              @click="
+                () =>
+                  goDetail({
+                    id: n,
+                    header: headerList[n - 1],
+                    content: contentList[n - 1],
+                  })
+              "
             >
               <img
                 class="w-[226px] h-[140px] object-cover"
-                :src="require(`@/assets/img/adventure/adventure_thumbnail_${n}.svg`)"
+                :src="
+                  require(`@/assets/img/adventure/adventure_thumbnail_${n}.svg`)
+                "
                 alt="adventure_thumbnail"
               />
               <p class="font-bold text-sm mt-2">{{ headerList[n - 1] }}</p>
@@ -44,8 +53,13 @@ import RobotItem from '@/components/RobotItem.vue';
 import { VIDEOS } from '@/utils/constant';
 
 const goDetail = ({ id, header, content }) => {
-  if(id > VIDEOS.length) return;
-  else router.push({ name: 'adventuresDetail', params: { id }, query: { header, content } });
+  if (id > VIDEOS.length) return;
+  else
+    router.push({
+      name: 'adventuresDetail',
+      params: { id },
+      query: { header, content },
+    });
 };
 
 const headerList = [

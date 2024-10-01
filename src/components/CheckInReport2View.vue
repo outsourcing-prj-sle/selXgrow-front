@@ -2,7 +2,7 @@
   <div class="flex mt-5 ml-[132px]">
     <div class="flex flex-col w-[650px] mr-5">
       <div
-        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-base text-white font-normal text-left"
+        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-[17px] text-white font-semibold text-left"
       >
         I get into trouble for not paying attention.
       </div>

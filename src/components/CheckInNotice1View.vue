@@ -3,7 +3,7 @@
     <div class="pt-6 font-bold text-sm text-[#555195]">(Example)</div>
     <div class="flex flex-col w-[650px] mr-5 ml-4">
       <div
-        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-base text-white font-normal text-left"
+        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-[17px] text-white font-semibold text-left"
       >
         In school, how possible is it for you <br />
         to change your seat partner?

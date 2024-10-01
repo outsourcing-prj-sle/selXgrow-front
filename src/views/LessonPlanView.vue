@@ -6,7 +6,7 @@
         <p
           class="font-bold px-4 py-2 mt-4 rounded-md bg-white border-2 border-[#F6F0FF] text-left w-full"
         >
-          The lesson plan is provided in detail on the site.
+          Click on each lesson plan for more detail.
         </p>
       </div>
       <div class="flex flex-col justify-between items-center flex-1">
@@ -16,7 +16,7 @@
             class="flex gap-x-8 gap-y-16 flex-wrap justify-start max-w-[750px] ml-[100px]"
           >
             <div
-              class="flex flex-col w-[228px] h-[180px] relative items-start gap-y-3"
+              class="flex cursor-pointer flex-col w-[228px] h-[180px] relative items-start gap-y-3"
               v-for="n in 6"
               :key="n"
               @click="() => openPDFPopup(n)"
@@ -26,9 +26,10 @@
                 :src="require(`@/assets/img/lesson/lesson_thumbnail_${n}.svg`)"
                 :alt="`lesson_thumbnail_${n}`"
               />
-              <p class="text-base font-extrabold text-left leading-none pl-2 break-keep">
-                {{ textList[n - 1] }}
-              </p>
+              <p
+                class="text-base font-extrabold text-left leading-none pl-2 break-keep"
+                v-html="textList[n - 1]"
+              ></p>
             </div>
           </div>
         </div>
@@ -47,7 +48,7 @@ const popupStore = usePopupStore();
 const textList = ref([
   'STORY TIME',
   'MYSTERY MAIL',
-  'CREATE A GARDEN OF FEELING FLOWERS',
+  'CREATE A GARDEN<br/>OF FEELING FLOWERS',
   'PARCTICE RAINBOW BREATHING',
   'PINWHEELS1',
   'PINWHEELS 2',

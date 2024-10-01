@@ -2,10 +2,9 @@
   <div class="flex mt-5 ml-[132px]">
     <div class="flex flex-col w-[650px]">
       <div
-        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-base text-white font-normal text-left"
+        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-[17px] text-white font-semibold text-left"
       >
-        In school, how possible is it for you <br />
-        to change your seat partner?
+        In school, how possible is it for you to change your seat partner?
       </div>
       <div class="w-full bg-[#D4EAFF] rounded-xl mt-2 overflow-hidden">
         <div class="grid grid-cols-5 gap-4 text-center w-full py-5 px-6">

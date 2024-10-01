@@ -3,7 +3,7 @@
     <div class="pt-3 font-bold text-sm text-[#555195]">(Example)</div>
     <div class="flex flex-col w-[650px] mr-5 ml-4">
       <div
-        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-base text-white font-normal text-left"
+        class="w-full rounded-xl bg-[#494857] py-3 px-4 text-[17px] text-white font-semibold text-left"
       >
         I like to swim in the pool.
       </div>

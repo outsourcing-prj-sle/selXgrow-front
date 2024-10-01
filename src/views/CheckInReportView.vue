@@ -52,7 +52,7 @@
               {{ whiteAnnounceText }}
             </div>
             <div
-              class="overflow-y-scroll rounded-lg w-full h-[85px] py-2 px-4 font-semibold bg-[#494857] text-white border-l-2 text-left custom-scroll"
+              class="overflow-y-scroll rounded-lg w-full h-[85px] text-[17px] py-2 px-4 font-semibold bg-[#494857] text-white border-l-2 text-left custom-scroll"
               style="overflow-y: auto; max-height: 110px"
               v-else
             >

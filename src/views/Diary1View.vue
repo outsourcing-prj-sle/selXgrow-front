@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-full relative">
-    <div class="flex flex-col flex-1">
+    <div class="flex flex-col flex-1 z-10">
       <div class="flex items-start">
         <RobotItem />
         <p
